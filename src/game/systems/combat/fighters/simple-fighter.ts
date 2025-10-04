@@ -9,7 +9,7 @@ import {
 import { attacks as attackTypes } from '../attacks';
 import Weapon from '../../../components/weapon/weapon.component';
 import type { Attack } from '../attacks';
-import { ATTACK_STATS_MAP } from '../attack-stats-map';
+import { ATTACK_STATS_MAP } from '../../../../consts/game';
 import { findTeam } from '../utils/find-team';
 
 import type { Fighter } from './fighter';
@@ -96,16 +96,18 @@ export class SimpleFighter implements Fighter {
   update(deltaTime: number): void {
     const { attacks } = this.weapon;
 
-    attacks.forEach((attackState, attackType) => {
-      attackState.cooldownRemaining -= deltaTime;
+    if (!this.scene.data.isPaused) {
+      attacks.forEach((attackState, attackType) => {
+        attackState.cooldownRemaining -= deltaTime;
 
-      if (attackState.cooldownRemaining <= 0) {
-        const attack = this.attack(attackType);
-        if (attack) {
-          this.activeAttacks.push(attack);
+        if (attackState.cooldownRemaining <= 0) {
+          const attack = this.attack(attackType);
+          if (attack) {
+            this.activeAttacks.push(attack);
+          }
         }
-      }
-    });
+      });
+    }
 
     this.activeAttacks = this.activeAttacks.filter((activeAttack) => {
       activeAttack.update(deltaTime);

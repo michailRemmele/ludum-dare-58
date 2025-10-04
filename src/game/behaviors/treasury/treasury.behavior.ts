@@ -1,6 +1,7 @@
 import {
   Actor,
   Behavior,
+  MathOps,
   type UpdateOptions,
   type Scene,
   type BehaviorOptions,
@@ -10,11 +11,38 @@ import { DefineBehavior, DefineField } from 'dacha-workbench/decorators';
 import Storage from '../../components/storage/storage.component';
 import LevelInfo from '../../components/level-info/level-info.component';
 import Score from '../../components/score/score.component';
+import Weapon from '../../components/weapon/weapon.component';
 import * as EventType from '../../events';
-import type { StealMoneyEvent, ReturnMoneyEvent, IncreaseScorePointsEvent } from '../../events';
-import { LEVEL_UP_BASE_STEP, MAX_LEVEL } from '../../../consts/game';
+import type {
+  StealMoneyEvent,
+  ReturnMoneyEvent,
+  IncreaseScorePointsEvent,
+  PickPlayerPowerUpEvent,
+} from '../../events';
+import {
+  LEVEL_UP_BASE_STEP,
+  MAX_LEVEL,
+  ATTACK_STATS_MAP,
+} from '../../../consts/game';
+import { PLAYER_ACTOR_NAME } from '../../../consts/actors';
 
 const TIMER_UPDATE_FREQUENCY = 1000;
+
+function getRandomEntries(entries: string[], count: number): string[] {
+  const result = [];
+  const usedIndices = new Set();
+
+  while (result.length < Math.min(entries.length, count)) {
+    const randomIndex = MathOps.random(0, entries.length - 1);
+
+    if (!usedIndices.has(randomIndex)) {
+      usedIndices.add(randomIndex);
+      result.push(entries[randomIndex]);
+    }
+  }
+
+  return result;
+}
 
 interface TreasuryBehaviorOptions extends BehaviorOptions {
   levelDuration: number;
@@ -55,6 +83,10 @@ export default class Treasury extends Behavior {
       EventType.IncreaseScorePoints,
       this.handleIncreaseScorePoints,
     );
+    this.scene.addEventListener(
+      EventType.PickPlayerPowerUp,
+      this.handlePickPlayerPowerUp,
+    );
   }
 
   destroy(): void {
@@ -63,6 +95,10 @@ export default class Treasury extends Behavior {
     this.scene.removeEventListener(
       EventType.IncreaseScorePoints,
       this.handleIncreaseScorePoints,
+    );
+    this.scene.removeEventListener(
+      EventType.PickPlayerPowerUp,
+      this.handlePickPlayerPowerUp,
     );
   }
 
@@ -108,10 +144,36 @@ export default class Treasury extends Behavior {
         nextLevelScore: this.nextLevelScore,
         isMax: this.playerLevel === MAX_LEVEL,
       });
+
+      this.scene.dispatchEvent(EventType.PlayerPowerUp, {
+        bonuses: getRandomEntries(Object.keys(ATTACK_STATS_MAP), 3),
+      });
+
+      this.scene.data.isPaused = true;
     }
   };
 
+  private handlePickPlayerPowerUp = (event: PickPlayerPowerUpEvent): void => {
+    const { bonus } = event;
+    const player = this.scene.findChildByName(PLAYER_ACTOR_NAME);
+
+    if (player) {
+      const weapon = player.getComponent(Weapon);
+      const attackState = weapon.attacks.get(bonus)!;
+      attackState.level = Math.min(
+        attackState.level + 1,
+        ATTACK_STATS_MAP[bonus].length - 1,
+      );
+    }
+
+    this.scene.data.isPaused = false;
+  };
+
   update(options: UpdateOptions): void {
+    if (this.scene.data.isPaused) {
+      return;
+    }
+
     this.levelDuration -= options.deltaTime;
     this.timerUpdateCooldown -= options.deltaTime;
 

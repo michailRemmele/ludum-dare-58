@@ -14,7 +14,7 @@ import * as EventType from '../../../events';
 import HitBox from '../../../components/hit-box/hit-box.component';
 import Team from '../../../components/team/team.component';
 import { findTeam } from '../utils/find-team';
-import type { AttackStats } from '../attack-stats-map';
+import type { AttackStats } from '../../../../consts/game';
 
 import type { Attack } from './attack';
 

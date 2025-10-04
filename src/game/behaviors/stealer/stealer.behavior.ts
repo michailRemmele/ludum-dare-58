@@ -1,4 +1,4 @@
-import type { ActorSpawner, BehaviorOptions, Scene } from 'dacha';
+import type { ActorSpawner, BehaviorOptions, Scene, ActorEvent } from 'dacha';
 import { Actor, Behavior, Transform } from 'dacha';
 import { DefineBehavior } from 'dacha-workbench/decorators';
 import { CollisionEnter, type CollisionEnterEvent } from 'dacha/events';
@@ -33,8 +33,7 @@ export default class Stealer extends Behavior {
     this.actor.removeEventListener(CollisionEnter, this.handleCollisionEnter);
   }
 
-  private handleKill = (event): void => {
-    console.log('killed with ', event.target.getComponent(Pocket));
+  private handleKill = (event: ActorEvent): void => {
     const { amount } = event.target.getComponent(Pocket);
     if (amount > 0) {
       const lostPiece = this.actorSpawner.spawn('516256dc-2acb-46fd-bfb0-20a905521cbc');

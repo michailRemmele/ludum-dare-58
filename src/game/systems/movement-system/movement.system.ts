@@ -104,6 +104,10 @@ export default class MovementSystem extends SceneSystem {
   };
 
   fixedUpdate(options: UpdateOptions): void {
+    if (this.scene.data.isPaused) {
+      return;
+    }
+
     const deltaTimeInSeconds = options.deltaTime / 1000;
 
     this.actorCollection.forEach((actor) => {
@@ -122,6 +126,10 @@ export default class MovementSystem extends SceneSystem {
   }
 
   update(): void {
+    if (this.scene.data.isPaused) {
+      return;
+    }
+
     this.actorCollection.forEach((actor) => {
       const movement = actor.getComponent(Movement);
       const { direction, isMoving } = movement;

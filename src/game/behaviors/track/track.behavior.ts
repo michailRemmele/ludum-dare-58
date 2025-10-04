@@ -137,6 +137,10 @@ export default class TrackBehavior extends Behavior {
   }
 
   update(options: UpdateOptions): void {
+    if (this.scene.data.isPaused) {
+      return;
+    }
+
     this.updateSpawn(options.deltaTime);
     this.updateTrackMovement();
   }

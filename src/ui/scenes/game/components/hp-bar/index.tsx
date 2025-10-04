@@ -24,7 +24,6 @@ export const HpBar: FC = () => {
     const storage = treasury?.getComponent(Storage);
 
     if (storage) {
-      console.log('AMOUNT', storage.amount);
       setMaxPoints(storage.amount);
     }
   }, [scene]);
