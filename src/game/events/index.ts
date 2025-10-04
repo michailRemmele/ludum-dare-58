@@ -34,6 +34,7 @@ export type MovementEvent = ActorEvent<{
 export type AttackInputEvent = ActorEvent<{ x: number; y: number }>;
 export type AttackEvent = ActorEvent<{ x: number; y: number }>;
 export type DamageEvent = ActorEvent<{ value: number; actor?: Actor }>;
+export type KillEvent = ActorEvent<{ actor?: Actor }>;
 
 export type StealMoneyEvent = ActorEvent<{ value: number; actor: Actor }>;
 export type ReturnMoneyEvent = ActorEvent<{ value: number; }>;
@@ -79,7 +80,7 @@ declare module 'dacha' {
     [AttackInput]: AttackInputEvent;
     [Attack]: ActorEvent;
     [Damage]: DamageEvent;
-    [Kill]: ActorEvent;
+    [Kill]: KillEvent;
 
     [StealMoney]: StealMoneyEvent;
     [ReturnMoney]: ReturnMoneyEvent;

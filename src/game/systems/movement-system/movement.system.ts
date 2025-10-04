@@ -104,7 +104,7 @@ export default class MovementSystem extends SceneSystem {
   };
 
   fixedUpdate(options: UpdateOptions): void {
-    if (this.scene.data.isPaused) {
+    if (this.scene.data.isPaused || this.scene.data.isGameOver) {
       return;
     }
 
@@ -126,7 +126,7 @@ export default class MovementSystem extends SceneSystem {
   }
 
   update(): void {
-    if (this.scene.data.isPaused) {
+    if (this.scene.data.isPaused || this.scene.data.isGameOver) {
       return;
     }
 

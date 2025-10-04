@@ -30,7 +30,7 @@ export const HpBar: FC = () => {
 
   useEffect(() => {
     const handleUpdateMoney = (event: UpdateMoneyEvent): void => {
-      setPoints(event.amount);
+      setPoints(Math.max(0, event.amount));
     };
 
     world.addEventListener(EventType.UpdateMoney, handleUpdateMoney);

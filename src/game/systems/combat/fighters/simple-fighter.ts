@@ -96,7 +96,7 @@ export class SimpleFighter implements Fighter {
   update(deltaTime: number): void {
     const { attacks } = this.weapon;
 
-    if (!this.scene.data.isPaused) {
+    if (!this.scene.data.isPaused && !this.scene.data.isGameOver) {
       attacks.forEach((attackState, attackType) => {
         attackState.cooldownRemaining -= deltaTime;
 

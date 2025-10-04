@@ -137,7 +137,7 @@ export default class TrackBehavior extends Behavior {
   }
 
   update(options: UpdateOptions): void {
-    if (this.scene.data.isPaused) {
+    if (this.scene.data.isPaused || this.scene.data.isGameOver) {
       return;
     }
 

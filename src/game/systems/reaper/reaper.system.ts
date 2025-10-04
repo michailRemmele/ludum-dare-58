@@ -8,16 +8,11 @@ import {
   Animatable,
   Camera,
 } from 'dacha';
-import type {
-  SceneSystemOptions,
-  Scene,
-  UpdateOptions,
-  ActorEvent,
-} from 'dacha';
+import type { SceneSystemOptions, Scene, UpdateOptions } from 'dacha';
 import { DefineSystem } from 'dacha-workbench/decorators';
 
 import * as EventType from '../../events';
-import type { DamageEvent } from '../../events';
+import type { DamageEvent, KillEvent } from '../../events';
 import ViewDirection from '../../components/view-direction/view-direction.component';
 import Health from '../../components/health/health.component';
 import ScorePoints from '../../components/score-points/score-points.component';
@@ -75,7 +70,7 @@ export default class Reaper extends SceneSystem {
 
     if (health.points <= 0) {
       health.points = 0;
-      target.dispatchEvent(EventType.Kill);
+      target.dispatchEvent(EventType.Kill, { actor });
 
       if (scorePoints && actor && actor.getComponent(Team)?.index === 0) {
         this.scene.dispatchEvent(EventType.IncreaseScorePoints, {
@@ -85,7 +80,7 @@ export default class Reaper extends SceneSystem {
     }
   };
 
-  handleKill = (value: Actor | ActorEvent): void => {
+  handleKill = (value: Actor | KillEvent): void => {
     const actor = value instanceof Actor ? value : value.target;
 
     actor.getComponents().forEach((component) => {

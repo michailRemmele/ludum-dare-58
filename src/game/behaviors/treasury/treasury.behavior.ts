@@ -91,7 +91,10 @@ export default class Treasury extends Behavior {
 
   destroy(): void {
     this.actor.removeEventListener(EventType.StealMoney, this.handleStealMoney);
-    this.actor.removeEventListener(EventType.ReturnMoney, this.handleReturnMoney);
+    this.actor.removeEventListener(
+      EventType.ReturnMoney,
+      this.handleReturnMoney,
+    );
     this.scene.removeEventListener(
       EventType.IncreaseScorePoints,
       this.handleIncreaseScorePoints,
@@ -117,6 +120,8 @@ export default class Treasury extends Behavior {
         levelIndex: levelInfo.index,
         score: score.value,
       });
+
+      this.scene.data.isGameOver = true;
     }
   };
 
@@ -170,7 +175,7 @@ export default class Treasury extends Behavior {
   };
 
   update(options: UpdateOptions): void {
-    if (this.scene.data.isPaused) {
+    if (this.scene.data.isPaused || this.scene.data.isGameOver) {
       return;
     }
 
