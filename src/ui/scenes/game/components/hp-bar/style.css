@@ -1,0 +1,15 @@
+.hp-bar {
+  height: 30px;
+  width: 100%;
+
+  box-sizing: border-box;
+  background-color: #000000;
+
+  position: relative;
+}
+
+.hp-bar__points {
+  background-color: yellow;
+
+  height: 100%;
+}

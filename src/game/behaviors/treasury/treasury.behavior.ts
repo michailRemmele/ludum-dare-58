@@ -71,6 +71,8 @@ export default class Treasury extends Behavior {
 
     storage.amount -= event.value;
 
+    this.scene.dispatchEvent(EventType.UpdateMoney, { amount: storage.amount });
+
     if (storage.amount <= 0) {
       this.scene.dispatchEvent(EventType.GameOver, {
         isWin: false,

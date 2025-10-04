@@ -19,6 +19,7 @@ export const StealMoney = 'StealMoney';
 export const IncreaseScorePoints = 'IncreaseScorePoints';
 export const LevelUp = 'LevelUp';
 export const UpdateTimer = 'UpdateTimer';
+export const UpdateMoney = 'UpdateMoney';
 
 export type MovementEvent = ActorEvent<{
   angle?: number;
@@ -54,6 +55,10 @@ export type UpdateTimerEvent = SceneEvent<{
   timeLeft: number;
 }>;
 
+export type UpdateMoneyEvent = SceneEvent<{
+  amount: number;
+}>;
+
 declare module 'dacha' {
   export interface ActorEventMap {
     [Movement]: MovementEvent;
@@ -74,5 +79,6 @@ declare module 'dacha' {
     [IncreaseScorePoints]: IncreaseScorePointsEvent;
     [LevelUp]: LevelUpEvent;
     [UpdateTimer]: UpdateTimerEvent;
+    [UpdateMoney]: UpdateMoneyEvent;
   }
 }

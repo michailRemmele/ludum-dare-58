@@ -10,7 +10,7 @@ import { isMobileDevice } from '../../../utils/is-mobile-device';
 import { MAIN_MENU_ID } from '../../../consts/scenes';
 import { LEVELS } from '../../../consts/game';
 
-import { MoveControl, ExpBar, TimerBar } from './components';
+import { MoveControl, ExpBar, TimerBar, HpBar } from './components';
 import './style.css';
 
 export const Game: FC = () => {
@@ -58,6 +58,7 @@ export const Game: FC = () => {
     <div className="game">
       <ExpBar />
       <header className="game__header">
+        <HpBar />
         <TimerBar />
         <div className="header__left" />
       </header>

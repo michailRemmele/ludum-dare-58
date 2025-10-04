@@ -8,6 +8,13 @@
 .game__header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  padding: 8px 5px 0;
+}
+
+.game__header div {
+  width: 33.33%;
 }
 
 .header__left {

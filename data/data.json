@@ -35,8 +35,8 @@
               "name": "Sprite",
               "config": {
                 "src": "",
-                "width": 320,
-                "height": 320,
+                "width": 1280,
+                "height": 1280,
                 "slice": 1,
                 "rotation": 0,
                 "sortCenter": [
@@ -1168,7 +1168,7 @@
       "name": "Renderer",
       "options": {
         "windowNodeId": "root",
-        "backgroundColor": "#000000"
+        "backgroundColor": "rgb(0,0,0)"
       }
     },
     {
