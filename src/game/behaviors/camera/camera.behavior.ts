@@ -6,7 +6,7 @@ import { PLAYER_ACTOR_NAME } from '../../../consts/actors';
 
 import { smoothMove } from './utils';
 
-const VIEWPORT_SIZE = 160;
+const VIEWPORT_SIZE = 360;
 
 @DefineBehavior({
   name: 'CameraBehavior',
