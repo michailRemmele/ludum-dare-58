@@ -2,7 +2,7 @@ import { Component } from 'dacha';
 import { DefineComponent, DefineField } from 'dacha-workbench/decorators';
 
 interface TrackSegmentConfig {
-  index: string
+  index: number
 }
 
 @DefineComponent({
@@ -10,7 +10,7 @@ interface TrackSegmentConfig {
 })
 export default class TrackSegment extends Component {
   @DefineField()
-  index: string;
+  index: number;
 
   constructor(config: TrackSegmentConfig) {
     super();

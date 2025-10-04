@@ -1,18 +1,10 @@
 import type {
-  Actor,
   ActorSpawner,
   Scene,
   BehaviorOptions,
   UpdateOptions,
-  ActorEvent
 } from 'dacha';
-import {
-  Behavior,
-  Transform,
-  MathOps,
-} from 'dacha';
-import { Actor, Behavior } from 'dacha';
-import { CollisionEnter } from 'dacha/events';
+import { Actor, Behavior, Transform, MathOps } from 'dacha';
 import { DefineBehavior } from 'dacha-workbench/decorators';
 
 import Track from '../../components/track/track.component.ts';
@@ -52,7 +44,9 @@ export default class TrackBehavior extends Behavior {
     this.mobId = track.mob;
     this.mobDestinations = {};
     this.mobDirections = {};
-    this.trackSegments = this.actor.children.filter((child) => child.getComponent(TrackSegment));
+    this.trackSegments = this.actor.children.filter((child) =>
+      child.getComponent(TrackSegment),
+    );
     this.spawnCooldown = 0;
     this.spawnFrequency = track.frequency;
 
@@ -111,8 +105,8 @@ export default class TrackBehavior extends Behavior {
         this.mobDirections[actor.id] = 1;
         nextSegmentIndex = 0;
       } else if (intersectedSegmentIndex !== -1) {
-        console.log(intersectedSegmentIndex + this.mobDirections[actor.id]);
-        nextSegmentIndex = intersectedSegmentIndex + this.mobDirections[actor.id];
+        nextSegmentIndex =
+          intersectedSegmentIndex + this.mobDirections[actor.id];
       } else {
         nextSegmentIndex = intersectedSegmentIndex;
       }
@@ -125,16 +119,13 @@ export default class TrackBehavior extends Behavior {
         const nextSegment = this.trackSegments[nextSegmentIndex];
 
         const { offsetX, offsetY } = actor.getComponent(Transform);
-        const { offsetX: destX, offsetY: destY } = nextSegment.getComponent(Transform);
+        const { offsetX: destX, offsetY: destY } =
+          nextSegment.getComponent(Transform);
 
-        const angle = MathOps.radToDeg(
-          MathOps.getAngleBetweenTwoPoints(
-            offsetX,
-            destX,
-            offsetY,
-            destY,
-          ),
-        ) - 180;
+        const angle =
+          MathOps.radToDeg(
+            MathOps.getAngleBetweenTwoPoints(offsetX, destX, offsetY, destY),
+          ) - 180;
 
         this.mobDestinations[actor.id] = angle;
         actor.dispatchEvent(EventType.Movement, { angle });
@@ -149,9 +140,7 @@ export default class TrackBehavior extends Behavior {
     });
   }
 
-
   update(options: UpdateOptions): void {
-    // console.log(`Behavior: Actor Id: ${this.actor.id}, Scene Id: ${this.scene.id}`);
     this.updateSpawn(options.deltaTime);
     this.updateTrackMovement();
   }
