@@ -753,7 +753,7 @@
                 {
                   "name": "Transform",
                   "config": {
-                    "offsetX": -96,
+                    "offsetX": -224,
                     "offsetY": 336,
                     "offsetZ": 0,
                     "rotation": 0,
@@ -886,7 +886,7 @@
               "name": "Transform",
               "config": {
                 "offsetX": 0,
-                "offsetY": -248,
+                "offsetY": -168,
                 "offsetZ": 0,
                 "rotation": 0,
                 "scaleX": 1,
@@ -1374,6 +1374,82 @@
           "config": {
             "exampleField": "",
             "value": 0
+          }
+        },
+        {
+          "name": "Animatable",
+          "config": {
+            "initialState": "34c86896-a95f-4dd5-b119-7b44e17e3f2d",
+            "states": [
+              {
+                "id": "34c86896-a95f-4dd5-b119-7b44e17e3f2d",
+                "name": "Idle",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "id": "3d26ba12-be66-4daa-baf4-251c4b3e89ad",
+                      "fields": [
+                        {
+                          "id": "b762a7e8-7cd5-4737-a50f-401d1b9a9985",
+                          "name": "components.Shape.fill",
+                          "type": "string",
+                          "value": "rgb(255,217,0)"
+                        }
+                      ]
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": [
+                  {
+                    "id": "5beb3c3d-88bf-4023-af2a-a764be136d01",
+                    "state": "fe931646-f9d4-4da5-8ec3-f9f42f559e02",
+                    "time": 0,
+                    "conditions": [
+                      {
+                        "id": "eb373abc-40d8-4e5d-8368-f4e905d55a8f",
+                        "type": "event",
+                        "props": {
+                          "eventType": "StealMoney"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "fe931646-f9d4-4da5-8ec3-f9f42f559e02",
+                "name": "Steal",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "id": "3d26ba12-be66-4daa-baf4-251c4b3e89ad",
+                      "fields": [
+                        {
+                          "id": "b762a7e8-7cd5-4737-a50f-401d1b9a9985",
+                          "name": "components.Shape.fill",
+                          "type": "string",
+                          "value": "rgb(255,255,255)"
+                        }
+                      ]
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": [
+                  {
+                    "id": "5aed3872-0ec5-46c5-9a74-ff218cb238fd",
+                    "state": "34c86896-a95f-4dd5-b119-7b44e17e3f2d",
+                    "time": 1,
+                    "conditions": []
+                  }
+                ]
+              }
+            ]
           }
         }
       ],
