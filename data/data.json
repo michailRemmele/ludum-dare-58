@@ -612,14 +612,15 @@
           ],
           "children": [
             {
-              "id": "20df3df4-f71b-4b89-8ee6-954dbec61f53",
-              "name": "Actor",
+              "id": "3b08005d-aa95-4dec-b148-f769880c1ec0",
+              "templateId": "7bc61e55-69ee-41d4-b998-94671f1d189a",
+              "name": "TrackSegmentEntity",
               "components": [
                 {
                   "name": "Transform",
                   "config": {
-                    "offsetX": -32,
-                    "offsetY": 144,
+                    "offsetX": 0,
+                    "offsetY": 32,
                     "offsetZ": 0,
                     "rotation": 0,
                     "scaleX": 1,
@@ -627,24 +628,28 @@
                   }
                 },
                 {
-                  "name": "Sprite",
+                  "name": "TrackSegment",
                   "config": {
-                    "src": "",
-                    "width": 16,
-                    "height": 16,
-                    "slice": 1,
+                    "index": 0
+                  }
+                }
+              ],
+              "children": []
+            },
+            {
+              "id": "71ba0fdd-a3d2-4ce6-91cf-de5b3f901a44",
+              "templateId": "7bc61e55-69ee-41d4-b998-94671f1d189a",
+              "name": "TrackSegmentEntity 2",
+              "components": [
+                {
+                  "name": "Transform",
+                  "config": {
+                    "offsetX": -16,
+                    "offsetY": 144,
+                    "offsetZ": 0,
                     "rotation": 0,
-                    "sortCenter": [
-                      0,
-                      0
-                    ],
-                    "flipX": false,
-                    "flipY": false,
-                    "sortingLayer": "background-3",
-                    "fit": "stretch",
-                    "blending": "normal",
-                    "color": "rgb(157,255,10)",
-                    "opacity": 1
+                    "scaleX": 1,
+                    "scaleY": 1
                   }
                 },
                 {
@@ -657,39 +662,19 @@
               "children": []
             },
             {
-              "id": "e5d47d55-7e2f-4eb9-b9e3-b37127644db5",
-              "name": "Actor 2",
+              "id": "00db2d62-0bcf-42bd-8cd5-25c0b5e0c1ac",
+              "templateId": "7bc61e55-69ee-41d4-b998-94671f1d189a",
+              "name": "TrackSegmentEntity 3",
               "components": [
                 {
                   "name": "Transform",
                   "config": {
                     "offsetX": -16,
-                    "offsetY": 224,
+                    "offsetY": 240,
                     "offsetZ": 0,
                     "rotation": 0,
                     "scaleX": 1,
                     "scaleY": 1
-                  }
-                },
-                {
-                  "name": "Sprite",
-                  "config": {
-                    "src": "",
-                    "width": 16,
-                    "height": 16,
-                    "slice": 1,
-                    "rotation": 0,
-                    "sortCenter": [
-                      0,
-                      0
-                    ],
-                    "flipX": false,
-                    "flipY": false,
-                    "sortingLayer": "background-3",
-                    "fit": "stretch",
-                    "blending": "normal",
-                    "color": "rgb(157,255,10)",
-                    "opacity": 1
                   }
                 },
                 {
@@ -702,39 +687,19 @@
               "children": []
             },
             {
-              "id": "f2799ab8-c61c-405d-893b-5fdc8eed3ce6",
-              "name": "Actor 3",
+              "id": "747d4017-d1df-40fb-9fa3-5d419e4122fb",
+              "templateId": "7bc61e55-69ee-41d4-b998-94671f1d189a",
+              "name": "TrackSegmentEntity 4",
               "components": [
                 {
                   "name": "Transform",
                   "config": {
-                    "offsetX": 0,
-                    "offsetY": 336,
+                    "offsetX": 32,
+                    "offsetY": 304,
                     "offsetZ": 0,
                     "rotation": 0,
                     "scaleX": 1,
                     "scaleY": 1
-                  }
-                },
-                {
-                  "name": "Sprite",
-                  "config": {
-                    "src": "",
-                    "width": 16,
-                    "height": 16,
-                    "slice": 1,
-                    "rotation": 0,
-                    "sortCenter": [
-                      0,
-                      0
-                    ],
-                    "flipX": false,
-                    "flipY": false,
-                    "sortingLayer": "background-3",
-                    "fit": "stretch",
-                    "blending": "normal",
-                    "color": "rgb(157,255,10)",
-                    "opacity": 1
                   }
                 },
                 {
@@ -747,8 +712,34 @@
               "children": []
             },
             {
-              "id": "ebd23309-3f99-4905-8c2d-c82ed55f412a",
-              "name": "Actor 4",
+              "id": "191854f6-492e-406a-bb4d-40c2d49181d6",
+              "templateId": "7bc61e55-69ee-41d4-b998-94671f1d189a",
+              "name": "TrackSegmentEntity 5",
+              "components": [
+                {
+                  "name": "Transform",
+                  "config": {
+                    "offsetX": -80,
+                    "offsetY": 336,
+                    "offsetZ": 0,
+                    "rotation": 0,
+                    "scaleX": 1,
+                    "scaleY": 1
+                  }
+                },
+                {
+                  "name": "TrackSegment",
+                  "config": {
+                    "index": 4
+                  }
+                }
+              ],
+              "children": []
+            },
+            {
+              "id": "81da8590-c01f-46a1-900d-acc8fb5a31d6",
+              "templateId": "7bc61e55-69ee-41d4-b998-94671f1d189a",
+              "name": "TrackSegmentEntity 6",
               "components": [
                 {
                   "name": "Transform",
@@ -762,75 +753,9 @@
                   }
                 },
                 {
-                  "name": "Sprite",
-                  "config": {
-                    "src": "",
-                    "width": 16,
-                    "height": 16,
-                    "slice": 1,
-                    "rotation": 0,
-                    "sortCenter": [
-                      0,
-                      0
-                    ],
-                    "flipX": false,
-                    "flipY": false,
-                    "sortingLayer": "background-3",
-                    "fit": "stretch",
-                    "blending": "normal",
-                    "color": "rgb(157,255,10)",
-                    "opacity": 1
-                  }
-                },
-                {
                   "name": "TrackSegment",
                   "config": {
-                    "index": 4
-                  }
-                }
-              ],
-              "children": []
-            },
-            {
-              "id": "64f10046-8d7b-46eb-ae6e-adde845e7c11",
-              "name": "Actor Initial",
-              "components": [
-                {
-                  "name": "Transform",
-                  "config": {
-                    "offsetX": 0,
-                    "offsetY": 16,
-                    "offsetZ": 0,
-                    "rotation": 0,
-                    "scaleX": 1,
-                    "scaleY": 1
-                  }
-                },
-                {
-                  "name": "Sprite",
-                  "config": {
-                    "src": "",
-                    "width": 16,
-                    "height": 16,
-                    "slice": 1,
-                    "rotation": 0,
-                    "sortCenter": [
-                      0,
-                      0
-                    ],
-                    "flipX": false,
-                    "flipY": false,
-                    "sortingLayer": "background-3",
-                    "fit": "stretch",
-                    "blending": "normal",
-                    "color": "rgb(157,255,10)",
-                    "opacity": 1
-                  }
-                },
-                {
-                  "name": "TrackSegment",
-                  "config": {
-                    "index": -2
+                    "index": 5
                   }
                 }
               ],
@@ -926,6 +851,171 @@
             }
           ],
           "children": []
+        },
+        {
+          "id": "79d82814-0292-4cf7-b815-f97a435f9353",
+          "templateId": "6cf39685-8d83-40a6-a72d-b8ad41ea42d3",
+          "name": "Track 2",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": -136,
+                "offsetY": -72,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            }
+          ],
+          "children": [
+            {
+              "id": "112e904a-3c78-46e2-b2b0-51c578fceeef",
+              "templateId": "7bc61e55-69ee-41d4-b998-94671f1d189a",
+              "name": "TrackSegmentEntity",
+              "components": [
+                {
+                  "name": "Transform",
+                  "config": {
+                    "offsetX": 16,
+                    "offsetY": 32,
+                    "offsetZ": 0,
+                    "rotation": 0,
+                    "scaleX": 1,
+                    "scaleY": 1
+                  }
+                },
+                {
+                  "name": "TrackSegment",
+                  "config": {
+                    "index": 0
+                  }
+                }
+              ],
+              "children": []
+            },
+            {
+              "id": "6c0962a7-fcb4-4968-af5c-e73823557560",
+              "templateId": "7bc61e55-69ee-41d4-b998-94671f1d189a",
+              "name": "TrackSegmentEntity 2",
+              "components": [
+                {
+                  "name": "Transform",
+                  "config": {
+                    "offsetX": 64,
+                    "offsetY": 64,
+                    "offsetZ": 0,
+                    "rotation": 0,
+                    "scaleX": 1,
+                    "scaleY": 1
+                  }
+                },
+                {
+                  "name": "TrackSegment",
+                  "config": {
+                    "index": 1
+                  }
+                }
+              ],
+              "children": []
+            },
+            {
+              "id": "8b29d6a5-9c76-453d-9e9c-b20d77868669",
+              "templateId": "7bc61e55-69ee-41d4-b998-94671f1d189a",
+              "name": "TrackSegmentEntity 3",
+              "components": [
+                {
+                  "name": "Transform",
+                  "config": {
+                    "offsetX": 112,
+                    "offsetY": 96,
+                    "offsetZ": 0,
+                    "rotation": 0,
+                    "scaleX": 1,
+                    "scaleY": 1
+                  }
+                },
+                {
+                  "name": "TrackSegment",
+                  "config": {
+                    "index": 2
+                  }
+                }
+              ],
+              "children": []
+            },
+            {
+              "id": "c7b64a3c-924e-4dcb-8ff2-e5ff58375467",
+              "templateId": "7bc61e55-69ee-41d4-b998-94671f1d189a",
+              "name": "TrackSegmentEntity 4",
+              "components": [
+                {
+                  "name": "Transform",
+                  "config": {
+                    "offsetX": 208,
+                    "offsetY": 160,
+                    "offsetZ": 0,
+                    "rotation": 0,
+                    "scaleX": 1,
+                    "scaleY": 1
+                  }
+                },
+                {
+                  "name": "TrackSegment",
+                  "config": {
+                    "index": 3
+                  }
+                }
+              ],
+              "children": []
+            },
+            {
+              "id": "cc4984cf-1786-46bb-8255-0d666fdc09c8",
+              "templateId": "7bc61e55-69ee-41d4-b998-94671f1d189a",
+              "name": "TrackSegmentEntity 6",
+              "components": [
+                {
+                  "name": "Transform",
+                  "config": {
+                    "offsetX": 16,
+                    "offsetY": 192,
+                    "offsetZ": 0,
+                    "rotation": 0,
+                    "scaleX": 1,
+                    "scaleY": 1
+                  }
+                },
+                {
+                  "name": "TrackSegment",
+                  "config": {
+                    "index": 4
+                  }
+                }
+              ],
+              "children": [
+                {
+                  "id": "ff773c1d-2e36-45bd-a0f6-040fce6231ae",
+                  "templateId": "7bc61e55-69ee-41d4-b998-94671f1d189a",
+                  "name": "TrackSegmentEntity",
+                  "components": [
+                    {
+                      "name": "Transform",
+                      "config": {
+                        "offsetX": 96,
+                        "offsetY": -16,
+                        "offsetZ": 0,
+                        "rotation": 0,
+                        "scaleX": 1,
+                        "scaleY": 1
+                      }
+                    }
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -1511,6 +1601,110 @@
                 "options": {}
               }
             ]
+          }
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "7bc61e55-69ee-41d4-b998-94671f1d189a",
+      "name": "TrackSegmentEntity",
+      "components": [
+        {
+          "name": "TrackSegment",
+          "config": {
+            "index": 0
+          }
+        },
+        {
+          "name": "Transform",
+          "config": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "offsetZ": 0,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1
+          }
+        },
+        {
+          "name": "Sprite",
+          "config": {
+            "src": "",
+            "width": 16,
+            "height": 16,
+            "slice": 1,
+            "rotation": 0,
+            "sortCenter": [
+              0,
+              0
+            ],
+            "flipX": false,
+            "flipY": false,
+            "sortingLayer": "background-3",
+            "fit": "stretch",
+            "blending": "normal",
+            "color": "rgb(51,255,0)",
+            "opacity": 1
+          }
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "6cf39685-8d83-40a6-a72d-b8ad41ea42d3",
+      "name": "Track",
+      "components": [
+        {
+          "name": "Behaviors",
+          "config": {
+            "list": [
+              {
+                "id": "795a3ae0-a914-491c-b9b6-7d8282aa9f40",
+                "name": "TrackBehavior",
+                "options": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "Sprite",
+          "config": {
+            "src": "",
+            "width": 16,
+            "height": 16,
+            "slice": 1,
+            "rotation": 0,
+            "sortCenter": [
+              0,
+              0
+            ],
+            "flipX": false,
+            "flipY": false,
+            "sortingLayer": "background-3",
+            "fit": "stretch",
+            "blending": "normal",
+            "color": "rgb(239,164,164)",
+            "opacity": 1
+          }
+        },
+        {
+          "name": "Transform",
+          "config": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "offsetZ": 0,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1
+          }
+        },
+        {
+          "name": "Track",
+          "config": {
+            "mob": "1dde627f-4777-4d69-b81e-0a486780941e",
+            "frequency": 1000,
+            "maxNumber": null
           }
         }
       ],
