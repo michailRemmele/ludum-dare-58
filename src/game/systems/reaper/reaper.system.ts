@@ -20,6 +20,8 @@ import * as EventType from '../../events';
 import type { DamageEvent } from '../../events';
 import ViewDirection from '../../components/view-direction/view-direction.component';
 import Health from '../../components/health/health.component';
+import ScorePoints from '../../components/score-points/score-points.component';
+import Team from '../../components/team/team.component';
 import type { ComponentConstructor } from '../../../types/utils';
 
 const GRAVEYARD_CLEAN_FREQUENCY = 1000;
@@ -61,8 +63,9 @@ export default class Reaper extends SceneSystem {
   }
 
   handleDamage = (event: DamageEvent): void => {
-    const { target, value } = event;
+    const { target, value, actor } = event;
 
+    const scorePoints = target.getComponent(ScorePoints);
     const health = target.getComponent(Health);
     if (!health) {
       return;
@@ -73,6 +76,12 @@ export default class Reaper extends SceneSystem {
     if (health.points <= 0) {
       health.points = 0;
       target.dispatchEvent(EventType.Kill);
+
+      if (scorePoints && actor && actor.getComponent(Team)?.index === 0) {
+        this.scene.dispatchEvent(EventType.IncreaseScorePoints, {
+          points: scorePoints.amount,
+        });
+      }
     }
   };
 

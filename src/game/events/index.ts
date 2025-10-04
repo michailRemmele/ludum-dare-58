@@ -16,6 +16,10 @@ export const GameOver = 'GameOver';
 
 export const StealMoney = 'StealMoney';
 
+export const IncreaseScorePoints = 'IncreaseScorePoints';
+export const LevelUp = 'LevelUp';
+export const UpdateTimer = 'UpdateTimer';
+
 export type MovementEvent = ActorEvent<{
   angle?: number;
   x?: number;
@@ -36,6 +40,20 @@ export type GameOverEvent = SceneEvent<{
   score: number;
 }>;
 
+export type IncreaseScorePointsEvent = SceneEvent<{
+  points: number;
+}>;
+
+export type LevelUpEvent = SceneEvent<{
+  level: number;
+  nextLevelScore: number;
+  isMax: boolean;
+}>;
+
+export type UpdateTimerEvent = SceneEvent<{
+  timeLeft: number;
+}>;
+
 declare module 'dacha' {
   export interface ActorEventMap {
     [Movement]: MovementEvent;
@@ -53,5 +71,8 @@ declare module 'dacha' {
     [ControlStickInput]: ControlStickInputEvent;
     [ResetSaveState]: SceneEvent;
     [GameOver]: GameOverEvent;
+    [IncreaseScorePoints]: IncreaseScorePointsEvent;
+    [LevelUp]: LevelUpEvent;
+    [UpdateTimer]: UpdateTimerEvent;
   }
 }

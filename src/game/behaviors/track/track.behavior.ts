@@ -59,10 +59,6 @@ export default class TrackBehavior extends Behavior {
   }
 
   private updateSpawn(deltaTime: number): void {
-    const track = this.actor.getComponent(Track);
-    if (track.maxNumber && track.maxNumber <= this.mobs.length) {
-      return;
-    }
     const mob = this.actorSpawner.spawn(this.mobId);
     if (this.spawnCooldown > 0) {
       this.spawnCooldown -= deltaTime;

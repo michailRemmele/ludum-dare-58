@@ -1366,6 +1366,13 @@
             "exampleField": "",
             "size": 10
           }
+        },
+        {
+          "name": "ScorePoints",
+          "config": {
+            "exampleField": "",
+            "amount": 100
+          }
         }
       ],
       "children": [
@@ -1454,7 +1461,9 @@
               {
                 "id": "e9555622-f288-45cf-8a10-13408fdf84d8",
                 "name": "Treasury",
-                "options": {}
+                "options": {
+                  "levelDuration": 5
+                }
               }
             ]
           }
