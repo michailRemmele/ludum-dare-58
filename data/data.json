@@ -242,15 +242,6 @@
               }
             },
             {
-              "name": "Weapon",
-              "config": {
-                "type": "melee",
-                "cooldown": 1000,
-                "damage": 1,
-                "range": 16
-              }
-            },
-            {
               "name": "MouseControl",
               "config": {
                 "inputEventBindings": [
@@ -889,15 +880,7 @@
             },
             {
               "name": "Weapon",
-              "config": {
-                "type": "range",
-                "cooldown": 500,
-                "damage": 1,
-                "range": 160,
-                "projectileSpeed": 200,
-                "projectileRadius": 4,
-                "projectileModel": "d01d07c3-ec89-4f61-a2e4-beadcefee92a"
-              }
+              "config": {}
             },
             {
               "name": "MouseControl",
@@ -948,81 +931,20 @@
                     "id": "731fdf57-bb6b-430c-87fc-6837b148f77c",
                     "name": "ControlStickBehavior",
                     "options": {}
+                  },
+                  {
+                    "id": "7b2a2a7f-a662-41c4-9ea5-8fd2628afe54",
+                    "name": "Player",
+                    "options": {}
                   }
                 ]
               }
             }
           ],
-          "children": []
-        },
-        {
-          "id": "70055138-4a42-49b8-a400-5b33918579b8",
-          "name": "Enemy",
-          "components": [
-            {
-              "name": "Transform",
-              "config": {
-                "offsetX": -72,
-                "offsetY": 56,
-                "offsetZ": 0,
-                "rotation": 0,
-                "scaleX": 1,
-                "scaleY": 1
-              }
-            },
-            {
-              "name": "Collider",
-              "config": {
-                "type": "box",
-                "sizeX": 16,
-                "sizeY": 16,
-                "centerX": 0,
-                "centerY": 0
-              }
-            },
-            {
-              "name": "Health",
-              "config": {
-                "points": 1
-              }
-            },
-            {
-              "name": "RigidBody",
-              "config": {
-                "type": "dynamic",
-                "mass": 1,
-                "useGravity": false,
-                "isPermeable": false,
-                "ghost": false,
-                "drag": 0
-              }
-            },
-            {
-              "name": "Sprite",
-              "config": {
-                "src": "",
-                "width": 16,
-                "height": 16,
-                "slice": 1,
-                "rotation": 0,
-                "sortCenter": [
-                  0,
-                  0
-                ],
-                "flipX": false,
-                "flipY": false,
-                "sortingLayer": "default",
-                "fit": "stretch",
-                "blending": "normal",
-                "color": "#d30404",
-                "opacity": 1
-              }
-            }
-          ],
           "children": [
             {
-              "id": "3d500f56-b005-4686-b8b7-f31b114cfb3f",
-              "name": "Hit Box",
+              "id": "5612ab7b-5826-4fad-9315-7d4e65499313",
+              "name": "Enemy Detector",
               "components": [
                 {
                   "name": "Transform",
@@ -1038,115 +960,11 @@
                 {
                   "name": "Collider",
                   "config": {
-                    "type": "box",
-                    "sizeX": 16,
-                    "sizeY": 16,
+                    "type": "circle",
                     "centerX": 0,
-                    "centerY": 0
+                    "centerY": 0,
+                    "radius": 64
                   }
-                },
-                {
-                  "name": "HitBox",
-                  "config": {}
-                }
-              ],
-              "children": []
-            }
-          ]
-        },
-        {
-          "id": "f7885966-b39b-4f36-b050-77dee33d444e",
-          "name": "Enemy 2",
-          "components": [
-            {
-              "name": "Transform",
-              "config": {
-                "offsetX": 72,
-                "offsetY": -56,
-                "offsetZ": 0,
-                "rotation": 0,
-                "scaleX": 1,
-                "scaleY": 1
-              }
-            },
-            {
-              "name": "Collider",
-              "config": {
-                "type": "box",
-                "sizeX": 16,
-                "sizeY": 16,
-                "centerX": 0,
-                "centerY": 0
-              }
-            },
-            {
-              "name": "Health",
-              "config": {
-                "points": 1
-              }
-            },
-            {
-              "name": "RigidBody",
-              "config": {
-                "type": "dynamic",
-                "mass": 1,
-                "useGravity": false,
-                "isPermeable": false,
-                "ghost": false,
-                "drag": 0
-              }
-            },
-            {
-              "name": "Sprite",
-              "config": {
-                "src": "",
-                "width": 16,
-                "height": 16,
-                "slice": 1,
-                "rotation": 0,
-                "sortCenter": [
-                  0,
-                  0
-                ],
-                "flipX": false,
-                "flipY": false,
-                "sortingLayer": "default",
-                "fit": "stretch",
-                "blending": "normal",
-                "color": "#d30404",
-                "opacity": 1
-              }
-            }
-          ],
-          "children": [
-            {
-              "id": "a6bb2eb8-7ba8-4d25-9baa-b70a2b461c9d",
-              "name": "Hit Box",
-              "components": [
-                {
-                  "name": "Transform",
-                  "config": {
-                    "offsetX": 0,
-                    "offsetY": 0,
-                    "offsetZ": 0,
-                    "rotation": 0,
-                    "scaleX": 1,
-                    "scaleY": 1
-                  }
-                },
-                {
-                  "name": "Collider",
-                  "config": {
-                    "type": "box",
-                    "sizeX": 16,
-                    "sizeY": 16,
-                    "centerX": 0,
-                    "centerY": 0
-                  }
-                },
-                {
-                  "name": "HitBox",
-                  "config": {}
                 }
               ],
               "children": []
@@ -1161,7 +979,7 @@
               "name": "Transform",
               "config": {
                 "offsetX": -80,
-                "offsetY": -64,
+                "offsetY": -80,
                 "offsetZ": 0,
                 "rotation": 0,
                 "scaleX": 1,
@@ -1220,8 +1038,8 @@
             {
               "name": "Transform",
               "config": {
-                "offsetX": 48,
-                "offsetY": -32,
+                "offsetX": 64,
+                "offsetY": 16,
                 "offsetZ": 0,
                 "rotation": 0,
                 "scaleX": 1,
@@ -1395,6 +1213,249 @@
             }
           ],
           "children": []
+        },
+        {
+          "id": "4a12db1f-17dd-45e5-beac-0548ff550a24",
+          "templateId": "c96b31f5-be5d-444c-9274-8e0926470d2b",
+          "name": "Enemy",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": 56,
+                "offsetY": -88,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            }
+          ],
+          "children": [
+            {
+              "id": "558154f6-c906-4ebe-b76a-e4cf652f2b0b",
+              "templateId": "7cad39f1-2ec1-4ad6-8a09-b5d0c14f9ce2",
+              "name": "HitBox",
+              "components": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "de498fa3-233b-4681-8d98-efb8e8f570b8",
+          "templateId": "c96b31f5-be5d-444c-9274-8e0926470d2b",
+          "name": "Enemy 2",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": -120,
+                "offsetY": -8,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            }
+          ],
+          "children": [
+            {
+              "id": "551ae31a-914c-4766-be70-13754be6446d",
+              "templateId": "7cad39f1-2ec1-4ad6-8a09-b5d0c14f9ce2",
+              "name": "HitBox",
+              "components": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "0b228a4d-f7ac-4a63-87c0-f030ca70a126",
+          "templateId": "c96b31f5-be5d-444c-9274-8e0926470d2b",
+          "name": "Enemy 3",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": 104,
+                "offsetY": -56,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            }
+          ],
+          "children": [
+            {
+              "id": "35ba0b97-6e48-4b5a-993e-6795755c3b37",
+              "templateId": "7cad39f1-2ec1-4ad6-8a09-b5d0c14f9ce2",
+              "name": "HitBox",
+              "components": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "56db9cf4-3cc9-403a-85b5-70988ac903c3",
+          "templateId": "c96b31f5-be5d-444c-9274-8e0926470d2b",
+          "name": "Enemy 4",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": 8,
+                "offsetY": -120,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            }
+          ],
+          "children": [
+            {
+              "id": "29e3d7e0-ea07-4119-bcd9-7a627bd5b4f4",
+              "templateId": "7cad39f1-2ec1-4ad6-8a09-b5d0c14f9ce2",
+              "name": "HitBox",
+              "components": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "ede3a737-f0fd-41c3-b4b3-9d7051a21509",
+          "templateId": "c96b31f5-be5d-444c-9274-8e0926470d2b",
+          "name": "Enemy 5",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": 88,
+                "offsetY": -136,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            }
+          ],
+          "children": [
+            {
+              "id": "d600d37d-70c5-4982-a95b-c398858c79c6",
+              "templateId": "7cad39f1-2ec1-4ad6-8a09-b5d0c14f9ce2",
+              "name": "HitBox",
+              "components": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "7dd5d949-c9d3-47fd-9382-8b39b2f983b5",
+          "templateId": "c96b31f5-be5d-444c-9274-8e0926470d2b",
+          "name": "Enemy 6",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": -8,
+                "offsetY": -72,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            }
+          ],
+          "children": [
+            {
+              "id": "f5cc97f3-25fb-4705-9589-c9e9714327db",
+              "templateId": "7cad39f1-2ec1-4ad6-8a09-b5d0c14f9ce2",
+              "name": "HitBox",
+              "components": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "d0bf8616-1c08-4de1-abcc-bf07bc17d484",
+          "templateId": "c96b31f5-be5d-444c-9274-8e0926470d2b",
+          "name": "Enemy 7",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": -104,
+                "offsetY": 40,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            }
+          ],
+          "children": [
+            {
+              "id": "4f0279cd-b2e0-4f5a-93fd-4d2eb214b8fa",
+              "templateId": "7cad39f1-2ec1-4ad6-8a09-b5d0c14f9ce2",
+              "name": "HitBox",
+              "components": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "52a33526-f915-458d-8c7d-371e6fb882c0",
+          "templateId": "c96b31f5-be5d-444c-9274-8e0926470d2b",
+          "name": "Enemy 8",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": 104,
+                "offsetY": 88,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            }
+          ],
+          "children": [
+            {
+              "id": "4040f5d1-41fa-401c-8df8-ecdc88a73593",
+              "templateId": "7cad39f1-2ec1-4ad6-8a09-b5d0c14f9ce2",
+              "name": "HitBox",
+              "components": [],
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "ea162486-8959-49cb-9805-d81a7ad39d08",
+          "templateId": "c96b31f5-be5d-444c-9274-8e0926470d2b",
+          "name": "Enemy 9",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": 136,
+                "offsetY": 56,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            }
+          ],
+          "children": [
+            {
+              "id": "471f2a76-f79d-4d54-ad48-d9cd4362e0f2",
+              "templateId": "7cad39f1-2ec1-4ad6-8a09-b5d0c14f9ce2",
+              "name": "HitBox",
+              "components": [],
+              "children": []
+            }
+          ]
         }
       ]
     }
@@ -1658,6 +1719,90 @@
         }
       ],
       "children": []
+    },
+    {
+      "id": "c96b31f5-be5d-444c-9274-8e0926470d2b",
+      "name": "Enemy",
+      "components": [
+        {
+          "name": "Transform",
+          "config": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "offsetZ": 0,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1
+          }
+        },
+        {
+          "name": "Health",
+          "config": {
+            "points": 10
+          }
+        },
+        {
+          "name": "Sprite",
+          "config": {
+            "src": "",
+            "width": 16,
+            "height": 16,
+            "slice": 1,
+            "rotation": 0,
+            "sortCenter": [
+              0,
+              0
+            ],
+            "flipX": false,
+            "flipY": false,
+            "sortingLayer": "units",
+            "fit": "stretch",
+            "blending": "normal",
+            "color": "rgb(255,0,0)",
+            "opacity": 1
+          }
+        },
+        {
+          "name": "Team",
+          "config": {
+            "index": 1
+          }
+        }
+      ],
+      "children": [
+        {
+          "id": "7cad39f1-2ec1-4ad6-8a09-b5d0c14f9ce2",
+          "name": "HitBox",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": 0,
+                "offsetY": 0,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            },
+            {
+              "name": "Collider",
+              "config": {
+                "type": "box",
+                "sizeX": 16,
+                "sizeY": 16,
+                "centerX": 0,
+                "centerY": 0
+              }
+            },
+            {
+              "name": "HitBox",
+              "config": {}
+            }
+          ],
+          "children": []
+        }
+      ]
     }
   ],
   "globalOptions": [

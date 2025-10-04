@@ -11,61 +11,76 @@ import { CollisionEnter, AddImpulse } from 'dacha/events';
 import type { CollisionEnterEvent } from 'dacha/events';
 
 import * as EventType from '../../../events';
-import Weapon from '../../../components/weapon/weapon.component';
 import HitBox from '../../../components/hit-box/hit-box.component';
 import Team from '../../../components/team/team.component';
 import { findTeam } from '../utils/find-team';
+import type { AttackStats } from '../attack-stats-map';
 
 import type { Attack } from './attack';
 
-const HEAD_PLACEMENT_FIX = 0;
+interface RangeAttackStats extends AttackStats {
+  damage: number;
+  range: number;
+  projectileRadius: number;
+  projectileSpeed: number;
+  projectileModel: string;
+}
+
+interface RangeAttackOptions {
+  actor: Actor;
+  spawner: ActorSpawner;
+  scene: Scene;
+  enemies: Actor[];
+  stats: RangeAttackStats;
+}
 
 export class RangeAttack implements Attack {
   private actor: Actor;
   private spawner: ActorSpawner;
   private scene: Scene;
-  private angle: number;
 
-  private weapon: Weapon;
+  private stats: RangeAttackStats;
+
   private shot: Actor;
   private lifetime: number;
 
   isFinished: boolean;
 
-  constructor(
-    actor: Actor,
-    spawner: ActorSpawner,
-    scene: Scene,
-    angle: number,
-  ) {
+  constructor({ actor, spawner, scene, enemies, stats }: RangeAttackOptions) {
     this.actor = actor;
     this.spawner = spawner;
     this.scene = scene;
-    this.angle = angle;
-
-    this.weapon = this.actor.getComponent(Weapon);
+    this.stats = stats;
 
     const { offsetX, offsetY } = this.actor.getComponent(Transform);
-    const { range, projectileSpeed, projectileModel, projectileRadius } =
-      this.weapon;
 
-    const shot = this.spawner.spawn(projectileModel!);
+    const shot = this.spawner.spawn(stats.projectileModel);
     const shotTransform = shot.getComponent(Transform);
     const shotCollider = shot.getComponent(Collider);
 
-    shotCollider.radius = projectileRadius;
+    shotCollider.radius = stats.projectileRadius;
+
+    const target = enemies[MathOps.random(0, enemies.length - 1)];
+    const targetTransform = target.getComponent(Transform);
+
+    const angle = MathOps.getAngleBetweenTwoPoints(
+      targetTransform.offsetX,
+      offsetX,
+      targetTransform.offsetY,
+      offsetY,
+    );
 
     shotTransform.offsetX = offsetX;
-    shotTransform.offsetY = offsetY - HEAD_PLACEMENT_FIX;
-    shotTransform.rotation = MathOps.radToDeg(this.angle);
+    shotTransform.offsetY = offsetY;
+    shotTransform.rotation = MathOps.radToDeg(angle);
 
     this.scene.appendChild(shot);
 
-    const directionVector = VectorOps.getVectorByAngle(this.angle);
+    const directionVector = VectorOps.getVectorByAngle(angle);
 
-    directionVector.multiplyNumber(projectileSpeed!);
+    directionVector.multiplyNumber(stats.projectileSpeed);
 
-    const flightTime = 1000 * (range / projectileSpeed!);
+    const flightTime = 1000 * (stats.range / stats.projectileSpeed!);
 
     this.shot = shot;
     this.lifetime = flightTime;
@@ -83,7 +98,7 @@ export class RangeAttack implements Attack {
   private handleCollisionEnter = (event: CollisionEnterEvent): void => {
     const { actor } = event;
 
-    const { damage } = this.weapon;
+    const { damage } = this.stats;
     const team = this.actor.getComponent(Team);
 
     const hitBox = actor.getComponent(HitBox);

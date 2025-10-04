@@ -1,14 +1,18 @@
-import { VectorOps } from 'dacha';
-import type { Actor, ActorSpawner, Scene, Vector2 } from 'dacha';
+import type { Actor, ActorSpawner, Scene } from 'dacha';
+import {
+  CollisionEnter,
+  CollisionLeave,
+  type CollisionEnterEvent,
+  type CollisionLeaveEvent,
+} from 'dacha/events';
 
-import { attacks } from '../attacks';
+import { attacks as attackTypes } from '../attacks';
 import Weapon from '../../../components/weapon/weapon.component';
-import ViewDirection from '../../../components/view-direction/view-direction.component';
 import type { Attack } from '../attacks';
+import { ATTACK_STATS_MAP } from '../attack-stats-map';
+import { findTeam } from '../utils/find-team';
 
 import type { Fighter } from './fighter';
-
-const TIME_TO_ATTACK = 250;
 
 export class SimpleFighter implements Fighter {
   private actor: Actor;
@@ -16,8 +20,9 @@ export class SimpleFighter implements Fighter {
   private scene: Scene;
 
   private weapon: Weapon;
-  private viewDirection: Vector2 | null;
-  private viewTimer: number;
+
+  private activeAttacks: Attack[];
+  private enemies: Set<Actor>;
 
   constructor(actor: Actor, spawner: ActorSpawner, scene: Scene) {
     this.actor = actor;
@@ -25,49 +30,90 @@ export class SimpleFighter implements Fighter {
     this.scene = scene;
 
     this.weapon = this.actor.getComponent(Weapon);
-    this.weapon.cooldownRemaining = 0;
 
-    this.viewDirection = null;
-    this.viewTimer = 0;
+    this.activeAttacks = [];
+    this.enemies = new Set();
+
+    this.actor.addEventListener(CollisionEnter, this.handleCollisionEnter);
+    this.actor.addEventListener(CollisionLeave, this.handleCollisionLeave);
   }
 
-  get isReady(): boolean {
-    return this.weapon.cooldownRemaining <= 0;
+  destroy(): void {
+    this.actor.removeEventListener(CollisionEnter, this.handleCollisionEnter);
+    this.actor.removeEventListener(CollisionLeave, this.handleCollisionLeave);
   }
 
-  attack(angle: number): Attack | undefined {
-    if (!this.isReady) {
-      return undefined;
+  private handleCollisionEnter = (event: CollisionEnterEvent): void => {
+    const { actor } = event;
+
+    const actorTeam = findTeam(actor);
+    const fighterTeam = findTeam(this.actor);
+
+    if (!actorTeam || !fighterTeam) {
+      return;
     }
 
-    const { type, cooldown } = this.weapon;
+    if (actorTeam.index !== fighterTeam.index) {
+      this.enemies.add(actor);
+    }
+  };
 
-    const Attack = attacks[type];
+  private handleCollisionLeave = (event: CollisionLeaveEvent): void => {
+    const { actor } = event;
+
+    this.enemies.delete(actor);
+  };
+
+  private attack(type: string): Attack | undefined {
+    if (this.enemies.size === 0) {
+      return;
+    }
+
+    const { attacks } = this.weapon;
+
+    const attackState = attacks.get(type)!;
+    const Attack = attackTypes[type];
 
     if (!Attack) {
       throw new Error(`Not found attack with same type: ${type}`);
     }
 
-    this.weapon.cooldownRemaining = cooldown;
-    this.weapon.isActive = true;
+    const stats = ATTACK_STATS_MAP[type][attackState.level];
 
-    this.viewDirection = VectorOps.getVectorByAngle(angle);
-    this.viewTimer = TIME_TO_ATTACK;
+    const attack = new Attack({
+      actor: this.actor,
+      spawner: this.spawner,
+      scene: this.scene,
+      stats,
+      enemies: Array.from(this.enemies),
+    });
 
-    return new Attack(this.actor, this.spawner, this.scene, angle);
+    attackState.cooldownRemaining = stats.cooldown;
+
+    return attack;
   }
 
   update(deltaTime: number): void {
-    this.weapon.cooldownRemaining -= deltaTime;
-    this.weapon.isActive = false;
+    const { attacks } = this.weapon;
 
-    if (this.viewTimer > 0) {
-      this.viewTimer -= deltaTime;
+    attacks.forEach((attackState, attackType) => {
+      attackState.cooldownRemaining -= deltaTime;
 
-      const viewDirection = this.actor.getComponent(ViewDirection);
+      if (attackState.cooldownRemaining <= 0) {
+        const attack = this.attack(attackType);
+        if (attack) {
+          this.activeAttacks.push(attack);
+        }
+      }
+    });
 
-      viewDirection.x = (this.viewDirection as Vector2).x;
-      viewDirection.y = (this.viewDirection as Vector2).y;
-    }
+    this.activeAttacks = this.activeAttacks.filter((activeAttack) => {
+      activeAttack.update(deltaTime);
+
+      if (activeAttack.isFinished) {
+        activeAttack.destroy();
+      }
+      return !activeAttack.isFinished;
+    });
   }
 }

@@ -1,7 +1,4 @@
-import type { Attack } from '../attacks';
-
 export interface Fighter {
-  isReady: boolean;
-  attack(angle: number): Attack | undefined;
+  destroy(): void;
   update(deltaTime: number): void;
 }
