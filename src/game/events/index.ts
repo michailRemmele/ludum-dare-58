@@ -15,6 +15,7 @@ export const ResetSaveState = 'ResetSaveState';
 export const GameOver = 'GameOver';
 
 export const StealMoney = 'StealMoney';
+export const ReturnMoney = 'ReturnMoney';
 
 export const IncreaseScorePoints = 'IncreaseScorePoints';
 export const LevelUp = 'LevelUp';
@@ -32,6 +33,7 @@ export type AttackEvent = ActorEvent<{ x: number; y: number }>;
 export type DamageEvent = ActorEvent<{ value: number; actor?: Actor }>;
 
 export type StealMoneyEvent = ActorEvent<{ value: number; actor: Actor }>;
+export type ReturnMoneyEvent = ActorEvent<{ value: number; }>;
 
 export type ControlStickInputEvent = SceneEvent<{ x: number; y: number }>;
 
@@ -70,6 +72,7 @@ declare module 'dacha' {
     [Kill]: ActorEvent;
 
     [StealMoney]: StealMoneyEvent;
+    [ReturnMoney]: ReturnMoneyEvent;
   }
 
   export interface SceneEventMap {

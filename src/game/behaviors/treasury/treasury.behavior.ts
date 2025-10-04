@@ -11,7 +11,7 @@ import Storage from '../../components/storage/storage.component';
 import LevelInfo from '../../components/level-info/level-info.component';
 import Score from '../../components/score/score.component';
 import * as EventType from '../../events';
-import type { StealMoneyEvent, IncreaseScorePointsEvent } from '../../events';
+import type { StealMoneyEvent, ReturnMoneyEvent, IncreaseScorePointsEvent } from '../../events';
 import { LEVEL_UP_BASE_STEP, MAX_LEVEL } from '../../../consts/game';
 
 const TIMER_UPDATE_FREQUENCY = 1000;
@@ -50,6 +50,7 @@ export default class Treasury extends Behavior {
     this.timerUpdateCooldown = 0;
 
     this.actor.addEventListener(EventType.StealMoney, this.handleStealMoney);
+    this.actor.addEventListener(EventType.ReturnMoney, this.handleReturnMoney);
     this.scene.addEventListener(
       EventType.IncreaseScorePoints,
       this.handleIncreaseScorePoints,
@@ -58,6 +59,7 @@ export default class Treasury extends Behavior {
 
   destroy(): void {
     this.actor.removeEventListener(EventType.StealMoney, this.handleStealMoney);
+    this.actor.removeEventListener(EventType.ReturnMoney, this.handleReturnMoney);
     this.scene.removeEventListener(
       EventType.IncreaseScorePoints,
       this.handleIncreaseScorePoints,
@@ -80,6 +82,14 @@ export default class Treasury extends Behavior {
         score: score.value,
       });
     }
+  };
+
+  private handleReturnMoney = (event: ReturnMoneyEvent): void => {
+    const storage = this.actor.getComponent(Storage);
+
+    storage.amount += event.value;
+
+    this.scene.dispatchEvent(EventType.UpdateMoney, { amount: storage.amount });
   };
 
   private handleIncreaseScorePoints = (

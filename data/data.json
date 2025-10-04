@@ -1841,6 +1841,97 @@
             "opacity": 1,
             "disabled": false
           }
+        },
+        {
+          "name": "Behaviors",
+          "config": {
+            "list": [
+              {
+                "id": "855475cf-5b1c-4f9c-bbf5-fce1044c6e66",
+                "name": "PieceOfTreasury",
+                "options": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "Collider",
+          "config": {
+            "type": "box",
+            "sizeX": 16,
+            "sizeY": 16,
+            "centerX": 0,
+            "centerY": 0
+          }
+        },
+        {
+          "name": "Animatable",
+          "config": {
+            "initialState": "d1f33a9f-a080-4880-8d90-655c8e603fb3",
+            "states": [
+              {
+                "id": "d1f33a9f-a080-4880-8d90-655c8e603fb3",
+                "name": "Idle",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "id": "0bca8ced-a840-4f70-b872-087434437940",
+                      "fields": [
+                        {
+                          "id": "211024c9-72b9-47e0-87bc-c81a47b34de5",
+                          "name": "components.Shape.disabled",
+                          "type": "boolean",
+                          "value": false
+                        }
+                      ]
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": [
+                  {
+                    "id": "3504654f-3244-4625-8e69-48e2744ecb4c",
+                    "state": "273e685f-c271-4960-8cff-d4ca278c9a93",
+                    "time": 0,
+                    "conditions": [
+                      {
+                        "id": "43617c73-bd9e-4c8c-b15d-546727de48c3",
+                        "type": "event",
+                        "props": {
+                          "eventType": "Kill"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "273e685f-c271-4960-8cff-d4ca278c9a93",
+                "name": "Death",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "id": "0bca8ced-a840-4f70-b872-087434437940",
+                      "fields": [
+                        {
+                          "id": "211024c9-72b9-47e0-87bc-c81a47b34de5",
+                          "name": "components.Shape.disabled",
+                          "type": "boolean",
+                          "value": true
+                        }
+                      ]
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": []
+              }
+            ]
+          }
         }
       ],
       "children": []
