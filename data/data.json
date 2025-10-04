@@ -48,7 +48,7 @@
                 "sortingLayer": "background",
                 "fit": "stretch",
                 "blending": "normal",
-                "color": "rgb(166,204,175)",
+                "color": "rgb(204,219,235)",
                 "opacity": 1
               }
             },
@@ -343,7 +343,7 @@
                     "sortingLayer": "decorations",
                     "fit": "stretch",
                     "blending": "normal",
-                    "color": "#471b00",
+                    "color": "rgb(26,68,87)",
                     "opacity": 1
                   }
                 },
@@ -403,7 +403,7 @@
                     "sortingLayer": "decorations",
                     "fit": "stretch",
                     "blending": "normal",
-                    "color": "#471b00",
+                    "color": "rgb(26,68,87)",
                     "opacity": 1
                   }
                 },
@@ -463,7 +463,7 @@
                     "sortingLayer": "decorations",
                     "fit": "stretch",
                     "blending": "normal",
-                    "color": "#471b00",
+                    "color": "rgb(26,68,87)",
                     "opacity": 1
                   }
                 },
@@ -523,7 +523,7 @@
                     "sortingLayer": "decorations",
                     "fit": "stretch",
                     "blending": "normal",
-                    "color": "#471b00",
+                    "color": "rgb(26,68,87)",
                     "opacity": 1
                   }
                 },
@@ -533,6 +533,126 @@
                     "type": "box",
                     "sizeX": 64,
                     "sizeY": 16,
+                    "centerX": 0,
+                    "centerY": 0
+                  }
+                },
+                {
+                  "name": "RigidBody",
+                  "config": {
+                    "type": "static",
+                    "mass": 1,
+                    "useGravity": false,
+                    "isPermeable": false,
+                    "ghost": false,
+                    "drag": 0
+                  }
+                }
+              ],
+              "children": []
+            },
+            {
+              "id": "4e9b6062-f249-4754-afce-50198537ec1d",
+              "name": "Wall-b 2",
+              "components": [
+                {
+                  "name": "Transform",
+                  "config": {
+                    "offsetX": -168,
+                    "offsetY": 72,
+                    "offsetZ": 0,
+                    "rotation": 0,
+                    "scaleX": 1,
+                    "scaleY": 1
+                  }
+                },
+                {
+                  "name": "Sprite",
+                  "config": {
+                    "src": "",
+                    "width": 16,
+                    "height": 176,
+                    "slice": 1,
+                    "rotation": 0,
+                    "sortCenter": [
+                      0,
+                      0
+                    ],
+                    "flipX": false,
+                    "flipY": false,
+                    "sortingLayer": "decorations",
+                    "fit": "stretch",
+                    "blending": "normal",
+                    "color": "rgb(26,68,87)",
+                    "opacity": 1
+                  }
+                },
+                {
+                  "name": "Collider",
+                  "config": {
+                    "type": "box",
+                    "sizeX": 16,
+                    "sizeY": 176,
+                    "centerX": 0,
+                    "centerY": 0
+                  }
+                },
+                {
+                  "name": "RigidBody",
+                  "config": {
+                    "type": "static",
+                    "mass": 1,
+                    "useGravity": false,
+                    "isPermeable": false,
+                    "ghost": false,
+                    "drag": 0
+                  }
+                }
+              ],
+              "children": []
+            },
+            {
+              "id": "4a187cda-9e19-418b-89b2-1c3b99db354a",
+              "name": "Wall-b 3",
+              "components": [
+                {
+                  "name": "Transform",
+                  "config": {
+                    "offsetX": 168,
+                    "offsetY": 72,
+                    "offsetZ": 0,
+                    "rotation": 0,
+                    "scaleX": 1,
+                    "scaleY": 1
+                  }
+                },
+                {
+                  "name": "Sprite",
+                  "config": {
+                    "src": "",
+                    "width": 16,
+                    "height": 176,
+                    "slice": 1,
+                    "rotation": 0,
+                    "sortCenter": [
+                      0,
+                      0
+                    ],
+                    "flipX": false,
+                    "flipY": false,
+                    "sortingLayer": "decorations",
+                    "fit": "stretch",
+                    "blending": "normal",
+                    "color": "rgb(26,68,87)",
+                    "opacity": 1
+                  }
+                },
+                {
+                  "name": "Collider",
+                  "config": {
+                    "type": "box",
+                    "sizeX": 16,
+                    "sizeY": 176,
                     "centerX": 0,
                     "centerY": 0
                   }
@@ -762,45 +882,6 @@
               "children": []
             }
           ]
-        },
-        {
-          "id": "841eebaf-7519-45ec-b44b-a705a8c16f4f",
-          "name": "Road-1",
-          "components": [
-            {
-              "name": "Sprite",
-              "config": {
-                "src": "",
-                "width": 32,
-                "height": 192,
-                "slice": 1,
-                "rotation": 0,
-                "sortCenter": [
-                  0,
-                  0
-                ],
-                "flipX": false,
-                "flipY": false,
-                "sortingLayer": "default",
-                "fit": "stretch",
-                "blending": "normal",
-                "color": "rgb(204,120,120)",
-                "opacity": 1
-              }
-            },
-            {
-              "name": "Transform",
-              "config": {
-                "offsetX": -80,
-                "offsetY": -64,
-                "offsetZ": 0,
-                "rotation": 0,
-                "scaleX": 1,
-                "scaleY": 1
-              }
-            }
-          ],
-          "children": []
         },
         {
           "id": "012c930b-6f0d-4451-b062-720a7aa0ffa1",
