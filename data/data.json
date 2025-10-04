@@ -1799,6 +1799,51 @@
         }
       ],
       "children": []
+    },
+    {
+      "id": "516256dc-2acb-46fd-bfb0-20a905521cbc",
+      "name": "PieceOfTreasury",
+      "components": [
+        {
+          "name": "PieceOfTreasury",
+          "config": {
+            "exampleField": ""
+          }
+        },
+        {
+          "name": "Transform",
+          "config": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "offsetZ": 0,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1
+          }
+        },
+        {
+          "name": "Shape",
+          "config": {
+            "type": "rectangle",
+            "width": 16,
+            "height": 16,
+            "strokeWidth": 0,
+            "strokeColor": "#fff",
+            "strokeAlignment": 0.5,
+            "fill": "rgb(0,187,255)",
+            "pixelLine": false,
+            "sortCenter": [
+              0,
+              0
+            ],
+            "sortingLayer": "default",
+            "blending": "normal",
+            "opacity": 1,
+            "disabled": false
+          }
+        }
+      ],
+      "children": []
     }
   ],
   "globalOptions": [
