@@ -3,7 +3,8 @@ import { DefineComponent, DefineField } from 'dacha-workbench/decorators';
 
 interface TrackConfig {
   mob: string,
-  frequency: number
+  frequency: number,
+  maxNumber: number
 }
 
 @DefineComponent({
@@ -23,16 +24,20 @@ export default class Track extends Component {
   })
   frequency: number;
 
+  @DefineField()
+  maxNumber: number;
+
   constructor(config: TrackConfig) {
     super();
 
-    const { mob, frequency } = config;
+    const { mob, frequency, maxNumber } = config;
 
     this.mob = mob;
     this.frequency = frequency;
+    this.maxNumber = maxNumber;
   }
 
   clone(): Track {
-    return new Track({ mob: this.mob, frequency: this.frequency });
+    return new Track({ mob: this.mob, frequency: this.frequency, maxNumber: this.maxNumber });
   }
 }

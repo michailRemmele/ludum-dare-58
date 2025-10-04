@@ -582,7 +582,7 @@
               "name": "Transform",
               "config": {
                 "offsetX": 104,
-                "offsetY": -168,
+                "offsetY": -216,
                 "offsetZ": 0,
                 "rotation": 0,
                 "scaleX": 1,
@@ -605,7 +605,8 @@
               "name": "Track",
               "config": {
                 "mob": "1dde627f-4777-4d69-b81e-0a486780941e",
-                "frequency": 1000
+                "frequency": 1000,
+                "maxNumber": 3
               }
             }
           ],
@@ -617,8 +618,8 @@
                 {
                   "name": "Transform",
                   "config": {
-                    "offsetX": 0,
-                    "offsetY": 48,
+                    "offsetX": -32,
+                    "offsetY": 144,
                     "offsetZ": 0,
                     "rotation": 0,
                     "scaleX": 1,
@@ -662,8 +663,8 @@
                 {
                   "name": "Transform",
                   "config": {
-                    "offsetX": 0,
-                    "offsetY": 176,
+                    "offsetX": -16,
+                    "offsetY": 224,
                     "offsetZ": 0,
                     "rotation": 0,
                     "scaleX": 1,
@@ -708,7 +709,7 @@
                   "name": "Transform",
                   "config": {
                     "offsetX": 0,
-                    "offsetY": 288,
+                    "offsetY": 336,
                     "offsetZ": 0,
                     "rotation": 0,
                     "scaleX": 1,
@@ -753,7 +754,7 @@
                   "name": "Transform",
                   "config": {
                     "offsetX": -96,
-                    "offsetY": 288,
+                    "offsetY": 336,
                     "offsetZ": 0,
                     "rotation": 0,
                     "scaleX": 1,
@@ -785,6 +786,51 @@
                   "name": "TrackSegment",
                   "config": {
                     "index": "4"
+                  }
+                }
+              ],
+              "children": []
+            },
+            {
+              "id": "64f10046-8d7b-46eb-ae6e-adde845e7c11",
+              "name": "Actor Initial",
+              "components": [
+                {
+                  "name": "Transform",
+                  "config": {
+                    "offsetX": 0,
+                    "offsetY": 16,
+                    "offsetZ": 0,
+                    "rotation": 0,
+                    "scaleX": 1,
+                    "scaleY": 1
+                  }
+                },
+                {
+                  "name": "Sprite",
+                  "config": {
+                    "src": "",
+                    "width": 16,
+                    "height": 16,
+                    "slice": 1,
+                    "rotation": 0,
+                    "sortCenter": [
+                      0,
+                      0
+                    ],
+                    "flipX": false,
+                    "flipY": false,
+                    "sortingLayer": "background-3",
+                    "fit": "stretch",
+                    "blending": "normal",
+                    "color": "rgb(157,255,10)",
+                    "opacity": 1
+                  }
+                },
+                {
+                  "name": "TrackSegment",
+                  "config": {
+                    "index": "-2"
                   }
                 }
               ],
@@ -822,6 +868,25 @@
               "config": {
                 "offsetX": -80,
                 "offsetY": -64,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "012c930b-6f0d-4451-b062-720a7aa0ffa1",
+          "templateId": "6f4bbb25-4a9c-47c3-be04-66ad63bfd784",
+          "name": "StealerHouse",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": 0,
+                "offsetY": -248,
                 "offsetZ": 0,
                 "rotation": 0,
                 "scaleX": 1,
@@ -1309,6 +1374,67 @@
           "config": {
             "exampleField": "",
             "value": 0
+          }
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "6f4bbb25-4a9c-47c3-be04-66ad63bfd784",
+      "name": "StealerHouse",
+      "components": [
+        {
+          "name": "Transform",
+          "config": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "offsetZ": 0,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1
+          }
+        },
+        {
+          "name": "Shape",
+          "config": {
+            "type": "rectangle",
+            "width": 320,
+            "height": 16,
+            "strokeWidth": 0,
+            "strokeColor": "#fff",
+            "strokeAlignment": 0.5,
+            "fill": "rgb(73,18,18)",
+            "pixelLine": false,
+            "sortCenter": [
+              0,
+              0
+            ],
+            "sortingLayer": "default",
+            "blending": "normal",
+            "opacity": 0.5,
+            "disabled": false
+          }
+        },
+        {
+          "name": "Collider",
+          "config": {
+            "type": "box",
+            "sizeX": 320,
+            "sizeY": 16,
+            "centerX": 0,
+            "centerY": 0
+          }
+        },
+        {
+          "name": "Behaviors",
+          "config": {
+            "list": [
+              {
+                "id": "8592a5d8-ef32-4c16-b48c-dcfeb69b8e1d",
+                "name": "StealerHouse",
+                "options": {}
+              }
+            ]
           }
         }
       ],

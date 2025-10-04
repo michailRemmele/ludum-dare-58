@@ -33,6 +33,7 @@ export default class TrackBehavior extends Behavior {
   private mobs: Actor[];
   private mobId: string;
   private mobDestinations: Record<string, number>;
+  private mobDirections: Record<string, number>;
   private spawnCooldown: number;
   private spawnFrequency: number;
 
@@ -50,10 +51,10 @@ export default class TrackBehavior extends Behavior {
 
     this.mobId = track.mob;
     this.mobDestinations = {};
+    this.mobDirections = {};
     this.trackSegments = this.actor.children.filter((child) => child.getComponent(TrackSegment));
     this.spawnCooldown = 0;
     this.spawnFrequency = track.frequency;
-    console.log(this.actor.children, this.trackSegments)
 
     this.trackSegments.sort((a: Actor, b: Actor) => {
       const aTrackSegment = a.getComponent(TrackSegment);
@@ -64,8 +65,11 @@ export default class TrackBehavior extends Behavior {
   }
 
   private updateSpawn(deltaTime: number): void {
+    const track = this.actor.getComponent(Track);
+    if (track.maxNumber && track.maxNumber <= this.mobs.length) {
+      return;
+    }
     const mob = this.actorSpawner.spawn(this.mobId);
-    console.log(this.spawnFrequency, this.spawnCooldown);
     if (this.spawnCooldown > 0) {
       this.spawnCooldown -= deltaTime;
       return;
@@ -104,11 +108,17 @@ export default class TrackBehavior extends Behavior {
 
       let nextSegmentIndex: number;
       if (!this.mobDestinations[actor.id]) {
+        this.mobDirections[actor.id] = 1;
         nextSegmentIndex = 0;
       } else if (intersectedSegmentIndex !== -1) {
-        nextSegmentIndex = intersectedSegmentIndex + 1;
+        console.log(intersectedSegmentIndex + this.mobDirections[actor.id]);
+        nextSegmentIndex = intersectedSegmentIndex + this.mobDirections[actor.id];
       } else {
         nextSegmentIndex = intersectedSegmentIndex;
+      }
+
+      if (intersectedSegmentIndex === this.trackSegments.length - 1) {
+        this.mobDirections[actor.id] = -1;
       }
 
       if (nextSegmentIndex !== -1 && this.trackSegments[nextSegmentIndex]) {
