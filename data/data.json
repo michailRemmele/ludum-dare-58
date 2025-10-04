@@ -25,7 +25,7 @@
     },
     {
       "id": "abf6f0dd-a66b-418f-8102-5b82b6217383",
-      "name": "Level 2",
+      "name": "Level 1",
       "actors": [
         {
           "id": "feba083d-7d75-4a48-931a-519214c6f91c",
@@ -301,32 +301,6 @@
                     "options": {}
                   }
                 ]
-              }
-            },
-            {
-              "name": "LevelInfo",
-              "config": {
-                "exampleField": "",
-                "index": 1
-              }
-            }
-          ],
-          "children": []
-        },
-        {
-          "id": "60d47f93-52bf-4429-98df-239d4964bf4e",
-          "templateId": "3375b1c1-1495-4e62-9837-4c57890d6a75",
-          "name": "Finish",
-          "components": [
-            {
-              "name": "Transform",
-              "config": {
-                "offsetX": -120,
-                "offsetY": 120,
-                "offsetZ": 0,
-                "rotation": 0,
-                "scaleX": 1,
-                "scaleY": 1
               }
             }
           ],
@@ -856,6 +830,37 @@
             }
           ],
           "children": []
+        },
+        {
+          "id": "7399284e-ff51-463e-ba4e-8baaaf091944",
+          "templateId": "15b9e39f-bc18-4f1f-876a-67951e27f698",
+          "name": "Treasury",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": -120,
+                "offsetY": 120,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            },
+            {
+              "name": "LevelInfo",
+              "config": {
+                "index": 0
+              }
+            },
+            {
+              "name": "Storage",
+              "config": {
+                "amount": 100
+              }
+            }
+          ],
+          "children": []
         }
       ]
     }
@@ -1187,6 +1192,25 @@
           "config": {
             "points": 10
           }
+        },
+        {
+          "name": "Behaviors",
+          "config": {
+            "list": [
+              {
+                "id": "685d9519-dff6-46f8-8360-d27ff0ec2c60",
+                "name": "Stealer",
+                "options": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "Pocket",
+          "config": {
+            "exampleField": "",
+            "size": 10
+          }
         }
       ],
       "children": [
@@ -1223,6 +1247,72 @@
           "children": []
         }
       ]
+    },
+    {
+      "id": "15b9e39f-bc18-4f1f-876a-67951e27f698",
+      "name": "Treasury",
+      "components": [
+        {
+          "name": "Transform",
+          "config": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "offsetZ": 0,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1
+          }
+        },
+        {
+          "name": "Shape",
+          "config": {
+            "type": "circle",
+            "strokeWidth": 0,
+            "strokeColor": "#fff",
+            "strokeAlignment": 0.5,
+            "fill": "rgb(255,217,0)",
+            "pixelLine": false,
+            "sortCenter": [
+              0,
+              0
+            ],
+            "sortingLayer": "units",
+            "blending": "normal",
+            "opacity": 1,
+            "disabled": false,
+            "radius": 24
+          }
+        },
+        {
+          "name": "Collider",
+          "config": {
+            "type": "circle",
+            "centerX": 0,
+            "centerY": 0,
+            "radius": 24
+          }
+        },
+        {
+          "name": "Behaviors",
+          "config": {
+            "list": [
+              {
+                "id": "e9555622-f288-45cf-8a10-13408fdf84d8",
+                "name": "Treasury",
+                "options": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "Score",
+          "config": {
+            "exampleField": "",
+            "value": 0
+          }
+        }
+      ],
+      "children": []
     }
   ],
   "globalOptions": [
