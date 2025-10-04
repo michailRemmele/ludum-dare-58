@@ -195,20 +195,6 @@
               }
             },
             {
-              "name": "MouseControl",
-              "config": {
-                "inputEventBindings": [
-                  {
-                    "id": "3410a29c-eb56-4b4c-8f01-b2ac0b8d8192",
-                    "event": "mousedown",
-                    "eventType": "AttackInput",
-                    "attrs": [],
-                    "button": 0
-                  }
-                ]
-              }
-            },
-            {
               "name": "Team",
               "config": {
                 "index": 0
@@ -243,12 +229,45 @@
                     "id": "731fdf57-bb6b-430c-87fc-6837b148f77c",
                     "name": "ControlStickBehavior",
                     "options": {}
+                  },
+                  {
+                    "id": "c4e064d2-5744-4462-b9e6-1d0f5df021be",
+                    "name": "Player",
+                    "options": {}
                   }
                 ]
               }
             }
           ],
-          "children": []
+          "children": [
+            {
+              "id": "46fa6013-261a-41a6-94ef-1f97f08324fb",
+              "name": "Enemy Detector",
+              "components": [
+                {
+                  "name": "Transform",
+                  "config": {
+                    "offsetX": 0,
+                    "offsetY": 0,
+                    "offsetZ": 0,
+                    "rotation": 0,
+                    "scaleX": 1,
+                    "scaleY": 1
+                  }
+                },
+                {
+                  "name": "Collider",
+                  "config": {
+                    "type": "circle",
+                    "centerX": 0,
+                    "centerY": 0,
+                    "radius": 64
+                  }
+                }
+              ],
+              "children": []
+            }
+          ]
         },
         {
           "id": "f95793b3-dff4-448d-9990-b8ff1f50d872",
@@ -1147,7 +1166,7 @@
             "sortingLayer": "units",
             "fit": "stretch",
             "blending": "normal",
-            "color": "rgb(255,255,255)",
+            "color": "rgb(255,0,0)",
             "opacity": 1
           }
         },
@@ -1156,9 +1175,54 @@
           "config": {
             "speed": 50
           }
+        },
+        {
+          "name": "Team",
+          "config": {
+            "index": 1
+          }
+        },
+        {
+          "name": "Health",
+          "config": {
+            "points": 10
+          }
         }
       ],
-      "children": []
+      "children": [
+        {
+          "id": "dc6d2821-e281-4220-8913-82afde88afd4",
+          "name": "Hit Box",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": 0,
+                "offsetY": 0,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            },
+            {
+              "name": "Collider",
+              "config": {
+                "type": "box",
+                "sizeX": 16,
+                "sizeY": 16,
+                "centerX": 0,
+                "centerY": 0
+              }
+            },
+            {
+              "name": "HitBox",
+              "config": {}
+            }
+          ],
+          "children": []
+        }
+      ]
     }
   ],
   "globalOptions": [
