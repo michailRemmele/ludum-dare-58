@@ -1260,27 +1260,6 @@
           }
         },
         {
-          "name": "Sprite",
-          "config": {
-            "src": "",
-            "width": 8,
-            "height": 8,
-            "slice": 1,
-            "rotation": 0,
-            "sortCenter": [
-              0,
-              0
-            ],
-            "flipX": false,
-            "flipY": false,
-            "sortingLayer": "units",
-            "fit": "stretch",
-            "blending": "normal",
-            "color": "#fff",
-            "opacity": 1
-          }
-        },
-        {
           "name": "RigidBody",
           "config": {
             "type": "dynamic",
@@ -1295,6 +1274,95 @@
           "name": "Health",
           "config": {
             "points": 1
+          }
+        },
+        {
+          "name": "Shape",
+          "config": {
+            "type": "circle",
+            "strokeWidth": 0,
+            "strokeColor": "#fff",
+            "strokeAlignment": 0.5,
+            "fill": "rgb(237,0,229)",
+            "pixelLine": false,
+            "sortCenter": [
+              0,
+              0
+            ],
+            "sortingLayer": "default",
+            "blending": "normal",
+            "opacity": 1,
+            "disabled": false,
+            "radius": 4
+          }
+        },
+        {
+          "name": "Animatable",
+          "config": {
+            "initialState": "b57fd088-37c0-4230-b603-2590c73d511b",
+            "states": [
+              {
+                "id": "b57fd088-37c0-4230-b603-2590c73d511b",
+                "name": "Idle",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "id": "972bf6b8-9ff1-4ba2-a787-278a7725cfeb",
+                      "fields": [
+                        {
+                          "id": "707801f5-3e3c-41ed-8285-21ce152be8e9",
+                          "name": "components.Shape.disabled",
+                          "type": "boolean",
+                          "value": false
+                        }
+                      ]
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": [
+                  {
+                    "id": "18d28c1d-e7f4-4823-8f6b-cfdab11231c2",
+                    "state": "6b06eb45-8d5d-45d0-9cc0-926a9ed34749",
+                    "time": 0,
+                    "conditions": [
+                      {
+                        "id": "6982bc45-4b88-44e0-9c83-02f346a0795d",
+                        "type": "event",
+                        "props": {
+                          "eventType": "Kill"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "6b06eb45-8d5d-45d0-9cc0-926a9ed34749",
+                "name": "Death",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "id": "972bf6b8-9ff1-4ba2-a787-278a7725cfeb",
+                      "fields": [
+                        {
+                          "id": "707801f5-3e3c-41ed-8285-21ce152be8e9",
+                          "name": "components.Shape.disabled",
+                          "type": "boolean",
+                          "value": true
+                        }
+                      ]
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": []
+              }
+            ]
           }
         }
       ],
@@ -1453,6 +1521,75 @@
           "config": {
             "exampleField": "",
             "amount": 100
+          }
+        },
+        {
+          "name": "Animatable",
+          "config": {
+            "initialState": "597adade-57cb-4c91-b1b0-25d66c91a26f",
+            "states": [
+              {
+                "id": "597adade-57cb-4c91-b1b0-25d66c91a26f",
+                "name": "Idle",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "id": "fb208481-5913-4e7d-afc7-d689e2f1570c",
+                      "fields": [
+                        {
+                          "id": "e724bbfe-85f4-4bf3-b33b-e8f4ed579bab",
+                          "name": "components.Sprite.disabled",
+                          "type": "boolean",
+                          "value": false
+                        }
+                      ]
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": [
+                  {
+                    "id": "af7beae6-aadb-4857-b0a2-7fd57105e6d3",
+                    "state": "f2bbb911-77db-4e04-afea-adf0c36973bd",
+                    "time": 0,
+                    "conditions": [
+                      {
+                        "id": "3350181d-ff3f-4a9f-9471-c799e9826d29",
+                        "type": "event",
+                        "props": {
+                          "eventType": "Kill"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "f2bbb911-77db-4e04-afea-adf0c36973bd",
+                "name": "Death",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "id": "fb208481-5913-4e7d-afc7-d689e2f1570c",
+                      "fields": [
+                        {
+                          "id": "e724bbfe-85f4-4bf3-b33b-e8f4ed579bab",
+                          "name": "components.Sprite.disabled",
+                          "type": "boolean",
+                          "value": true
+                        }
+                      ]
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": []
+              }
+            ]
           }
         }
       ],
