@@ -1,21 +1,16 @@
-import { Actor, MathOps, VectorOps, Transform, Collider } from 'dacha';
+import { Actor, Collider, Shape } from 'dacha';
 import type { ActorSpawner, Scene } from 'dacha';
-import { CollisionEnter, AddImpulse } from 'dacha/events';
+import { CollisionEnter } from 'dacha/events';
 import type { CollisionEnterEvent } from 'dacha/events';
 
+import { type AttackStats, ATTACK_STATS_MAP } from '../../../../consts/game';
 import * as EventType from '../../../events';
-import HitBox from '../../../components/hit-box/hit-box.component';
-import Team from '../../../components/team/team.component';
-import { findTeam } from '../utils/find-team';
-import type { AttackStats } from '../../../../consts/game';
+import type { PickPlayerPowerUpEvent } from '../../../events';
 
 import type { Attack } from './attack';
 
 interface CollectorAuraAttackStats extends AttackStats {
-  damage: number;
-  range: number;
-  projectileRadius: number;
-  projectileSpeed: number;
+  radius: number;
   projectileModel: string;
 }
 
@@ -32,97 +27,62 @@ export class CollectorAuraAttack implements Attack {
   private spawner: ActorSpawner;
   private scene: Scene;
 
-  private stats: CollectorAuraAttackStats;
-
   private shot: Actor;
-  private lifetime: number;
 
   isFinished: boolean;
 
-  constructor({ actor, spawner, scene, enemies, stats }: CollectorAuraAttackOptions) {
+  constructor({ actor, spawner, scene, stats }: CollectorAuraAttackOptions) {
     this.actor = actor;
     this.spawner = spawner;
     this.scene = scene;
-    this.stats = stats;
-
-    const { offsetX, offsetY } = this.actor.getComponent(Transform);
 
     const shot = this.spawner.spawn(stats.projectileModel);
-    const shotTransform = shot.getComponent(Transform);
     const shotCollider = shot.getComponent(Collider);
+    const shape = shot.getComponent(Shape);
 
-    shotCollider.radius = stats.projectileRadius;
+    shotCollider.radius = stats.radius;
+    shape.radius = stats.radius;
 
-    const target = enemies[MathOps.random(0, enemies.length - 1)];
-    const targetTransform = target.getComponent(Transform);
-
-    const angle = MathOps.getAngleBetweenTwoPoints(
-      targetTransform.offsetX,
-      offsetX,
-      targetTransform.offsetY,
-      offsetY,
-    );
-
-    shotTransform.offsetX = offsetX;
-    shotTransform.offsetY = offsetY;
-    shotTransform.rotation = MathOps.radToDeg(angle);
-
-    this.scene.appendChild(shot);
-
-    const directionVector = VectorOps.getVectorByAngle(angle);
-
-    directionVector.multiplyNumber(stats.projectileSpeed);
-
-    const flightTime = 1000 * (stats.range / stats.projectileSpeed!);
+    this.actor.appendChild(shot);
 
     this.shot = shot;
-    this.lifetime = flightTime;
     this.isFinished = false;
 
-    this.shot.dispatchEvent(AddImpulse, { value: directionVector.clone() });
-
     this.shot.addEventListener(CollisionEnter, this.handleCollisionEnter);
+
+    this.scene.addEventListener(
+      EventType.PickPlayerPowerUp,
+      this.handlePickPlayerPowerUp,
+    );
   }
 
   destroy(): void {
     this.shot.removeEventListener(CollisionEnter, this.handleCollisionEnter);
+
+    this.scene.removeEventListener(
+      EventType.PickPlayerPowerUp,
+      this.handlePickPlayerPowerUp,
+    );
   }
 
   private handleCollisionEnter = (event: CollisionEnterEvent): void => {
     const { actor } = event;
 
-    const { damage } = this.stats;
-    const team = this.actor.getComponent(Team);
-
-    const hitBox = actor.getComponent(HitBox);
-    const targetTeam = findTeam(actor);
-    const target = actor.parent;
-
-    if (team && targetTeam && team?.index === targetTeam?.index) {
-      return;
-    }
-
-    if (!hitBox || !target || !(target instanceof Actor)) {
-      return;
-    }
-
-    target.dispatchEvent(EventType.Damage, {
-      value: damage,
-      actor: this.actor,
-    });
-    this.lifetime = 0;
+    console.log('Collsion', actor);
   };
 
-  update(deltaTime: number): void {
+  private handlePickPlayerPowerUp = (event: PickPlayerPowerUpEvent): void => {
+    const { bonus } = event;
+
+    if (bonus.bonus === 'collectorAura') {
+      const newStats = ATTACK_STATS_MAP['collectorAura'][bonus.level];
+      console.log(newStats);
+    }
+  };
+
+  update(): void {
     if (this.isFinished) {
       return;
-    }
-
-    this.lifetime -= deltaTime;
-
-    if (this.lifetime <= 0) {
-      this.shot.dispatchEvent(EventType.Kill);
-      this.isFinished = true;
     }
   }
 }
