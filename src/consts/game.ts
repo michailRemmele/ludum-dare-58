@@ -22,6 +22,7 @@ export const LEVELS = [
 
 export interface AttackStats extends Record<string, unknown> {
   cooldown: number;
+  radius?: number;
 }
 
 export const ATTACK_STATS_MAP: Record<string, AttackStats[]> = {
@@ -199,6 +200,31 @@ export const ATTACK_STATS_MAP: Record<string, AttackStats[]> = {
       cooldown: 20 * 60 * 1000,
       projectileModel: COLLECTOR_AURA_PROJECTILE_ID,
     },
+    {
+      radius: 32,
+      cooldown: 20 * 60 * 1000,
+      projectileModel: COLLECTOR_AURA_PROJECTILE_ID,
+    },
+    {
+      radius: 48,
+      cooldown: 20 * 60 * 1000,
+      projectileModel: COLLECTOR_AURA_PROJECTILE_ID,
+    },
+    {
+      radius: 54,
+      cooldown: 20 * 60 * 1000,
+      projectileModel: COLLECTOR_AURA_PROJECTILE_ID,
+    },
+    {
+      radius: 80,
+      cooldown: 20 * 60 * 1000,
+      projectileModel: COLLECTOR_AURA_PROJECTILE_ID,
+    },
+    {
+      radius: 96,
+      cooldown: 20 * 60 * 1000,
+      projectileModel: COLLECTOR_AURA_PROJECTILE_ID,
+    },
   ],
 };
 
@@ -209,21 +235,21 @@ export const ENEMIES = [
   {
     id: EASY_ENEMY,
     ms: 10 * 60 * 1000,
-    frequency: 2000,
+    frequency: 6000,
   },
   {
     id: MIDDLE_ENEMY,
     ms: 7.5 * 60 * 1000,
-    frequency: 2000,
+    frequency: 6000,
   },
   {
     id: HEAVY_ENEMY,
     ms: 5 * 60 * 1000,
-    frequency: 2000,
+    frequency: 6000,
   },
   {
     id: ELITE_ENEMY,
     ms: 2.5,
-    frequency: 2000,
+    frequency: 6000,
   },
 ];
