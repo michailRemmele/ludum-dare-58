@@ -25,6 +25,7 @@ export const HpBar: FC = () => {
 
     if (storage) {
       setMaxPoints(storage.amount);
+      setPoints(storage.amount);
     }
   }, [scene]);
 

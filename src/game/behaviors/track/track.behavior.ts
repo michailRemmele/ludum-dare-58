@@ -11,6 +11,7 @@ import Track from '../../components/track/track.component.ts';
 import TrackSegment from '../../components/track-segment/track-segment.component.ts';
 
 import * as EventType from '../../events';
+import type { UpdateTimerEvent } from '../../events';
 import { ENEMIES } from '../../../consts/game.ts';
 
 const DESTINATION_THRESOLD = 4;
@@ -53,14 +54,21 @@ export default class TrackBehavior extends Behavior {
     this.spawnCooldown = 0;
     this.spawnFrequency = track.frequency;
 
-    this.scene.addEventListener(EventType.UpdateTimer, this.updateEnemyType);
-
     this.trackSegments.sort((a: Actor, b: Actor) => {
       const aTrackSegment = a.getComponent(TrackSegment);
       const bTrackSegment = b.getComponent(TrackSegment);
 
       return aTrackSegment.index - bTrackSegment.index;
     });
+
+    this.scene.addEventListener(EventType.UpdateTimer, this.handleUpdateTimer);
+  }
+
+  destroy(): void {
+    this.scene.removeEventListener(
+      EventType.UpdateTimer,
+      this.handleUpdateTimer,
+    );
   }
 
   private updateSpawn(deltaTime: number): void {
@@ -83,11 +91,14 @@ export default class TrackBehavior extends Behavior {
     this.spawnCooldown = this.spawnFrequency;
   }
 
-  private updateEnemyType = (event) => {
-    if (ENEMIES[this.enemyTypeIndex + 1] && ENEMIES[this.enemyTypeIndex + 1].ms > event.timeLeft) {
+  private handleUpdateTimer = (event: UpdateTimerEvent): void => {
+    if (
+      ENEMIES[this.enemyTypeIndex + 1] &&
+      ENEMIES[this.enemyTypeIndex + 1].ms > event.timeLeft
+    ) {
       this.enemyTypeIndex = this.enemyTypeIndex + 1;
     }
-  }
+  };
 
   private updateTrackMovement(): void {
     this.mobs.forEach((actor) => {
