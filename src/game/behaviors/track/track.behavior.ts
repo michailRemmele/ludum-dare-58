@@ -7,14 +7,18 @@ import type {
 import { Actor, Behavior, Transform, MathOps, Shape } from 'dacha';
 import { DefineBehavior } from 'dacha-workbench/decorators';
 
-import Track from '../../components/track/track.component.ts';
-import TrackSegment from '../../components/track-segment/track-segment.component.ts';
+import TrackSegment from '../../components/track-segment/track-segment.component';
+import Pocket from '../../components/pocket/pocket.component';
 
 import * as EventType from '../../events';
 import type { UpdateTimerEvent } from '../../events';
-import { ENEMIES } from '../../../consts/game.ts';
 import Money from '../../components/money/money.component.ts';
 import { CAN_LIFT_MONEY_NAME } from '../../../consts/templates';
+import {
+  ENEMIES,
+  SPAWN_INCREASE_FREQUENCY_COOLDOWN,
+  SPAWN_INCREASE_MULTIPLIER,
+} from '../../../consts/game';
 
 const DESTINATION_THRESOLD = 4;
 
@@ -27,12 +31,13 @@ export default class TrackBehavior extends Behavior {
   private scene: Scene;
   private trackSegments: Actor[];
   private mobs: Actor[];
-  private mobId: string;
   private mobDestinations: Record<string, number>;
   private mobDirections: Record<string, number>;
   private spawnCooldown: number;
   private spawnFrequency: number;
   private enemyTypeIndex: number;
+
+  private increaseSpawnFrequencyCooldown: number;
 
   constructor(options: BehaviorOptions) {
     super();
@@ -45,9 +50,6 @@ export default class TrackBehavior extends Behavior {
     this.mobs = [];
     this.enemyTypeIndex = 0;
 
-    const track = this.actor.getComponent(Track);
-
-    this.mobId = track.mob;
     this.mobDestinations = {};
     this.mobDirections = {};
     this.trackSegments = this.actor.children.filter((child) =>
@@ -55,6 +57,8 @@ export default class TrackBehavior extends Behavior {
     );
     this.spawnCooldown = 0;
     this.spawnFrequency = ENEMIES[this.enemyTypeIndex].frequency;
+
+    this.increaseSpawnFrequencyCooldown = SPAWN_INCREASE_FREQUENCY_COOLDOWN;
 
     this.trackSegments.sort((a: Actor, b: Actor) => {
       const aTrackSegment = a.getComponent(TrackSegment);
@@ -86,7 +90,7 @@ export default class TrackBehavior extends Behavior {
     mobTransform.offsetX = spawnerTransform.offsetX;
     mobTransform.offsetY = spawnerTransform.offsetY;
 
-    const mobMoney =  mob.getComponent(Money);
+    const mobMoney = mob.getComponent(Money);
 
     if (Math.random() < 0.2) {
       mobMoney.canLiftMoney = true;
@@ -111,26 +115,32 @@ export default class TrackBehavior extends Behavior {
       ENEMIES[this.enemyTypeIndex + 1].ms > event.timeLeft
     ) {
       this.enemyTypeIndex = this.enemyTypeIndex + 1;
+      this.spawnFrequency = ENEMIES[this.enemyTypeIndex].frequency;
+      this.increaseSpawnFrequencyCooldown = SPAWN_INCREASE_FREQUENCY_COOLDOWN;
     }
   };
 
   private updateTrackMovement(): void {
     this.mobs.forEach((actor) => {
       const transform = actor.getComponent(Transform);
+      const pocket = actor.getComponent(Pocket);
 
-      const intersectedSegmentIndex = this.trackSegments.findIndex(
-        (segment) => {
-          const segmentTransform = segment.getComponent(Transform);
-          const distance = MathOps.getDistanceBetweenTwoPoints(
-            transform.offsetX,
-            segmentTransform.offsetX,
-            transform.offsetY,
-            segmentTransform.offsetY,
-          );
+      let intersectedSegmentIndex = this.trackSegments.findIndex((segment) => {
+        const segmentTransform = segment.getComponent(Transform);
+        const distance = MathOps.getDistanceBetweenTwoPoints(
+          transform.offsetX,
+          segmentTransform.offsetX,
+          transform.offsetY,
+          segmentTransform.offsetY,
+        );
 
-          return distance < DESTINATION_THRESOLD;
-        },
-      );
+        return distance < DESTINATION_THRESOLD;
+      });
+
+      if (pocket && pocket.amount > 0 && this.mobDirections?.[actor.id] > 0) {
+        intersectedSegmentIndex = this.trackSegments.length - 1;
+        this.mobDirections[actor.id] = -1;
+      }
 
       let nextSegmentIndex: number;
       if (!this.mobDestinations[actor.id]) {
@@ -141,10 +151,6 @@ export default class TrackBehavior extends Behavior {
           intersectedSegmentIndex + this.mobDirections[actor.id];
       } else {
         nextSegmentIndex = intersectedSegmentIndex;
-      }
-
-      if (intersectedSegmentIndex === this.trackSegments.length - 1) {
-        this.mobDirections[actor.id] = -1;
       }
 
       if (nextSegmentIndex !== -1 && this.trackSegments[nextSegmentIndex]) {
@@ -172,10 +178,21 @@ export default class TrackBehavior extends Behavior {
     });
   }
 
+  private updateSpawnFrequency(deltaTime: number): void {
+    this.increaseSpawnFrequencyCooldown -= deltaTime;
+
+    if (this.increaseSpawnFrequencyCooldown <= 0) {
+      this.spawnFrequency /= SPAWN_INCREASE_MULTIPLIER;
+      this.increaseSpawnFrequencyCooldown = SPAWN_INCREASE_FREQUENCY_COOLDOWN;
+    }
+  }
+
   update(options: UpdateOptions): void {
     if (this.scene.data.isPaused || this.scene.data.isGameOver) {
       return;
     }
+
+    this.updateSpawnFrequency(options.deltaTime);
 
     this.updateSpawn(options.deltaTime);
     this.updateTrackMovement();

@@ -87,7 +87,7 @@
                 "type": "dynamic",
                 "mass": 1,
                 "useGravity": false,
-                "isPermeable": false,
+                "isPermeable": true,
                 "ghost": false,
                 "drag": 0
               }
@@ -848,7 +848,15 @@
               }
             }
           ],
-          "children": []
+          "children": [
+            {
+              "id": "68b08c8f-1546-47d1-9766-a5064309dcbd",
+              "templateId": "f093fbee-80b2-4bfc-989d-e1cd3e0fd10f",
+              "name": "Template",
+              "components": [],
+              "children": []
+            }
+          ]
         },
         {
           "id": "79d82814-0292-4cf7-b815-f97a435f9353",
@@ -1925,6 +1933,27 @@
             "exampleField": "",
             "amount": 100
           }
+        },
+        {
+          "name": "RigidBody",
+          "config": {
+            "type": "dynamic",
+            "mass": 1,
+            "useGravity": false,
+            "isPermeable": true,
+            "ghost": false,
+            "drag": 0
+          }
+        },
+        {
+          "name": "Collider",
+          "config": {
+            "type": "box",
+            "sizeX": 8,
+            "sizeY": 8,
+            "centerX": 0,
+            "centerY": 0
+          }
         }
       ],
       "children": [
@@ -2042,7 +2071,7 @@
             "type": "circle",
             "centerX": 0,
             "centerY": 0,
-            "radius": 24
+            "radius": 28
           }
         },
         {
@@ -2053,7 +2082,7 @@
                 "id": "e9555622-f288-45cf-8a10-13408fdf84d8",
                 "name": "Treasury",
                 "options": {
-                  "levelDuration": 5
+                  "levelDuration": 10
                 }
               }
             ]
@@ -2143,7 +2172,46 @@
           }
         }
       ],
-      "children": []
+      "children": [
+        {
+          "id": "f093fbee-80b2-4bfc-989d-e1cd3e0fd10f",
+          "name": "Body",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": 0,
+                "offsetY": 0,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            },
+            {
+              "name": "RigidBody",
+              "config": {
+                "type": "static",
+                "mass": 1,
+                "useGravity": false,
+                "isPermeable": false,
+                "ghost": false,
+                "drag": 0
+              }
+            },
+            {
+              "name": "Collider",
+              "config": {
+                "type": "circle",
+                "centerX": 0,
+                "centerY": 0,
+                "radius": 24
+              }
+            }
+          ],
+          "children": []
+        }
+      ]
     },
     {
       "id": "6f4bbb25-4a9c-47c3-be04-66ad63bfd784",
@@ -2804,6 +2872,27 @@
             "amount": 250,
             "canLiftMoney": false
           }
+        },
+        {
+          "name": "RigidBody",
+          "config": {
+            "type": "dynamic",
+            "mass": 1,
+            "useGravity": false,
+            "isPermeable": true,
+            "ghost": false,
+            "drag": 0
+          }
+        },
+        {
+          "name": "Collider",
+          "config": {
+            "type": "box",
+            "sizeX": 8,
+            "sizeY": 8,
+            "centerX": 0,
+            "centerY": 0
+          }
         }
       ],
       "children": [
@@ -3105,6 +3194,27 @@
             "amount": 500,
             "canLiftMoney": false
           }
+        },
+        {
+          "name": "RigidBody",
+          "config": {
+            "type": "dynamic",
+            "mass": 1,
+            "useGravity": false,
+            "isPermeable": true,
+            "ghost": false,
+            "drag": 0
+          }
+        },
+        {
+          "name": "Collider",
+          "config": {
+            "type": "box",
+            "sizeX": 8,
+            "sizeY": 8,
+            "centerX": 0,
+            "centerY": 0
+          }
         }
       ],
       "children": [
@@ -3313,6 +3423,276 @@
         }
       ],
       "children": []
+    },
+    {
+      "id": "d4690206-e5e0-4770-baa3-06e5a954688b",
+      "name": "EliteEnemy",
+      "components": [
+        {
+          "name": "Transform",
+          "config": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "offsetZ": 0,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1
+          }
+        },
+        {
+          "name": "Sprite",
+          "config": {
+            "src": "",
+            "width": 16,
+            "height": 16,
+            "slice": 1,
+            "rotation": 0,
+            "sortCenter": [
+              0,
+              0
+            ],
+            "flipX": false,
+            "flipY": false,
+            "sortingLayer": "units",
+            "fit": "stretch",
+            "blending": "normal",
+            "color": "rgb(255,111,0)",
+            "opacity": 1
+          }
+        },
+        {
+          "name": "Movement",
+          "config": {
+            "speed": 70
+          }
+        },
+        {
+          "name": "Team",
+          "config": {
+            "index": 1
+          }
+        },
+        {
+          "name": "Health",
+          "config": {
+            "points": 50
+          }
+        },
+        {
+          "name": "Behaviors",
+          "config": {
+            "list": [
+              {
+                "id": "685d9519-dff6-46f8-8360-d27ff0ec2c60",
+                "name": "Stealer",
+                "options": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "Pocket",
+          "config": {
+            "exampleField": "",
+            "size": 1000
+          }
+        },
+        {
+          "name": "ScorePoints",
+          "config": {
+            "exampleField": "",
+            "amount": 1000
+          }
+        },
+        {
+          "name": "Animatable",
+          "config": {
+            "initialState": "597adade-57cb-4c91-b1b0-25d66c91a26f",
+            "states": [
+              {
+                "id": "597adade-57cb-4c91-b1b0-25d66c91a26f",
+                "name": "Idle",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "id": "fb208481-5913-4e7d-afc7-d689e2f1570c",
+                      "fields": [
+                        {
+                          "id": "e724bbfe-85f4-4bf3-b33b-e8f4ed579bab",
+                          "name": "components.Sprite.disabled",
+                          "type": "boolean",
+                          "value": false
+                        },
+                        {
+                          "id": "d5211505-a659-4fd3-9768-a7c19d01e2ff",
+                          "name": "components.Sprite.color",
+                          "type": "string",
+                          "value": "#FF6F00"
+                        }
+                      ]
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": [
+                  {
+                    "id": "af7beae6-aadb-4857-b0a2-7fd57105e6d3",
+                    "state": "f2bbb911-77db-4e04-afea-adf0c36973bd",
+                    "time": 0,
+                    "conditions": [
+                      {
+                        "id": "3350181d-ff3f-4a9f-9471-c799e9826d29",
+                        "type": "event",
+                        "props": {
+                          "eventType": "Kill"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "e315bbf9-ba6a-4c27-8c48-85cbe3c9b580",
+                    "state": "f017a6c7-6c72-4d9b-84eb-b1847b73efce",
+                    "time": 0,
+                    "conditions": [
+                      {
+                        "id": "3a3321a3-da4a-4594-9c34-fcd7b071d38e",
+                        "type": "event",
+                        "props": {
+                          "eventType": "Damage"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "f2bbb911-77db-4e04-afea-adf0c36973bd",
+                "name": "Death",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "id": "fb208481-5913-4e7d-afc7-d689e2f1570c",
+                      "fields": [
+                        {
+                          "id": "e724bbfe-85f4-4bf3-b33b-e8f4ed579bab",
+                          "name": "components.Sprite.disabled",
+                          "type": "boolean",
+                          "value": true
+                        }
+                      ]
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": []
+              },
+              {
+                "id": "f017a6c7-6c72-4d9b-84eb-b1847b73efce",
+                "name": "Damage",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "id": "fb208481-5913-4e7d-afc7-d689e2f1570c",
+                      "fields": [
+                        {
+                          "id": "d5211505-a659-4fd3-9768-a7c19d01e2ff",
+                          "name": "components.Sprite.color",
+                          "type": "string",
+                          "value": "#fff"
+                        }
+                      ]
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": [
+                  {
+                    "id": "af7beae6-aadb-4857-b0a2-7fd57105e6d3",
+                    "state": "f2bbb911-77db-4e04-afea-adf0c36973bd",
+                    "time": 0,
+                    "conditions": [
+                      {
+                        "id": "3350181d-ff3f-4a9f-9471-c799e9826d29",
+                        "type": "event",
+                        "props": {
+                          "eventType": "Kill"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "b383b6d9-a577-437c-bc18-ca1b5cd49ecf",
+                    "state": "597adade-57cb-4c91-b1b0-25d66c91a26f",
+                    "time": 1,
+                    "conditions": []
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "RigidBody",
+          "config": {
+            "type": "dynamic",
+            "mass": 1,
+            "useGravity": false,
+            "isPermeable": true,
+            "ghost": false,
+            "drag": 0
+          }
+        },
+        {
+          "name": "Collider",
+          "config": {
+            "type": "box",
+            "sizeX": 8,
+            "sizeY": 8,
+            "centerX": 0,
+            "centerY": 0
+          }
+        }
+      ],
+      "children": [
+        {
+          "id": "a9140baf-7662-4d1a-8658-8f54863a35c1",
+          "name": "Hit Box",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": 0,
+                "offsetY": 0,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            },
+            {
+              "name": "Collider",
+              "config": {
+                "type": "box",
+                "sizeX": 16,
+                "sizeY": 16,
+                "centerX": 0,
+                "centerY": 0
+              }
+            },
+            {
+              "name": "HitBox",
+              "config": {}
+            }
+          ],
+          "children": []
+        }
+      ]
     }
   ],
   "globalOptions": [

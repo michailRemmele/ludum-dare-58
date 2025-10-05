@@ -1,11 +1,4 @@
-import {
-  Actor,
-  MathOps,
-  VectorOps,
-  Transform,
-  Collider,
-  RigidBody,
-} from 'dacha';
+import { Actor, MathOps, VectorOps, Transform, Collider, Shape } from 'dacha';
 import type { ActorSpawner, Scene, Vector2 } from 'dacha';
 import { CollisionEnter, CollisionStay, AddImpulse } from 'dacha/events';
 import type { CollisionEnterEvent } from 'dacha/events';
@@ -65,8 +58,10 @@ export class CircularSawAttack implements Attack {
     const shot = this.spawner.spawn(stats.projectileModel);
     const shotTransform = shot.getComponent(Transform);
     const shotCollider = shot.getComponent(Collider);
+    const shotShape = shot.getComponent(Shape);
 
     shotCollider.radius = stats.projectileRadius;
+    shotShape.radius = stats.projectileRadius;
 
     shotTransform.offsetX = offsetX;
     shotTransform.offsetY = offsetY;
@@ -103,16 +98,11 @@ export class CircularSawAttack implements Attack {
     const team = this.actor.getComponent(Team);
 
     const hitBox = actor.getComponent(HitBox);
-    const rigidBody = actor.getComponent(RigidBody);
     const targetTeam = findTeam(actor);
     const target = actor.parent;
 
     if (team && targetTeam && team?.index === targetTeam?.index) {
       return;
-    }
-
-    if (rigidBody && !rigidBody.isPermeable && !rigidBody.ghost) {
-      this.lifetime = 0;
     }
 
     if (!hitBox || !target || !(target instanceof Actor)) {

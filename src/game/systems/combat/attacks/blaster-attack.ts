@@ -1,11 +1,4 @@
-import {
-  Actor,
-  MathOps,
-  VectorOps,
-  Transform,
-  Collider,
-  RigidBody,
-} from 'dacha';
+import { Actor, MathOps, VectorOps, Transform, Collider } from 'dacha';
 import type { ActorSpawner, Scene } from 'dacha';
 import { CollisionEnter, AddImpulse } from 'dacha/events';
 import type { CollisionEnterEvent } from 'dacha/events';
@@ -102,16 +95,11 @@ export class BlasterAttack implements Attack {
     const team = this.actor.getComponent(Team);
 
     const hitBox = actor.getComponent(HitBox);
-    const rigidBody = actor.getComponent(RigidBody);
     const targetTeam = findTeam(actor);
     const target = actor.parent;
 
     if (team && targetTeam && team?.index === targetTeam?.index) {
       return;
-    }
-
-    if (rigidBody && !rigidBody.isPermeable && !rigidBody.ghost) {
-      this.lifetime = 0;
     }
 
     if (!hitBox || !target || !(target instanceof Actor)) {
