@@ -116,16 +116,16 @@ export const ENEMIES = [
   {
     id: EASY_ENEMY, // easy
     ms: 5 * 60000,
-    frequency: 2000
+    frequency: 3000
   },
   {
     id: MIDDLE_ENEMY, // middle
-    ms: 4.8 * 60000,
+    ms: 3.5 * 60000,
     frequency: 4500
   },
   {
     id: HEAVY_ENEMY, // heavy
-    ms: 4.5 * 60000,
+    ms: 2 * 60000,
     frequency: 6000
   },
 ];
