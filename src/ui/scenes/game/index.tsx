@@ -97,7 +97,7 @@ export const Game: FC = () => {
         </div>
       )}
 
-      <PowerUpMenu />
+      {!isGameOver && <PowerUpMenu />}
     </div>
   );
 };
