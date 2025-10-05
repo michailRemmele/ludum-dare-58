@@ -11,6 +11,7 @@ import Track from '../../components/track/track.component.ts';
 import TrackSegment from '../../components/track-segment/track-segment.component.ts';
 
 import * as EventType from '../../events';
+import { ENEMIES } from '../../../consts/game.ts';
 
 const DESTINATION_THRESOLD = 4;
 
@@ -28,6 +29,7 @@ export default class TrackBehavior extends Behavior {
   private mobDirections: Record<string, number>;
   private spawnCooldown: number;
   private spawnFrequency: number;
+  private enemyTypeIndex: number;
 
   constructor(options: BehaviorOptions) {
     super();
@@ -38,6 +40,7 @@ export default class TrackBehavior extends Behavior {
     this.scene = scene;
     this.actorSpawner = options.actorSpawner;
     this.mobs = [];
+    this.enemyTypeIndex = 0;
 
     const track = this.actor.getComponent(Track);
 
@@ -50,6 +53,8 @@ export default class TrackBehavior extends Behavior {
     this.spawnCooldown = 0;
     this.spawnFrequency = track.frequency;
 
+    this.scene.addEventListener(EventType.UpdateTimer, this.updateEnemyType);
+
     this.trackSegments.sort((a: Actor, b: Actor) => {
       const aTrackSegment = a.getComponent(TrackSegment);
       const bTrackSegment = b.getComponent(TrackSegment);
@@ -59,7 +64,7 @@ export default class TrackBehavior extends Behavior {
   }
 
   private updateSpawn(deltaTime: number): void {
-    const mob = this.actorSpawner.spawn(this.mobId);
+    const mob = this.actorSpawner.spawn(ENEMIES[this.enemyTypeIndex].id);
     if (this.spawnCooldown > 0) {
       this.spawnCooldown -= deltaTime;
       return;
@@ -76,6 +81,12 @@ export default class TrackBehavior extends Behavior {
     this.mobs.push(mob);
 
     this.spawnCooldown = this.spawnFrequency;
+  }
+
+  private updateEnemyType = (event) => {
+    if (ENEMIES[this.enemyTypeIndex + 1] && ENEMIES[this.enemyTypeIndex + 1].ms > event.timeLeft) {
+      this.enemyTypeIndex = this.enemyTypeIndex + 1;
+    }
   }
 
   private updateTrackMovement(): void {

@@ -837,7 +837,7 @@
             {
               "name": "Storage",
               "config": {
-                "amount": 100
+                "amount": 1000
               }
             }
           ],
@@ -2316,6 +2316,376 @@
         }
       ],
       "children": []
+    },
+    {
+      "id": "7f68df9e-b364-43f3-a86f-f43a014beadb",
+      "name": "MiddleEnemy",
+      "components": [
+        {
+          "name": "Transform",
+          "config": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "offsetZ": 0,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1
+          }
+        },
+        {
+          "name": "Sprite",
+          "config": {
+            "src": "",
+            "width": 16,
+            "height": 16,
+            "slice": 1,
+            "rotation": 0,
+            "sortCenter": [
+              0,
+              0
+            ],
+            "flipX": false,
+            "flipY": false,
+            "sortingLayer": "units",
+            "fit": "stretch",
+            "blending": "normal",
+            "color": "rgb(246,255,0)",
+            "opacity": 1
+          }
+        },
+        {
+          "name": "Movement",
+          "config": {
+            "speed": 70
+          }
+        },
+        {
+          "name": "Team",
+          "config": {
+            "index": 1
+          }
+        },
+        {
+          "name": "Health",
+          "config": {
+            "points": 25
+          }
+        },
+        {
+          "name": "Behaviors",
+          "config": {
+            "list": [
+              {
+                "id": "685d9519-dff6-46f8-8360-d27ff0ec2c60",
+                "name": "Stealer",
+                "options": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "Pocket",
+          "config": {
+            "exampleField": "",
+            "size": 20
+          }
+        },
+        {
+          "name": "ScorePoints",
+          "config": {
+            "exampleField": "",
+            "amount": 250
+          }
+        },
+        {
+          "name": "Animatable",
+          "config": {
+            "initialState": "597adade-57cb-4c91-b1b0-25d66c91a26f",
+            "states": [
+              {
+                "id": "597adade-57cb-4c91-b1b0-25d66c91a26f",
+                "name": "Idle",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "id": "fb208481-5913-4e7d-afc7-d689e2f1570c",
+                      "fields": [
+                        {
+                          "id": "e724bbfe-85f4-4bf3-b33b-e8f4ed579bab",
+                          "name": "components.Sprite.disabled",
+                          "type": "boolean",
+                          "value": false
+                        }
+                      ]
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": [
+                  {
+                    "id": "af7beae6-aadb-4857-b0a2-7fd57105e6d3",
+                    "state": "f2bbb911-77db-4e04-afea-adf0c36973bd",
+                    "time": 0,
+                    "conditions": [
+                      {
+                        "id": "3350181d-ff3f-4a9f-9471-c799e9826d29",
+                        "type": "event",
+                        "props": {
+                          "eventType": "Kill"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "f2bbb911-77db-4e04-afea-adf0c36973bd",
+                "name": "Death",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "id": "fb208481-5913-4e7d-afc7-d689e2f1570c",
+                      "fields": [
+                        {
+                          "id": "e724bbfe-85f4-4bf3-b33b-e8f4ed579bab",
+                          "name": "components.Sprite.disabled",
+                          "type": "boolean",
+                          "value": true
+                        }
+                      ]
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": []
+              }
+            ]
+          }
+        }
+      ],
+      "children": [
+        {
+          "id": "84dd5bcb-0e26-4bef-9ae8-c6d969606c67",
+          "name": "Hit Box",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": 0,
+                "offsetY": 0,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            },
+            {
+              "name": "Collider",
+              "config": {
+                "type": "box",
+                "sizeX": 16,
+                "sizeY": 16,
+                "centerX": 0,
+                "centerY": 0
+              }
+            },
+            {
+              "name": "HitBox",
+              "config": {}
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "280c70cd-8b7e-4fb7-8505-adcf0f8427fe",
+      "name": "HeavyEnemy",
+      "components": [
+        {
+          "name": "Transform",
+          "config": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "offsetZ": 0,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1
+          }
+        },
+        {
+          "name": "Sprite",
+          "config": {
+            "src": "",
+            "width": 16,
+            "height": 16,
+            "slice": 1,
+            "rotation": 0,
+            "sortCenter": [
+              0,
+              0
+            ],
+            "flipX": false,
+            "flipY": false,
+            "sortingLayer": "units",
+            "fit": "stretch",
+            "blending": "normal",
+            "color": "rgb(255,0,217)",
+            "opacity": 1
+          }
+        },
+        {
+          "name": "Movement",
+          "config": {
+            "speed": 70
+          }
+        },
+        {
+          "name": "Team",
+          "config": {
+            "index": 1
+          }
+        },
+        {
+          "name": "Health",
+          "config": {
+            "points": 50
+          }
+        },
+        {
+          "name": "Behaviors",
+          "config": {
+            "list": [
+              {
+                "id": "685d9519-dff6-46f8-8360-d27ff0ec2c60",
+                "name": "Stealer",
+                "options": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "Pocket",
+          "config": {
+            "exampleField": "",
+            "size": 50
+          }
+        },
+        {
+          "name": "ScorePoints",
+          "config": {
+            "exampleField": "",
+            "amount": 500
+          }
+        },
+        {
+          "name": "Animatable",
+          "config": {
+            "initialState": "597adade-57cb-4c91-b1b0-25d66c91a26f",
+            "states": [
+              {
+                "id": "597adade-57cb-4c91-b1b0-25d66c91a26f",
+                "name": "Idle",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "id": "fb208481-5913-4e7d-afc7-d689e2f1570c",
+                      "fields": [
+                        {
+                          "id": "e724bbfe-85f4-4bf3-b33b-e8f4ed579bab",
+                          "name": "components.Sprite.disabled",
+                          "type": "boolean",
+                          "value": false
+                        }
+                      ]
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": [
+                  {
+                    "id": "af7beae6-aadb-4857-b0a2-7fd57105e6d3",
+                    "state": "f2bbb911-77db-4e04-afea-adf0c36973bd",
+                    "time": 0,
+                    "conditions": [
+                      {
+                        "id": "3350181d-ff3f-4a9f-9471-c799e9826d29",
+                        "type": "event",
+                        "props": {
+                          "eventType": "Kill"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "f2bbb911-77db-4e04-afea-adf0c36973bd",
+                "name": "Death",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "id": "fb208481-5913-4e7d-afc7-d689e2f1570c",
+                      "fields": [
+                        {
+                          "id": "e724bbfe-85f4-4bf3-b33b-e8f4ed579bab",
+                          "name": "components.Sprite.disabled",
+                          "type": "boolean",
+                          "value": true
+                        }
+                      ]
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": []
+              }
+            ]
+          }
+        }
+      ],
+      "children": [
+        {
+          "id": "c85a9e83-5e3c-46cf-ab9f-44cff9d04467",
+          "name": "Hit Box",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": 0,
+                "offsetY": 0,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            },
+            {
+              "name": "Collider",
+              "config": {
+                "type": "box",
+                "sizeX": 16,
+                "sizeY": 16,
+                "centerX": 0,
+                "centerY": 0
+              }
+            },
+            {
+              "name": "HitBox",
+              "config": {}
+            }
+          ],
+          "children": []
+        }
+      ]
     }
   ],
   "globalOptions": [
