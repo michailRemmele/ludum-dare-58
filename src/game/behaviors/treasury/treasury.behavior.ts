@@ -164,11 +164,16 @@ export default class Treasury extends Behavior {
 
     if (player) {
       const weapon = player.getComponent(Weapon);
-      const attackState = weapon.attacks.get(bonus)!;
-      attackState.level = Math.min(
-        attackState.level + 1,
-        ATTACK_STATS_MAP[bonus].length - 1,
-      );
+      const attackState = weapon.attacks.get(bonus);
+
+      if (attackState) {
+        attackState.level = Math.min(
+          attackState.level + 1,
+          ATTACK_STATS_MAP[bonus].length - 1,
+        );
+      } else {
+        weapon.attacks.set(bonus, { level: 0, cooldownRemaining: 0 });
+      }
     }
 
     this.scene.data.isPaused = false;

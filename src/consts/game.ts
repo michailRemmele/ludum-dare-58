@@ -1,5 +1,11 @@
 import { LEVEL_1_ID } from './scenes';
-import { EASY_ENEMY, HEAVY_ENEMY, MIDDLE_ENEMY, PROJECTILE_MODEL_ID } from './templates';
+import {
+  EASY_ENEMY,
+  HEAVY_ENEMY,
+  MIDDLE_ENEMY,
+  BLASTER_PROJECTILE_ID,
+  SHOTGUN_PROJECTILE_ID,
+} from './templates';
 
 export const LEVEL_UP_BASE_STEP = 500;
 export const MAX_LEVEL = 8;
@@ -16,13 +22,13 @@ export interface AttackStats extends Record<string, unknown> {
 }
 
 export const ATTACK_STATS_MAP: Record<string, AttackStats[]> = {
-  baseRange: [
+  blaster: [
     {
       damage: 5,
       cooldown: 500,
       range: 160,
       projectileRadius: 4,
-      projectileModel: PROJECTILE_MODEL_ID,
+      projectileModel: BLASTER_PROJECTILE_ID,
       projectileSpeed: 100,
     },
     {
@@ -30,7 +36,7 @@ export const ATTACK_STATS_MAP: Record<string, AttackStats[]> = {
       cooldown: 450,
       range: 160,
       projectileRadius: 4,
-      projectileModel: PROJECTILE_MODEL_ID,
+      projectileModel: BLASTER_PROJECTILE_ID,
       projectileSpeed: 100,
     },
     {
@@ -38,8 +44,37 @@ export const ATTACK_STATS_MAP: Record<string, AttackStats[]> = {
       cooldown: 400,
       range: 160,
       projectileRadius: 5,
-      projectileModel: PROJECTILE_MODEL_ID,
+      projectileModel: BLASTER_PROJECTILE_ID,
       projectileSpeed: 100,
+    },
+  ],
+  shotgun: [
+    {
+      damage: 2,
+      cooldown: 500,
+      range: 80,
+      projectileQuantity: 4,
+      projectileRadius: 4,
+      projectileModel: SHOTGUN_PROJECTILE_ID,
+      projectileSpeed: 150,
+    },
+    {
+      damage: 3,
+      cooldown: 500,
+      range: 80,
+      projectileQuantity: 5,
+      projectileRadius: 4,
+      projectileModel: SHOTGUN_PROJECTILE_ID,
+      projectileSpeed: 150,
+    },
+    {
+      damage: 4,
+      cooldown: 500,
+      range: 80,
+      projectileQuantity: 6,
+      projectileRadius: 4,
+      projectileModel: SHOTGUN_PROJECTILE_ID,
+      projectileSpeed: 150,
     },
   ],
 };
@@ -47,14 +82,14 @@ export const ATTACK_STATS_MAP: Record<string, AttackStats[]> = {
 export const ENEMIES = [
   {
     id: EASY_ENEMY, // easy
-    ms: 5 * 60000
+    ms: 5 * 60000,
   },
   {
     id: MIDDLE_ENEMY, // middle
-    ms: 4.8 * 60000
+    ms: 4.8 * 60000,
   },
   {
     id: HEAVY_ENEMY, // heavy
-    ms: 4.5 * 60000
-  }
-]
+    ms: 4.5 * 60000,
+  },
+];

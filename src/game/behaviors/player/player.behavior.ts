@@ -1,4 +1,4 @@
-import type { Scene, BehaviorOptions } from 'dacha';
+import type { BehaviorOptions } from 'dacha';
 import { Actor, Behavior } from 'dacha';
 import { DefineBehavior } from 'dacha-workbench/decorators';
 
@@ -9,17 +9,15 @@ import Weapon from '../../components/weapon/weapon.component';
 })
 export default class Player extends Behavior {
   private actor: Actor;
-  private scene: Scene;
 
   constructor(options: BehaviorOptions) {
     super();
 
-    const { actor, scene } = options;
+    const { actor } = options;
 
     this.actor = actor;
-    this.scene = scene;
 
     const weapon = this.actor.getComponent(Weapon);
-    weapon.attacks.set('baseRange', { level: 0, cooldownRemaining: 0 });
+    weapon.attacks.set('blaster', { level: 0, cooldownRemaining: 0 });
   }
 }

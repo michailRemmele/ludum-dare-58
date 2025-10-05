@@ -1481,7 +1481,7 @@
     },
     {
       "id": "d01d07c3-ec89-4f61-a2e4-beadcefee92a",
-      "name": "Projectile",
+      "name": "Blaster Projectile",
       "components": [
         {
           "name": "Transform",
@@ -2300,6 +2300,139 @@
                       "fields": [
                         {
                           "id": "211024c9-72b9-47e0-87bc-c81a47b34de5",
+                          "name": "components.Shape.disabled",
+                          "type": "boolean",
+                          "value": true
+                        }
+                      ]
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": []
+              }
+            ]
+          }
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "ffabd314-0dba-4b5f-a7e0-76177a54c531",
+      "name": "Shotgun Projectile",
+      "components": [
+        {
+          "name": "Transform",
+          "config": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "offsetZ": 0,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1
+          }
+        },
+        {
+          "name": "Collider",
+          "config": {
+            "type": "circle",
+            "centerX": 0,
+            "centerY": 0,
+            "radius": 0
+          }
+        },
+        {
+          "name": "RigidBody",
+          "config": {
+            "type": "dynamic",
+            "mass": 1,
+            "useGravity": false,
+            "isPermeable": false,
+            "ghost": true,
+            "drag": 0
+          }
+        },
+        {
+          "name": "Health",
+          "config": {
+            "points": 1
+          }
+        },
+        {
+          "name": "Shape",
+          "config": {
+            "type": "circle",
+            "strokeWidth": 0,
+            "strokeColor": "#fff",
+            "strokeAlignment": 0.5,
+            "fill": "rgb(255,123,0)",
+            "pixelLine": false,
+            "sortCenter": [
+              0,
+              0
+            ],
+            "sortingLayer": "default",
+            "blending": "normal",
+            "opacity": 1,
+            "disabled": false,
+            "radius": 2
+          }
+        },
+        {
+          "name": "Animatable",
+          "config": {
+            "initialState": "b57fd088-37c0-4230-b603-2590c73d511b",
+            "states": [
+              {
+                "id": "b57fd088-37c0-4230-b603-2590c73d511b",
+                "name": "Idle",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "id": "972bf6b8-9ff1-4ba2-a787-278a7725cfeb",
+                      "fields": [
+                        {
+                          "id": "707801f5-3e3c-41ed-8285-21ce152be8e9",
+                          "name": "components.Shape.disabled",
+                          "type": "boolean",
+                          "value": false
+                        }
+                      ]
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": [
+                  {
+                    "id": "18d28c1d-e7f4-4823-8f6b-cfdab11231c2",
+                    "state": "6b06eb45-8d5d-45d0-9cc0-926a9ed34749",
+                    "time": 0,
+                    "conditions": [
+                      {
+                        "id": "6982bc45-4b88-44e0-9c83-02f346a0795d",
+                        "type": "event",
+                        "props": {
+                          "eventType": "Kill"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "6b06eb45-8d5d-45d0-9cc0-926a9ed34749",
+                "name": "Death",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "id": "972bf6b8-9ff1-4ba2-a787-278a7725cfeb",
+                      "fields": [
+                        {
+                          "id": "707801f5-3e3c-41ed-8285-21ce152be8e9",
                           "name": "components.Shape.disabled",
                           "type": "boolean",
                           "value": true

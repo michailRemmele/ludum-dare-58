@@ -62,7 +62,7 @@ export default class Reaper extends SceneSystem {
 
     const scorePoints = target.getComponent(ScorePoints);
     const health = target.getComponent(Health);
-    if (!health) {
+    if (!health || health.points <= 0) {
       return;
     }
 

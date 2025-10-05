@@ -18,7 +18,7 @@ import type { AttackStats } from '../../../../consts/game';
 
 import type { Attack } from './attack';
 
-interface RangeAttackStats extends AttackStats {
+interface BlasterAttackStats extends AttackStats {
   damage: number;
   range: number;
   projectileRadius: number;
@@ -26,27 +26,27 @@ interface RangeAttackStats extends AttackStats {
   projectileModel: string;
 }
 
-interface RangeAttackOptions {
+interface BlasterAttackOptions {
   actor: Actor;
   spawner: ActorSpawner;
   scene: Scene;
   enemies: Actor[];
-  stats: RangeAttackStats;
+  stats: BlasterAttackStats;
 }
 
-export class RangeAttack implements Attack {
+export class BlasterAttack implements Attack {
   private actor: Actor;
   private spawner: ActorSpawner;
   private scene: Scene;
 
-  private stats: RangeAttackStats;
+  private stats: BlasterAttackStats;
 
   private shot: Actor;
   private lifetime: number;
 
   isFinished: boolean;
 
-  constructor({ actor, spawner, scene, enemies, stats }: RangeAttackOptions) {
+  constructor({ actor, spawner, scene, enemies, stats }: BlasterAttackOptions) {
     this.actor = actor;
     this.spawner = spawner;
     this.scene = scene;
