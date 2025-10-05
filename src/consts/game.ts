@@ -18,7 +18,7 @@ export const MAX_LEVEL = 30;
 export const LEVELS = [
   {
     id: LEVEL_1_ID,
-    title: 'Level 1',
+    title: 'Start Game',
   },
 ];
 

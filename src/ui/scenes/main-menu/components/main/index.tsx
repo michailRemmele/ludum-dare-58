@@ -9,6 +9,7 @@ import { SETTINGS_MENU, LEVEL_SELECT_MENU } from '../../consts';
 import type { SaveState } from '../../../../../game/systems/saver/types';
 
 import './style.css';
+import { StartButton } from '../start-button';
 
 interface MainProps {
   openMenu: (menu: string) => void;
@@ -32,15 +33,7 @@ export const Main: FC<MainProps> = ({ openMenu }) => {
 
   return (
     <div className="main-menu">
-      {!saveState.completedLevels.length ? (
-        <Button className="main-menu__button" onClick={handlePlay}>
-          Play
-        </Button>
-      ) : (
-        <Button className="main-menu__button" onClick={handleOpenSelectLevel}>
-          Select Level
-        </Button>
-      )}
+      <StartButton />
       <Button className="main-menu__button" onClick={handleOpenSettings}>
         Settings
       </Button>
