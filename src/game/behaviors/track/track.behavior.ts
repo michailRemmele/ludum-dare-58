@@ -52,7 +52,7 @@ export default class TrackBehavior extends Behavior {
       child.getComponent(TrackSegment),
     );
     this.spawnCooldown = 0;
-    this.spawnFrequency = track.frequency;
+    this.spawnFrequency = ENEMIES[this.enemyTypeIndex].frequency;
 
     this.trackSegments.sort((a: Actor, b: Actor) => {
       const aTrackSegment = a.getComponent(TrackSegment);
