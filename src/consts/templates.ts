@@ -4,6 +4,7 @@ export const CIRCULAR_SAW_PROJECTILE_ID =
   '11ba7bf8-2919-4955-a4bd-8c81c4744bdc';
 export const COLLECTOR_AURA_PROJECTILE_ID =
   'c45a41cf-26bf-4e46-ac4a-af78f39f2ac9';
+export const ROCKET_PROJECTILE_ID = '0d6c9f67-5946-4a6e-bf07-5da216176fa5';
 
 export const EASY_ENEMY = '1dde627f-4777-4d69-b81e-0a486780941e';
 export const MIDDLE_ENEMY = '7f68df9e-b364-43f3-a86f-f43a014beadb';

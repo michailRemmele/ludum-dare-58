@@ -8,6 +8,7 @@ import {
   SHOTGUN_PROJECTILE_ID,
   CIRCULAR_SAW_PROJECTILE_ID,
   COLLECTOR_AURA_PROJECTILE_ID,
+  ROCKET_PROJECTILE_ID,
 } from './templates';
 
 export const LEVEL_UP_BASE_STEP = 500;
@@ -224,6 +225,56 @@ export const ATTACK_STATS_MAP: Record<string, AttackStats[]> = {
       radius: 96,
       cooldown: 20 * 60 * 1000,
       projectileModel: COLLECTOR_AURA_PROJECTILE_ID,
+    },
+  ],
+  rocket: [
+    {
+      damage: 10,
+      cooldown: 2500,
+      range: 1000,
+      projectileRadius: 4,
+      projectileModel: ROCKET_PROJECTILE_ID,
+      projectileSpeed: 150,
+    },
+    {
+      damage: 20,
+      cooldown: 2250,
+      range: 1000,
+      projectileRadius: 4,
+      projectileModel: ROCKET_PROJECTILE_ID,
+      projectileSpeed: 150,
+    },
+    {
+      damage: 30,
+      cooldown: 2000,
+      range: 1000,
+      projectileRadius: 4,
+      projectileModel: ROCKET_PROJECTILE_ID,
+      projectileSpeed: 150,
+    },
+    {
+      damage: 40,
+      cooldown: 1750,
+      range: 1000,
+      projectileRadius: 4,
+      projectileModel: ROCKET_PROJECTILE_ID,
+      projectileSpeed: 150,
+    },
+    {
+      damage: 50,
+      cooldown: 1500,
+      range: 1000,
+      projectileRadius: 4,
+      projectileModel: ROCKET_PROJECTILE_ID,
+      projectileSpeed: 150,
+    },
+    {
+      damage: 60,
+      cooldown: 1250,
+      range: 1000,
+      projectileRadius: 4,
+      projectileModel: ROCKET_PROJECTILE_ID,
+      projectileSpeed: 150,
     },
   ],
 };
