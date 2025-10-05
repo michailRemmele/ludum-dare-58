@@ -5,6 +5,7 @@ import {
   MIDDLE_ENEMY,
   BLASTER_PROJECTILE_ID,
   SHOTGUN_PROJECTILE_ID,
+  CIRCULAR_SAW_PROJECTILE_ID,
 } from './templates';
 
 export const LEVEL_UP_BASE_STEP = 500;
@@ -29,7 +30,7 @@ export const ATTACK_STATS_MAP: Record<string, AttackStats[]> = {
       range: 160,
       projectileRadius: 4,
       projectileModel: BLASTER_PROJECTILE_ID,
-      projectileSpeed: 100,
+      projectileSpeed: 150,
     },
     {
       damage: 10,
@@ -37,7 +38,7 @@ export const ATTACK_STATS_MAP: Record<string, AttackStats[]> = {
       range: 160,
       projectileRadius: 4,
       projectileModel: BLASTER_PROJECTILE_ID,
-      projectileSpeed: 100,
+      projectileSpeed: 150,
     },
     {
       damage: 15,
@@ -45,7 +46,7 @@ export const ATTACK_STATS_MAP: Record<string, AttackStats[]> = {
       range: 160,
       projectileRadius: 5,
       projectileModel: BLASTER_PROJECTILE_ID,
-      projectileSpeed: 100,
+      projectileSpeed: 150,
     },
   ],
   shotgun: [
@@ -56,7 +57,7 @@ export const ATTACK_STATS_MAP: Record<string, AttackStats[]> = {
       projectileQuantity: 4,
       projectileRadius: 4,
       projectileModel: SHOTGUN_PROJECTILE_ID,
-      projectileSpeed: 150,
+      projectileSpeed: 175,
     },
     {
       damage: 3,
@@ -65,7 +66,7 @@ export const ATTACK_STATS_MAP: Record<string, AttackStats[]> = {
       projectileQuantity: 5,
       projectileRadius: 4,
       projectileModel: SHOTGUN_PROJECTILE_ID,
-      projectileSpeed: 150,
+      projectileSpeed: 175,
     },
     {
       damage: 4,
@@ -74,7 +75,39 @@ export const ATTACK_STATS_MAP: Record<string, AttackStats[]> = {
       projectileQuantity: 6,
       projectileRadius: 4,
       projectileModel: SHOTGUN_PROJECTILE_ID,
-      projectileSpeed: 150,
+      projectileSpeed: 175,
+    },
+  ],
+  circularSaw: [
+    {
+      damage: 5,
+      damageFrequency: 500,
+      cooldown: 3000,
+      duration: 5000,
+      changeDirectionCooldown: 2000,
+      projectileRadius: 16,
+      projectileModel: CIRCULAR_SAW_PROJECTILE_ID,
+      projectileSpeed: 25,
+    },
+    {
+      damage: 6,
+      damageFrequency: 500,
+      cooldown: 3000,
+      duration: 6000,
+      changeDirectionCooldown: 2000,
+      projectileRadius: 18,
+      projectileModel: CIRCULAR_SAW_PROJECTILE_ID,
+      projectileSpeed: 25,
+    },
+    {
+      damage: 7,
+      damageFrequency: 500,
+      cooldown: 3000,
+      duration: 7000,
+      changeDirectionCooldown: 200,
+      projectileRadius: 20,
+      projectileModel: CIRCULAR_SAW_PROJECTILE_ID,
+      projectileSpeed: 25,
     },
   ],
 };

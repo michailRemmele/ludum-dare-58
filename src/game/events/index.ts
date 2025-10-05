@@ -66,10 +66,10 @@ export type UpdateMoneyEvent = SceneEvent<{
 }>;
 
 export type PlayerPowerUpEvent = SceneEvent<{
-  bonuses: string[];
+  bonuses: { bonus: string; level: number }[];
 }>;
 export type PickPlayerPowerUpEvent = SceneEvent<{
-  bonus: string;
+  bonus: { bonus: string; level: number };
 }>;
 
 declare module 'dacha' {

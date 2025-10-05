@@ -12,7 +12,9 @@ export const PowerUpMenu: FC = () => {
   const { world, scene } = useContext(EngineContext);
 
   const [visible, setVisible] = useState(false);
-  const [bonuses, setBonuses] = useState<string[]>([]);
+  const [bonuses, setBonuses] = useState<{ bonus: string; level: number }[]>(
+    [],
+  );
 
   useEffect(() => {
     const handlePlayerPowerUpEvent = (event: PlayerPowerUpEvent): void => {
@@ -30,7 +32,7 @@ export const PowerUpMenu: FC = () => {
     };
   }, []);
 
-  const handleConfirm = (bonus: string) => {
+  const handleConfirm = (bonus: { bonus: string; level: number }) => {
     if (!scene) {
       return;
     }
@@ -50,11 +52,11 @@ export const PowerUpMenu: FC = () => {
         <h1 className="power-up__title">Level Up</h1>
         {bonuses.map((bonus) => (
           <Button
-            key={bonus}
+            key={bonus.bonus}
             className="power-up__button"
             onClick={() => handleConfirm(bonus)}
           >
-            {bonus}
+            {`${bonus.bonus} – ${bonus.level + 1}`}
           </Button>
         ))}
       </div>

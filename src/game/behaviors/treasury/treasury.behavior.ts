@@ -150,8 +150,26 @@ export default class Treasury extends Behavior {
         isMax: this.playerLevel === MAX_LEVEL,
       });
 
+      const player = this.scene.findChildByName(PLAYER_ACTOR_NAME)!;
+      const weapon = player.getComponent(Weapon);
+
+      const bonuses = getRandomEntries(Object.keys(ATTACK_STATS_MAP), 3).map(
+        (bonus) => {
+          const attackState = weapon.attacks.get(bonus);
+          const level = attackState
+            ? Math.min(
+                attackState.level + 1,
+                ATTACK_STATS_MAP[bonus].length - 1,
+              )
+            : 0;
+          return {
+            bonus,
+            level,
+          };
+        },
+      );
       this.scene.dispatchEvent(EventType.PlayerPowerUp, {
-        bonuses: getRandomEntries(Object.keys(ATTACK_STATS_MAP), 3),
+        bonuses,
       });
 
       this.scene.data.isPaused = true;
@@ -164,15 +182,12 @@ export default class Treasury extends Behavior {
 
     if (player) {
       const weapon = player.getComponent(Weapon);
-      const attackState = weapon.attacks.get(bonus);
+      const attackState = weapon.attacks.get(bonus.bonus);
 
       if (attackState) {
-        attackState.level = Math.min(
-          attackState.level + 1,
-          ATTACK_STATS_MAP[bonus].length - 1,
-        );
+        attackState.level = bonus.level;
       } else {
-        weapon.attacks.set(bonus, { level: 0, cooldownRemaining: 0 });
+        weapon.attacks.set(bonus.bonus, { level: 0, cooldownRemaining: 0 });
       }
     }
 
