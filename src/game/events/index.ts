@@ -75,7 +75,7 @@ export type PickPlayerPowerUpEvent = SceneEvent<{
 }>;
 
 export type UpdateRewardEvent = SceneEvent<{
-  moneyAmount: number;
+  amount: number;
 }>;
 
 declare module 'dacha' {

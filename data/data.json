@@ -3693,6 +3693,53 @@
           "children": []
         }
       ]
+    },
+    {
+      "id": "c45a41cf-26bf-4e46-ac4a-af78f39f2ac9",
+      "name": "Collector Projectile",
+      "components": [
+        {
+          "name": "Transform",
+          "config": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "offsetZ": 0,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1
+          }
+        },
+        {
+          "name": "Collider",
+          "config": {
+            "type": "circle",
+            "centerX": 0,
+            "centerY": 0,
+            "radius": 0
+          }
+        },
+        {
+          "name": "Shape",
+          "config": {
+            "type": "circle",
+            "strokeWidth": 0,
+            "strokeColor": "#fff",
+            "strokeAlignment": 0.5,
+            "fill": "rgb(73,252,255)",
+            "pixelLine": false,
+            "sortCenter": [
+              0,
+              0
+            ],
+            "sortingLayer": "decorations-3",
+            "blending": "normal",
+            "opacity": 0.25,
+            "disabled": false,
+            "radius": 32
+          }
+        }
+      ],
+      "children": []
     }
   ],
   "globalOptions": [

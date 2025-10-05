@@ -1,6 +1,7 @@
 import { BlasterAttack } from './blaster-attack';
 import { ShotgunAttack } from './shotgun-attack';
 import { CircularSawAttack } from './circular-saw-attack';
+import { CollectorAuraAttack } from './collector-aura-attack';
 
 import type { Attack } from './attack';
 
@@ -12,4 +13,5 @@ export const attacks: Record<string, Constructor<Attack>> = {
   blaster: BlasterAttack,
   shotgun: ShotgunAttack,
   circularSaw: CircularSawAttack,
+  collectorAura: CollectorAuraAttack,
 };

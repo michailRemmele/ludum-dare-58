@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { EngineContext } from '../../../../providers';
-import { PLAYER_ACTOR_NAME, TREASURY_ACTOR_NAME } from '../../../../../consts/actors.ts';
+import { PLAYER_ACTOR_NAME } from '../../../../../consts/actors.ts';
 import type { UpdateMoneyEvent } from '../../../../../game/events';
 import * as EventType from '../../../../../game/events';
 import Money from '../../../../../game/components/money/money.component.ts';

@@ -7,6 +7,7 @@ import {
   BLASTER_PROJECTILE_ID,
   SHOTGUN_PROJECTILE_ID,
   CIRCULAR_SAW_PROJECTILE_ID,
+  COLLECTOR_AURA_PROJECTILE_ID,
 } from './templates';
 
 export const LEVEL_UP_BASE_STEP = 500;
@@ -156,7 +157,7 @@ export const ATTACK_STATS_MAP: Record<string, AttackStats[]> = {
       damageFrequency: 500,
       cooldown: 3000,
       duration: 7000,
-      changeDirectionCooldown: 200,
+      changeDirectionCooldown: 2000,
       projectileRadius: 20,
       projectileModel: CIRCULAR_SAW_PROJECTILE_ID,
       projectileSpeed: 25,
@@ -166,7 +167,7 @@ export const ATTACK_STATS_MAP: Record<string, AttackStats[]> = {
       damageFrequency: 500,
       cooldown: 3000,
       duration: 8000,
-      changeDirectionCooldown: 200,
+      changeDirectionCooldown: 2000,
       projectileRadius: 22,
       projectileModel: CIRCULAR_SAW_PROJECTILE_ID,
       projectileSpeed: 25,
@@ -176,7 +177,7 @@ export const ATTACK_STATS_MAP: Record<string, AttackStats[]> = {
       damageFrequency: 500,
       cooldown: 3000,
       duration: 8000,
-      changeDirectionCooldown: 200,
+      changeDirectionCooldown: 2000,
       projectileRadius: 24,
       projectileModel: CIRCULAR_SAW_PROJECTILE_ID,
       projectileSpeed: 25,
@@ -186,10 +187,17 @@ export const ATTACK_STATS_MAP: Record<string, AttackStats[]> = {
       damageFrequency: 500,
       cooldown: 3000,
       duration: 8000,
-      changeDirectionCooldown: 200,
+      changeDirectionCooldown: 2000,
       projectileRadius: 26,
       projectileModel: CIRCULAR_SAW_PROJECTILE_ID,
       projectileSpeed: 25,
+    },
+  ],
+  collectorAura: [
+    {
+      radius: 16,
+      cooldown: 20 * 60 * 1000,
+      projectileModel: COLLECTOR_AURA_PROJECTILE_ID,
     },
   ],
 };
@@ -219,4 +227,3 @@ export const ENEMIES = [
     frequency: 2000,
   },
 ];
-
