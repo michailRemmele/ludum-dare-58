@@ -13,7 +13,7 @@ import {
 } from './templates';
 
 export const LEVEL_UP_BASE_STEP = 500;
-export const MAX_LEVEL = 18;
+export const MAX_LEVEL = 30;
 
 export const LEVELS = [
   {
@@ -77,6 +77,14 @@ export const ATTACK_STATS_MAP: Record<string, AttackStats[]> = {
       projectileModel: BLASTER_PROJECTILE_ID,
       projectileSpeed: 150,
     },
+    {
+      damage: 50,
+      cooldown: 300,
+      range: 200,
+      projectileRadius: 6,
+      projectileModel: BLASTER_PROJECTILE_ID,
+      projectileSpeed: 200,
+    },
   ],
   shotgun: [
     {
@@ -132,6 +140,15 @@ export const ATTACK_STATS_MAP: Record<string, AttackStats[]> = {
       projectileRadius: 4,
       projectileModel: SHOTGUN_PROJECTILE_ID,
       projectileSpeed: 175,
+    },
+    {
+      damage: 20,
+      cooldown: 300,
+      range: 100,
+      projectileQuantity: 9,
+      projectileRadius: 4,
+      projectileModel: SHOTGUN_PROJECTILE_ID,
+      projectileSpeed: 200,
     },
   ],
   circularSaw: [
@@ -189,6 +206,16 @@ export const ATTACK_STATS_MAP: Record<string, AttackStats[]> = {
       damage: 10,
       damageFrequency: 500,
       cooldown: 3000,
+      duration: 8000,
+      changeDirectionCooldown: 2000,
+      projectileRadius: 26,
+      projectileModel: CIRCULAR_SAW_PROJECTILE_ID,
+      projectileSpeed: 25,
+    },
+    {
+      damage: 15,
+      damageFrequency: 250,
+      cooldown: 2000,
       duration: 8000,
       changeDirectionCooldown: 2000,
       projectileRadius: 26,
@@ -342,16 +369,16 @@ export const ENEMIES = [
   {
     id: MIDDLE_ENEMY,
     ms: 7.5 * 60 * 1000,
-    frequency: 6000,
+    frequency: 4000,
   },
   {
     id: HEAVY_ENEMY,
     ms: 5 * 60 * 1000,
-    frequency: 6000,
+    frequency: 4000,
   },
   {
     id: ELITE_ENEMY,
-    ms: 2.5,
-    frequency: 6000,
+    ms: 2.5 * 60 * 1000,
+    frequency: 4000,
   },
 ];
