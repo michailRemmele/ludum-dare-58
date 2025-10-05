@@ -237,6 +237,13 @@
                   }
                 ]
               }
+            },
+            {
+              "name": "Money",
+              "config": {
+                "amount": 0,
+                "canLiftMoney": false
+              }
             }
           ],
           "children": [
@@ -1851,6 +1858,12 @@
                           "name": "components.Sprite.color",
                           "type": "string",
                           "value": "#ff0000"
+                        },
+                        {
+                          "id": "ee76c6ea-f86a-4741-9da8-c7b43db72ea4",
+                          "name": "children.CanLiftMoney.components.Shape.disabled",
+                          "type": "boolean",
+                          "value": true
                         }
                       ]
                     }
@@ -1905,6 +1918,13 @@
               }
             ]
           }
+        },
+        {
+          "name": "Money",
+          "config": {
+            "exampleField": "",
+            "amount": 100
+          }
         }
       ],
       "children": [
@@ -1936,6 +1956,45 @@
             {
               "name": "HitBox",
               "config": {}
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "d108950d-858f-4ec5-ad59-d09e46f8394d",
+          "name": "CanLiftMoney",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": 0,
+                "offsetY": 0,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            },
+            {
+              "name": "Shape",
+              "config": {
+                "type": "rectangle",
+                "width": 16,
+                "height": 16,
+                "strokeWidth": 2,
+                "strokeColor": "rgb(255,251,0)",
+                "strokeAlignment": 0,
+                "fill": "#fff",
+                "pixelLine": false,
+                "sortCenter": [
+                  0,
+                  0
+                ],
+                "sortingLayer": "decorations-3",
+                "blending": "normal",
+                "opacity": 1,
+                "disabled": true
+              }
             }
           ],
           "children": []
@@ -2678,6 +2737,12 @@
                           "name": "components.Sprite.disabled",
                           "type": "boolean",
                           "value": true
+                        },
+                        {
+                          "id": "bc9e3842-b596-4c0f-8f50-d5214da248f7",
+                          "name": "children.CanLiftMoney.components.Shape.disabled",
+                          "type": "boolean",
+                          "value": true
                         }
                       ]
                     }
@@ -2732,6 +2797,13 @@
               }
             ]
           }
+        },
+        {
+          "name": "Money",
+          "config": {
+            "amount": 250,
+            "canLiftMoney": false
+          }
         }
       ],
       "children": [
@@ -2763,6 +2835,45 @@
             {
               "name": "HitBox",
               "config": {}
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "649fcc6a-1991-468d-a489-e47220e69e7a",
+          "name": "CanLiftMoney",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": 0,
+                "offsetY": 0,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            },
+            {
+              "name": "Shape",
+              "config": {
+                "type": "rectangle",
+                "width": 16,
+                "height": 16,
+                "strokeWidth": 2,
+                "strokeColor": "rgb(255,210,29)",
+                "strokeAlignment": 0,
+                "fill": "#fff",
+                "pixelLine": false,
+                "sortCenter": [
+                  0,
+                  0
+                ],
+                "sortingLayer": "decorations-3",
+                "blending": "normal",
+                "opacity": 1,
+                "disabled": true
+              }
             }
           ],
           "children": []
@@ -2927,6 +3038,12 @@
                           "name": "components.Sprite.disabled",
                           "type": "boolean",
                           "value": true
+                        },
+                        {
+                          "id": "c9241fdd-753a-402f-8152-dcd3e31c7763",
+                          "name": "children.CanLiftMoney.components.Shape.disabled",
+                          "type": "boolean",
+                          "value": true
                         }
                       ]
                     }
@@ -2981,6 +3098,13 @@
               }
             ]
           }
+        },
+        {
+          "name": "Money",
+          "config": {
+            "amount": 500,
+            "canLiftMoney": false
+          }
         }
       ],
       "children": [
@@ -3012,6 +3136,45 @@
             {
               "name": "HitBox",
               "config": {}
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "e133b4e1-6949-4e33-8808-cdee92447b3d",
+          "name": "CanLiftMoney",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": 0,
+                "offsetY": 0,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            },
+            {
+              "name": "Shape",
+              "config": {
+                "type": "rectangle",
+                "width": 16,
+                "height": 16,
+                "strokeWidth": 2,
+                "strokeColor": "rgb(255,251,0)",
+                "strokeAlignment": 0,
+                "fill": "#fff",
+                "pixelLine": false,
+                "sortCenter": [
+                  0,
+                  0
+                ],
+                "sortingLayer": "decorations-3",
+                "blending": "normal",
+                "opacity": 1,
+                "disabled": true
+              }
             }
           ],
           "children": []

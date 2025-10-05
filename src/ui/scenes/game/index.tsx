@@ -18,6 +18,7 @@ import {
   PowerUpMenu,
 } from './components';
 import './style.css';
+import { MoneyBar } from './components/money-bar';
 
 export const Game: FC = () => {
   const { world, scene } = useContext(EngineContext);
@@ -66,7 +67,7 @@ export const Game: FC = () => {
       <header className="game__header">
         <HpBar />
         <TimerBar />
-        <div className="header__left" />
+        <MoneyBar />
       </header>
       {process.env.NODE_ENV === 'development' && <FpsMeter />}
 

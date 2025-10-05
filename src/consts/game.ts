@@ -129,3 +129,4 @@ export const ENEMIES = [
     frequency: 6000
   },
 ];
+

@@ -9,6 +9,8 @@ import * as EventType from '../../events';
 import type { KillEvent } from '../../events';
 import PieceOfTreasury from '../../components/piece-of-treasury/piece-of-treasury.component';
 import { PLAYER_ACTOR_NAME } from '../../../consts/actors';
+import Money from '../../components/money/money.component.ts';
+import { UpdateReward } from '../../events';
 
 @DefineBehavior({
   name: 'Stealer',
@@ -38,8 +40,9 @@ export default class Stealer extends Behavior {
   private handleKill = (event: KillEvent): void => {
     const { target, actor } = event;
     const { amount } = target.getComponent(Pocket);
+    const { amount: enemyMoneyAmount, canLiftMoney } = target.getComponent(Money);
 
-    if (actor?.name !== PLAYER_ACTOR_NAME) {
+    if (!actor || actor?.name !== PLAYER_ACTOR_NAME) {
       return;
     }
 
@@ -59,6 +62,14 @@ export default class Stealer extends Behavior {
 
       this.scene.appendChild(lostPiece);
     }
+
+
+    if (canLiftMoney) {
+      const playerMoney = actor.getComponent(Money);
+      playerMoney.amount += enemyMoneyAmount;
+      this.scene.dispatchEvent(UpdateReward, { amount: playerMoney.amount });
+    }
+
   };
 
   private handleCollisionEnter = (event: CollisionEnterEvent): void => {

@@ -25,6 +25,8 @@ export const UpdateMoney = 'UpdateMoney';
 export const PlayerPowerUp = 'PlayerPowerUp';
 export const PickPlayerPowerUp = 'PickPlayerPowerUp';
 
+export const UpdateReward = 'UpdateReward';
+
 export type MovementEvent = ActorEvent<{
   angle?: number;
   x?: number;
@@ -72,6 +74,10 @@ export type PickPlayerPowerUpEvent = SceneEvent<{
   bonus: { bonus: string; level: number };
 }>;
 
+export type UpdateRewardEvent = SceneEvent<{
+  moneyAmount: number;
+}>;
+
 declare module 'dacha' {
   export interface ActorEventMap {
     [Movement]: MovementEvent;
@@ -96,5 +102,6 @@ declare module 'dacha' {
     [UpdateMoney]: UpdateMoneyEvent;
     [PlayerPowerUp]: PlayerPowerUpEvent;
     [PickPlayerPowerUp]: PickPlayerPowerUpEvent;
+    [UpdateReward]: UpdateRewardEvent;
   }
 }

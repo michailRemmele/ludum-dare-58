@@ -4,7 +4,7 @@ import type {
   BehaviorOptions,
   UpdateOptions,
 } from 'dacha';
-import { Actor, Behavior, Transform, MathOps } from 'dacha';
+import { Actor, Behavior, Transform, MathOps, Shape } from 'dacha';
 import { DefineBehavior } from 'dacha-workbench/decorators';
 
 import Track from '../../components/track/track.component.ts';
@@ -13,6 +13,8 @@ import TrackSegment from '../../components/track-segment/track-segment.component
 import * as EventType from '../../events';
 import type { UpdateTimerEvent } from '../../events';
 import { ENEMIES } from '../../../consts/game.ts';
+import Money from '../../components/money/money.component.ts';
+import { CAN_LIFT_MONEY_NAME } from '../../../consts/templates';
 
 const DESTINATION_THRESOLD = 4;
 
@@ -83,6 +85,18 @@ export default class TrackBehavior extends Behavior {
 
     mobTransform.offsetX = spawnerTransform.offsetX;
     mobTransform.offsetY = spawnerTransform.offsetY;
+
+    const mobMoney =  mob.getComponent(Money);
+
+    if (Math.random() < 0.2) {
+      mobMoney.canLiftMoney = true;
+
+      const moneyChild = mob.findChildByName(CAN_LIFT_MONEY_NAME);
+      const shape = moneyChild?.getComponent(Shape);
+      if (shape) {
+        shape.disabled = false;
+      }
+    }
 
     this.scene.appendChild(mob);
 
