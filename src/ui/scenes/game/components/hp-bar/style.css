@@ -2,6 +2,8 @@
   height: 30px;
   width: 100%;
 
+  padding: 5px;
+
   box-sizing: border-box;
   background-color: #000000;
 
@@ -9,7 +11,7 @@
 }
 
 .hp-bar__points {
-  background-color: yellow;
+  background-color: #1ebc73;
 
   height: 100%;
 }

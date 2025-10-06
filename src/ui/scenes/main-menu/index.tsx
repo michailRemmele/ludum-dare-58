@@ -10,13 +10,16 @@ export const MainMenu: FC = () => {
 
   return (
     <div className="menu">
-      <img
-        src="./images/logo.png"
-        alt="Ludum Dare 58"
-        className="menu__logo"
-      />
-      {menuState === MAIN_MENU && <Main openMenu={setMenuState} />}
-      {menuState === SETTINGS_MENU && <Settings openMenu={setMenuState} />}
+      <div className="menu__background" />
+      <div className="menu__body">
+        <img
+          src="./images/logo.png"
+          alt="Ludum Dare 58"
+          className="menu__logo"
+        />
+        {menuState === MAIN_MENU && <Main openMenu={setMenuState} />}
+        {menuState === SETTINGS_MENU && <Settings openMenu={setMenuState} />}
+      </div>
     </div>
   );
 };
