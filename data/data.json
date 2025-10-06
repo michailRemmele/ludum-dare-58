@@ -165,6 +165,22 @@
                         "value": 90
                       }
                     ]
+                  },
+                  {
+                    "id": "3c67008d-4f82-40f4-9b87-a856ab133fb6",
+                    "key": "Space",
+                    "pressed": true,
+                    "keepEmit": false,
+                    "eventType": "Pause",
+                    "attrs": []
+                  },
+                  {
+                    "id": "a35ca2fd-950e-4c55-bb83-31f689f8cd7b",
+                    "key": "Escape",
+                    "pressed": true,
+                    "keepEmit": false,
+                    "eventType": "Pause",
+                    "attrs": []
                   }
                 ]
               }

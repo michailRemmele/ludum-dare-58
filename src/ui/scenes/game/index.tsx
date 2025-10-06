@@ -19,6 +19,7 @@ import {
 } from './components';
 import './style.css';
 import { MoneyBar } from './components/money-bar';
+import { PauseMenu } from './components/pause-menu';
 
 export const Game: FC = () => {
   const { world, scene } = useContext(EngineContext);
@@ -99,6 +100,7 @@ export const Game: FC = () => {
       )}
 
       {!isGameOver && <PowerUpMenu />}
+      {!isGameOver && <PauseMenu />}
     </div>
   );
 };

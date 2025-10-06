@@ -29,6 +29,8 @@ export const BuyMod = 'BuyMod';
 
 export const UpdateReward = 'UpdateReward';
 
+export const Pause = 'Pause';
+
 export type MovementEvent = ActorEvent<{
   angle?: number;
   x?: number;
@@ -93,6 +95,8 @@ export type UpdateRewardEvent = SceneEvent<{
   amount: number;
 }>;
 
+export type PauseEvent = SceneEvent<{}>;
+
 declare module 'dacha' {
   export interface ActorEventMap {
     [Movement]: MovementEvent;
@@ -106,6 +110,8 @@ declare module 'dacha' {
 
     [StealMoney]: StealMoneyEvent;
     [ReturnMoney]: ReturnMoneyEvent;
+
+    [Pause]: PauseEvent;
   }
 
   export interface SceneEventMap {

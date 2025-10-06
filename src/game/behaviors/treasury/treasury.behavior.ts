@@ -236,6 +236,7 @@ export default class Treasury extends Behavior {
       });
 
       this.scene.data.isPaused = true;
+      this.scene.data.playPowerUpMenuShowed = true;
     }
   };
 
@@ -279,6 +280,7 @@ export default class Treasury extends Behavior {
     }
 
     this.scene.data.isPaused = false;
+    this.scene.data.playPowerUpMenuShowed = false;
   };
 
   update(options: UpdateOptions): void {
