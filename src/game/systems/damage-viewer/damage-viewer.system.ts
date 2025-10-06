@@ -20,7 +20,7 @@ import { DAMAGE_NUMBER_ID } from '../../../consts/templates';
 import { PLAYER_ACTOR_NAME } from '../../../consts/actors';
 
 const BASE_FONT_SIZE = 5;
-const TEXT_LIFETIME = 300;
+const TEXT_LIFETIME = 400;
 const POISON_COLOR = '#1eb61c';
 const EXPLOSION_COLOR = '#fe2a46';
 
@@ -90,7 +90,7 @@ export default class DamageViewer extends SceneSystem {
 
     transform.offsetX = MathOps.random(targetBounds.minX, targetBounds.maxX);
     transform.offsetY = MathOps.random(
-      targetBounds.minY - 10,
+      targetBounds.minY - 5,
       targetBounds.minY,
     );
 
@@ -105,7 +105,7 @@ export default class DamageViewer extends SceneSystem {
       const bitmap = actor.getComponent(BitmapText);
 
       transform.offsetY -= 0.5;
-      bitmap.fontSize += 0.1;
+      bitmap.fontSize += 0.05;
 
       this.lifetimeMap[actor.id] -= options.deltaTime;
 

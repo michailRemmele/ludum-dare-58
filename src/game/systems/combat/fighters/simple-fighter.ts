@@ -26,6 +26,7 @@ import type {
   FrostOptions,
   PoisonOptions,
 } from '../types';
+import * as EventType from '../../../events';
 
 import type { Fighter } from './fighter';
 
@@ -208,6 +209,8 @@ export class SimpleFighter implements Fighter {
           const attack = this.attack(attackType);
           if (attack) {
             this.activeAttacks.push(attack);
+
+            this.scene.dispatchEvent(EventType.PlayerAttack);
           }
         }
       });

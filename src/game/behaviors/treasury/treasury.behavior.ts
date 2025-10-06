@@ -303,10 +303,12 @@ export default class Treasury extends Behavior {
       const score = this.actor.getComponent(Score);
 
       this.scene.dispatchEvent(EventType.GameOver, {
-        isWin: false,
+        isWin: true,
         levelIndex: levelInfo.index,
         score: score.value,
       });
+
+      this.scene.data.isGameOver = true;
     }
   }
 }

@@ -31,6 +31,8 @@ export const UpdateReward = 'UpdateReward';
 
 export const Pause = 'Pause';
 
+export const PlayerAttack = 'PlayerAttack';
+
 export type MovementEvent = ActorEvent<{
   angle?: number;
   x?: number;
@@ -126,5 +128,6 @@ declare module 'dacha' {
     [PickPlayerPowerUp]: PickPlayerPowerUpEvent;
     [BuyMod]: BuyModEvent;
     [UpdateReward]: UpdateRewardEvent;
+    [PlayerAttack]: SceneEvent;
   }
 }
