@@ -35,7 +35,7 @@ export const PauseMenu: FC = () => {
         <Button
           onClick={() => handlePause()}
         >
-          Пауза
+          Pause
         </Button>
       </div>
     </div>
