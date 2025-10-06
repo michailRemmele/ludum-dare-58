@@ -77,6 +77,7 @@ export default class DamageViewer extends SceneSystem {
     bitmap.fontSize = BASE_FONT_SIZE;
 
     if (damageType === 'poison') {
+      bitmap.text = String(Math.ceil(value));
       bitmap.color = POISON_COLOR;
     }
     if (damageType === 'explosion') {
