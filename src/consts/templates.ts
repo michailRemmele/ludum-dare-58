@@ -17,3 +17,5 @@ export const CAN_LIFT_MONEY_NAME = 'CanLiftMoney';
 export const POISON_MOD_ID = '52078fc9-76f9-4d94-bd5c-6205ada212c7';
 export const FROST_MOD_ID = '7e99c009-4654-46f8-a934-1b366447809e';
 export const EXPLOSION_MOD_ID = 'ab4478a9-3e31-46a9-a3d6-69c545b47c23';
+
+export const DAMAGE_NUMBER_ID = '90ab514c-1bc1-49cd-8743-4158688ef782';

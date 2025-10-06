@@ -67,6 +67,7 @@ export default class ExplosionMod extends Behavior {
     target.dispatchEvent(EventType.Damage, {
       value: this.damage,
       actor: this.player,
+      damageType: 'explosion',
     });
   };
 

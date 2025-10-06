@@ -8,6 +8,7 @@ export const ControlStickInput = 'ControlStickInput';
 export const AttackInput = 'AttackInput';
 export const Attack = 'Attack';
 export const Damage = 'Damage';
+export const DamageDealt = 'DamageDealt';
 export const Kill = 'Kill';
 
 export const ResetSaveState = 'ResetSaveState';
@@ -36,7 +37,16 @@ export type MovementEvent = ActorEvent<{
 
 export type AttackInputEvent = ActorEvent<{ x: number; y: number }>;
 export type AttackEvent = ActorEvent<{ x: number; y: number }>;
-export type DamageEvent = ActorEvent<{ value: number; actor?: Actor }>;
+export type DamageEvent = ActorEvent<{
+  value: number;
+  actor?: Actor;
+  damageType?: 'base' | 'poison' | 'explosion';
+}>;
+export type DamageDealtEvent = ActorEvent<{
+  value: number;
+  actor?: Actor;
+  damageType?: 'base' | 'poison' | 'explosion';
+}>;
 export type KillEvent = ActorEvent<{ actor?: Actor }>;
 
 export type StealMoneyEvent = ActorEvent<{ value: number; actor: Actor }>;
@@ -91,6 +101,7 @@ declare module 'dacha' {
     [AttackInput]: AttackInputEvent;
     [Attack]: ActorEvent;
     [Damage]: DamageEvent;
+    [DamageDealt]: DamageDealtEvent;
     [Kill]: KillEvent;
 
     [StealMoney]: StealMoneyEvent;

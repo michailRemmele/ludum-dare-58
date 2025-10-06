@@ -58,7 +58,7 @@ export default class Reaper extends SceneSystem {
   }
 
   handleDamage = (event: DamageEvent): void => {
-    const { target, value, actor } = event;
+    const { target, value, actor, damageType } = event;
 
     const scorePoints = target.getComponent(ScorePoints);
     const health = target.getComponent(Health);
@@ -67,6 +67,8 @@ export default class Reaper extends SceneSystem {
     }
 
     health.points -= Math.round(value);
+
+    target.dispatchEvent(EventType.DamageDealt, { value, damageType, actor });
 
     if (health.points <= 0) {
       health.points = 0;

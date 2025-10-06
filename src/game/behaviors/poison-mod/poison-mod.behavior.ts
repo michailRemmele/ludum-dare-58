@@ -37,7 +37,7 @@ export default class PoisonMod extends Behavior {
   }
 
   destroy(): void {
-    const target = this.actor.parent as Actor | undefined; 
+    const target = this.actor.parent as Actor | undefined;
 
     const sprite = target?.getComponent(Sprite);
     if (sprite) {
@@ -60,6 +60,7 @@ export default class PoisonMod extends Behavior {
       target?.dispatchEvent(EventType.Damage, {
         value: this.damage,
         actor: this.player,
+        damageType: 'poison',
       });
 
       this.cooldown = this.frequency;
