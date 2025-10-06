@@ -37,3 +37,15 @@
 .power-up__button + .power-up__button {
   margin-top: 16px;
 }
+
+.power-up__button_mod {
+  border-color: gold;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px
+}
+
+.mod-cost {
+  color: gold;
+}

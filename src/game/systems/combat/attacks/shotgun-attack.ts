@@ -7,7 +7,12 @@ import * as EventType from '../../../events';
 import HitBox from '../../../components/hit-box/hit-box.component';
 import Team from '../../../components/team/team.component';
 import { findTeam } from '../utils/find-team';
-import type { AttackStats } from '../../../../consts/game';
+import { type AttackStats, MODS_MAP } from '../../../../consts/game';
+import type {
+  ModState,
+  Mode,
+} from '../../../components/weapon/weapon.component';
+import { AttackDamageFn, AttackDestroyFn } from '../types';
 
 import type { Attack } from './attack';
 
@@ -60,6 +65,9 @@ interface ShotgunAttackOptions {
   scene: Scene;
   enemies: Actor[];
   stats: ShotgunAttackStats;
+  mods?: Map<Mode, ModState>;
+  onDamage: AttackDamageFn;
+  onDestroy: AttackDestroyFn;
 }
 
 export class ShotgunAttack implements Attack {
@@ -68,17 +76,32 @@ export class ShotgunAttack implements Attack {
   private scene: Scene;
 
   private stats: ShotgunAttackStats;
+  private mods?: Map<Mode, ModState>;
+  private onDamage: AttackDamageFn;
+  private onDestroy: AttackDestroyFn;
 
   private shots: Actor[];
   private lifetime: number;
 
   isFinished: boolean;
 
-  constructor({ actor, spawner, scene, enemies, stats }: ShotgunAttackOptions) {
+  constructor({
+    actor,
+    spawner,
+    scene,
+    enemies,
+    stats,
+    mods,
+    onDamage,
+    onDestroy,
+  }: ShotgunAttackOptions) {
     this.actor = actor;
     this.spawner = spawner;
     this.scene = scene;
     this.stats = stats;
+    this.mods = mods;
+    this.onDamage = onDamage;
+    this.onDestroy = onDestroy;
 
     this.shots = [];
 
@@ -164,7 +187,45 @@ export class ShotgunAttack implements Attack {
       actor: this.actor,
     });
     event.target.dispatchEvent(EventType.Kill);
+
+    const frostMod = this.mods?.get('frost');
+    const frostModOptions = frostMod
+      ? MODS_MAP['frost'][frostMod.level]
+      : undefined;
+
+    const poisonMod = this.mods?.get('poison');
+    const poisonModParams = poisonMod
+      ? MODS_MAP['poison'][poisonMod.level]
+      : undefined;
+    const poisonModOptions = poisonModParams
+      ? {
+          ...poisonModParams,
+          damage: poisonModParams.damageFactor * this.stats.damage,
+        }
+      : undefined;
+
+    this.onDamage(target, frostModOptions, poisonModOptions);
+
+    this.explode(event.target);
+
+    this.shots = this.shots.filter((shot) => shot !== event.target);
   };
+
+  private explode(shot: Actor): void {
+    const explosionMod = this.mods?.get('explosion');
+    const explosionModParams = explosionMod
+      ? MODS_MAP['explosion'][explosionMod.level]
+      : undefined;
+    const explosionModOptions = explosionModParams
+      ? {
+          ...explosionModParams,
+          damage: explosionModParams.damageFactor * this.stats.damage,
+          radius: explosionModParams.radiusFactor * this.stats.projectileRadius,
+        }
+      : undefined;
+
+    this.onDestroy(shot, explosionModOptions);
+  }
 
   update(deltaTime: number): void {
     if (this.isFinished) {
@@ -176,6 +237,7 @@ export class ShotgunAttack implements Attack {
     if (this.lifetime <= 0) {
       this.shots.forEach((shot) => {
         shot.dispatchEvent(EventType.Kill);
+        this.explode(shot);
       });
       this.isFinished = true;
     }

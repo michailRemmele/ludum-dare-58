@@ -24,6 +24,7 @@ export const UpdateMoney = 'UpdateMoney';
 
 export const PlayerPowerUp = 'PlayerPowerUp';
 export const PickPlayerPowerUp = 'PickPlayerPowerUp';
+export const BuyMod = 'BuyMod';
 
 export const UpdateReward = 'UpdateReward';
 
@@ -39,7 +40,7 @@ export type DamageEvent = ActorEvent<{ value: number; actor?: Actor }>;
 export type KillEvent = ActorEvent<{ actor?: Actor }>;
 
 export type StealMoneyEvent = ActorEvent<{ value: number; actor: Actor }>;
-export type ReturnMoneyEvent = ActorEvent<{ value: number; }>;
+export type ReturnMoneyEvent = ActorEvent<{ value: number }>;
 
 export type ControlStickInputEvent = SceneEvent<{ x: number; y: number }>;
 
@@ -69,9 +70,13 @@ export type UpdateMoneyEvent = SceneEvent<{
 
 export type PlayerPowerUpEvent = SceneEvent<{
   bonuses: { bonus: string; level: number }[];
+  mod?: { mod: string; bonus: string; level: number; cost: number };
 }>;
 export type PickPlayerPowerUpEvent = SceneEvent<{
   bonus: { bonus: string; level: number };
+}>;
+export type BuyModEvent = SceneEvent<{
+  mod: { mod: string; bonus: string; level: number; cost: number };
 }>;
 
 export type UpdateRewardEvent = SceneEvent<{
@@ -102,6 +107,7 @@ declare module 'dacha' {
     [UpdateMoney]: UpdateMoneyEvent;
     [PlayerPowerUp]: PlayerPowerUpEvent;
     [PickPlayerPowerUp]: PickPlayerPowerUpEvent;
+    [BuyMod]: BuyModEvent;
     [UpdateReward]: UpdateRewardEvent;
   }
 }

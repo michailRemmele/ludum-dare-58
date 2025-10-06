@@ -33,7 +33,6 @@ import {
   ActiveEffects,
 } from 'dacha-game-systems';
 
-import { effects } from './game/effects';
 import { isMobileDevice } from './utils/is-mobile-device';
 import { applyIosSafariScreenFix } from './utils/ios-screen-fix';
 import { isIos } from './utils/is-ios';
@@ -104,7 +103,7 @@ const engine = new Engine({
     [UIBridge.systemName]: {
       loadUI: () => import('./ui/index.tsx'),
     },
-    [EffectsSystem.systemName]: effects,
+    [EffectsSystem.systemName]: {},
   },
 });
 

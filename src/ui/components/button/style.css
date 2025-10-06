@@ -9,11 +9,16 @@
   font-family: 'Monocraft', sans-serif;
 }
 
-.button:hover {
+.button:hover:not(:disabled) {
   background: #fff;
   color: #070004;
 }
 
-.button:active {
+.button:active:not(:disabled) {
   transform: translateY(2px);
+}
+
+.button:disabled {
+  cursor: initial;
+  opacity: 0.5;
 }

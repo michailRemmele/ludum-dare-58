@@ -4006,6 +4006,193 @@
         }
       ],
       "children": []
+    },
+    {
+      "id": "52078fc9-76f9-4d94-bd5c-6205ada212c7",
+      "name": "PoisonMod",
+      "components": [
+        {
+          "name": "Behaviors",
+          "config": {
+            "list": [
+              {
+                "id": "5b6980db-1cff-49e5-a88d-f56e5938c272",
+                "name": "PoisonMod",
+                "options": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "Poison",
+          "config": {
+            "exampleField": "",
+            "duration": 0,
+            "frequency": 0,
+            "damageFactor": 0
+          }
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "7e99c009-4654-46f8-a934-1b366447809e",
+      "name": "FrostMod",
+      "components": [
+        {
+          "name": "Behaviors",
+          "config": {
+            "list": [
+              {
+                "id": "451708f3-1b02-45fa-a279-25651f690a3f",
+                "name": "FrostMod",
+                "options": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "Frost",
+          "config": {
+            "exampleField": ""
+          }
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "ab4478a9-3e31-46a9-a3d6-69c545b47c23",
+      "name": "ExplosionMod",
+      "components": [
+        {
+          "name": "Transform",
+          "config": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "offsetZ": 0,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1
+          }
+        },
+        {
+          "name": "Shape",
+          "config": {
+            "type": "circle",
+            "strokeWidth": 0,
+            "strokeColor": "#fff",
+            "strokeAlignment": 0.5,
+            "fill": "rgb(255,0,0)",
+            "pixelLine": false,
+            "sortCenter": [
+              0,
+              0
+            ],
+            "sortingLayer": "default",
+            "blending": "normal",
+            "opacity": 0.5,
+            "disabled": false,
+            "radius": 0
+          }
+        },
+        {
+          "name": "Collider",
+          "config": {
+            "type": "circle",
+            "centerX": 0,
+            "centerY": 0,
+            "radius": 0
+          }
+        },
+        {
+          "name": "Behaviors",
+          "config": {
+            "list": [
+              {
+                "id": "c967d374-e260-4508-a985-31189bcc33ca",
+                "name": "ExplosionMod",
+                "options": {}
+              }
+            ]
+          }
+        },
+        {
+          "name": "Explosion",
+          "config": {
+            "exampleField": ""
+          }
+        },
+        {
+          "name": "Animatable",
+          "config": {
+            "initialState": "e25aba45-1e3d-4005-a3de-abc3302ba286",
+            "states": [
+              {
+                "id": "e25aba45-1e3d-4005-a3de-abc3302ba286",
+                "name": "Idle",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "id": "e6f9eddf-a882-406d-9ea9-4be2b2a234ca",
+                      "fields": [
+                        {
+                          "id": "217b6d73-6231-4675-adac-8963f421ffc4",
+                          "name": "components.Shape.disabled",
+                          "type": "boolean",
+                          "value": false
+                        }
+                      ]
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": [
+                  {
+                    "id": "ee41ba4f-426b-4d7d-974c-99510a08fc58",
+                    "state": "27d6ca2d-88ab-40da-b1db-bb11f9fabefc",
+                    "time": 0,
+                    "conditions": [
+                      {
+                        "id": "19891611-8390-4ccf-bba7-263b4784e19c",
+                        "type": "event",
+                        "props": {
+                          "eventType": "Kill"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "27d6ca2d-88ab-40da-b1db-bb11f9fabefc",
+                "name": "Death",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "id": "e6f9eddf-a882-406d-9ea9-4be2b2a234ca",
+                      "fields": [
+                        {
+                          "id": "217b6d73-6231-4675-adac-8963f421ffc4",
+                          "name": "components.Shape.disabled",
+                          "type": "boolean",
+                          "value": true
+                        }
+                      ]
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": []
+              }
+            ]
+          }
+        }
+      ],
+      "children": []
     }
   ],
   "globalOptions": [

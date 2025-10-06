@@ -11,24 +11,73 @@ import { DefineBehavior, DefineField } from 'dacha-workbench/decorators';
 import Storage from '../../components/storage/storage.component';
 import LevelInfo from '../../components/level-info/level-info.component';
 import Score from '../../components/score/score.component';
-import Weapon from '../../components/weapon/weapon.component';
+import Money from '../../components/money/money.component';
+import Weapon, { type Mode } from '../../components/weapon/weapon.component';
 import * as EventType from '../../events';
 import type {
   StealMoneyEvent,
   ReturnMoneyEvent,
   IncreaseScorePointsEvent,
   PickPlayerPowerUpEvent,
+  BuyModEvent,
 } from '../../events';
 import {
   LEVEL_UP_BASE_STEP,
   MAX_LEVEL,
   ATTACK_STATS_MAP,
+  MODS_MAP,
 } from '../../../consts/game';
 import { PLAYER_ACTOR_NAME } from '../../../consts/actors';
 
 const TIMER_UPDATE_FREQUENCY = 1000;
 
-function getRandomEntries(entries: string[], count: number): string[] {
+const NOT_ATTACKS = ['collectorAura'];
+
+const getAvailableMods = (
+  weapon: Weapon,
+): { mod: Mode; bonus: string; level: number }[] => {
+  const availableMods: { mod: Mode; bonus: string; level: number }[] = [];
+
+  const modKeys = Object.keys(MODS_MAP) as Mode[];
+  const equipedBonuses = Array.from(weapon.attacks.keys()).filter(
+    (attack) => !NOT_ATTACKS.includes(attack),
+  );
+
+  equipedBonuses.forEach((bonus) => {
+    const bonusMods = weapon.mods.get(bonus);
+
+    if (!bonusMods) {
+      modKeys.forEach((mod) => {
+        availableMods.push({ mod, bonus, level: 0 });
+      });
+    } else {
+      modKeys.forEach((mod) => {
+        const bonusMod = bonusMods.get(mod);
+        if (!bonusMod) {
+          availableMods.push({ mod, bonus, level: 0 });
+        } else if (bonusMod.level < MODS_MAP[mod].length - 1) {
+          availableMods.push({ mod, bonus, level: bonusMod.level + 1 });
+        }
+      });
+    }
+  });
+
+  return availableMods;
+};
+
+const getFullUpgraded = (weapon: Weapon): Set<string> => {
+  const fullyUpgraded = new Set<string>();
+
+  weapon.attacks.forEach((state, key) => {
+    if (state.level === ATTACK_STATS_MAP[key].length - 1) {
+      fullyUpgraded.add(key);
+    }
+  });
+
+  return fullyUpgraded;
+};
+
+const getRandomEntries = (entries: string[], count: number): string[] => {
   const result = [];
   const usedIndices = new Set();
 
@@ -42,7 +91,7 @@ function getRandomEntries(entries: string[], count: number): string[] {
   }
 
   return result;
-}
+};
 
 interface TreasuryBehaviorOptions extends BehaviorOptions {
   levelDuration: number;
@@ -87,6 +136,7 @@ export default class Treasury extends Behavior {
       EventType.PickPlayerPowerUp,
       this.handlePickPlayerPowerUp,
     );
+    this.scene.addEventListener(EventType.BuyMod, this.handleBuyMod);
   }
 
   destroy(): void {
@@ -103,6 +153,7 @@ export default class Treasury extends Behavior {
       EventType.PickPlayerPowerUp,
       this.handlePickPlayerPowerUp,
     );
+    this.scene.removeEventListener(EventType.BuyMod, this.handleBuyMod);
   }
 
   private handleStealMoney = (event: StealMoneyEvent): void => {
@@ -153,26 +204,62 @@ export default class Treasury extends Behavior {
       const player = this.scene.findChildByName(PLAYER_ACTOR_NAME)!;
       const weapon = player.getComponent(Weapon);
 
-      const bonuses = getRandomEntries(Object.keys(ATTACK_STATS_MAP), 3).map(
-        (bonus) => {
-          const attackState = weapon.attacks.get(bonus);
-          const level = attackState
-            ? Math.min(
-                attackState.level + 1,
-                ATTACK_STATS_MAP[bonus].length - 1,
-              )
-            : 0;
-          return {
-            bonus,
-            level,
-          };
-        },
+      const fullyUpgradedAttacks = getFullUpgraded(weapon);
+      const availableAttacks = Object.keys(ATTACK_STATS_MAP).filter(
+        (key) => !fullyUpgradedAttacks.has(key),
       );
+
+      const bonuses = getRandomEntries(availableAttacks, 3).map((bonus) => {
+        const attackState = weapon.attacks.get(bonus);
+        const level = attackState
+          ? Math.min(attackState.level + 1, ATTACK_STATS_MAP[bonus].length - 1)
+          : 0;
+        return {
+          bonus,
+          level,
+        };
+      });
+
+      const availableMods = getAvailableMods(weapon);
+      const mod = availableMods.length
+        ? availableMods[MathOps.random(0, availableMods.length - 1)]
+        : undefined;
+
       this.scene.dispatchEvent(EventType.PlayerPowerUp, {
         bonuses,
+        mod: mod
+          ? {
+              ...mod,
+              cost: MODS_MAP[mod.mod][mod.level].cost,
+            }
+          : undefined,
       });
 
       this.scene.data.isPaused = true;
+    }
+  };
+
+  private handleBuyMod = (event: BuyModEvent): void => {
+    const { mod } = event;
+    const player = this.scene.findChildByName(PLAYER_ACTOR_NAME);
+
+    if (player) {
+      const money = player.getComponent(Money);
+
+      money.amount -= mod.cost;
+      this.scene.dispatchEvent(EventType.UpdateReward, {
+        amount: money.amount,
+      });
+
+      const weapon = player.getComponent(Weapon);
+
+      if (!weapon.mods.has(mod.bonus)) {
+        weapon.mods.set(mod.bonus, new Map());
+      }
+
+      const attackMods = weapon.mods.get(mod.bonus)!;
+
+      attackMods.set(mod.mod as Mode, { level: mod.level });
     }
   };
 

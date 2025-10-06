@@ -15,7 +15,12 @@ import HitBox from '../../../components/hit-box/hit-box.component';
 import Team from '../../../components/team/team.component';
 import ScorePoints from '../../../components/score-points/score-points.component';
 import { findTeam } from '../utils/find-team';
-import type { AttackStats } from '../../../../consts/game';
+import { type AttackStats, MODS_MAP } from '../../../../consts/game';
+import type {
+  ModState,
+  Mode,
+} from '../../../components/weapon/weapon.component';
+import { AttackDamageFn, AttackDestroyFn } from '../types';
 
 import type { Attack } from './attack';
 
@@ -36,6 +41,9 @@ interface RocketAttackOptions {
   scene: Scene;
   enemies: Actor[];
   stats: RocketAttackStats;
+  mods?: Map<Mode, ModState>;
+  onDamage: AttackDamageFn;
+  onDestroy: AttackDestroyFn;
 }
 
 export class RocketAttack implements Attack {
@@ -44,6 +52,9 @@ export class RocketAttack implements Attack {
   private scene: Scene;
 
   private stats: RocketAttackStats;
+  private mods?: Map<Mode, ModState>;
+  private onDamage: AttackDamageFn;
+  private onDestroy: AttackDestroyFn;
 
   private shot: Actor;
   private lifetime: number;
@@ -54,11 +65,22 @@ export class RocketAttack implements Attack {
 
   isFinished: boolean;
 
-  constructor({ actor, spawner, scene, stats }: RocketAttackOptions) {
+  constructor({
+    actor,
+    spawner,
+    scene,
+    stats,
+    mods,
+    onDamage,
+    onDestroy,
+  }: RocketAttackOptions) {
     this.actor = actor;
     this.spawner = spawner;
     this.scene = scene;
     this.stats = stats;
+    this.mods = mods;
+    this.onDamage = onDamage;
+    this.onDestroy = onDestroy;
 
     this.enemiesQuery = new ActorQuery({
       scene,
@@ -128,6 +150,25 @@ export class RocketAttack implements Attack {
       value: damage,
       actor: this.actor,
     });
+
+    const frostMod = this.mods?.get('frost');
+    const frostModOptions = frostMod
+      ? MODS_MAP['frost'][frostMod.level]
+      : undefined;
+
+    const poisonMod = this.mods?.get('poison');
+    const poisonModParams = poisonMod
+      ? MODS_MAP['poison'][poisonMod.level]
+      : undefined;
+    const poisonModOptions = poisonModParams
+      ? {
+          ...poisonModParams,
+          damage: poisonModParams.damageFactor * this.stats.damage,
+        }
+      : undefined;
+
+    this.onDamage(target, frostModOptions, poisonModOptions);
+
     this.lifetime = 0;
   };
 
@@ -187,6 +228,21 @@ export class RocketAttack implements Attack {
     if (this.lifetime <= 0) {
       this.shot.dispatchEvent(EventType.Kill);
       this.isFinished = true;
+
+      const explosionMod = this.mods?.get('explosion');
+      const explosionModParams = explosionMod
+        ? MODS_MAP['explosion'][explosionMod.level]
+        : undefined;
+      const explosionModOptions = explosionModParams
+        ? {
+            ...explosionModParams,
+            damage: explosionModParams.damageFactor * this.stats.damage,
+            radius:
+              explosionModParams.radiusFactor * this.stats.projectileRadius,
+          }
+        : undefined;
+
+      this.onDestroy(this.shot, explosionModOptions);
     }
   }
 }

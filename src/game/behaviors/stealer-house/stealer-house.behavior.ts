@@ -34,7 +34,7 @@ export default class StealerHouse extends Behavior {
     const { parent } = actor;
 
     if (parent instanceof Actor && parent.getComponent(Pocket)?.amount > 0) {
-      parent.dispatchEvent(EventType.Kill);
+      parent.dispatchEvent(EventType.Damage, { value: 99_999 });
     }
   };
 }

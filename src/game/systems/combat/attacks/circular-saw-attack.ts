@@ -7,7 +7,12 @@ import * as EventType from '../../../events';
 import HitBox from '../../../components/hit-box/hit-box.component';
 import Team from '../../../components/team/team.component';
 import { findTeam } from '../utils/find-team';
-import type { AttackStats } from '../../../../consts/game';
+import { type AttackStats, MODS_MAP } from '../../../../consts/game';
+import type {
+  ModState,
+  Mode,
+} from '../../../components/weapon/weapon.component';
+import { AttackDamageFn, AttackDestroyFn } from '../types';
 
 import type { Attack } from './attack';
 
@@ -27,6 +32,9 @@ interface CircularSawAttackOptions {
   scene: Scene;
   enemies: Actor[];
   stats: CircularSawAttackStats;
+  mods?: Map<Mode, ModState>;
+  onDamage: AttackDamageFn;
+  onDestroy: AttackDestroyFn;
 }
 
 export class CircularSawAttack implements Attack {
@@ -35,6 +43,9 @@ export class CircularSawAttack implements Attack {
   private scene: Scene;
 
   private stats: CircularSawAttackStats;
+  private mods?: Map<Mode, ModState>;
+  private onDamage: AttackDamageFn;
+  private onDestroy: AttackDestroyFn;
 
   private shot: Actor;
   private lifetime: number;
@@ -45,11 +56,22 @@ export class CircularSawAttack implements Attack {
 
   isFinished: boolean;
 
-  constructor({ actor, spawner, scene, stats }: CircularSawAttackOptions) {
+  constructor({
+    actor,
+    spawner,
+    scene,
+    stats,
+    mods,
+    onDamage,
+    onDestroy,
+  }: CircularSawAttackOptions) {
     this.actor = actor;
     this.spawner = spawner;
     this.scene = scene;
     this.stats = stats;
+    this.mods = mods;
+    this.onDamage = onDamage;
+    this.onDestroy = onDestroy;
 
     this.damageMap = new Map();
 
@@ -119,6 +141,24 @@ export class CircularSawAttack implements Attack {
     });
 
     this.damageMap.set(target.id, this.stats.damageFrequency);
+
+    const frostMod = this.mods?.get('frost');
+    const frostModOptions = frostMod
+      ? MODS_MAP['frost'][frostMod.level]
+      : undefined;
+
+    const poisonMod = this.mods?.get('poison');
+    const poisonModParams = poisonMod
+      ? MODS_MAP['poison'][poisonMod.level]
+      : undefined;
+    const poisonModOptions = poisonModParams
+      ? {
+          ...poisonModParams,
+          damage: poisonModParams.damageFactor * this.stats.damage,
+        }
+      : undefined;
+
+    this.onDamage(target, frostModOptions, poisonModOptions);
   };
 
   private updateDirection(deltaTime: number): void {
@@ -168,6 +208,21 @@ export class CircularSawAttack implements Attack {
     if (this.lifetime <= 0) {
       this.shot.dispatchEvent(EventType.Kill);
       this.isFinished = true;
+
+      const explosionMod = this.mods?.get('explosion');
+      const explosionModParams = explosionMod
+        ? MODS_MAP['explosion'][explosionMod.level]
+        : undefined;
+      const explosionModOptions = explosionModParams
+        ? {
+            ...explosionModParams,
+            damage: explosionModParams.damageFactor * this.stats.damage,
+            radius:
+              explosionModParams.radiusFactor * this.stats.projectileRadius,
+          }
+        : undefined;
+
+      this.onDestroy(this.shot, explosionModOptions);
     }
   }
 }

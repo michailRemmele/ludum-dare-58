@@ -6,16 +6,24 @@ export interface AttackState {
   cooldownRemaining: number;
 }
 
+export interface ModState {
+  level: number;
+}
+
+export type Mode = 'frost' | 'poison' | 'explosion';
+
 @DefineComponent({
   name: 'Weapon',
 })
 export default class Weapon extends Component {
   attacks: Map<string, AttackState>;
+  mods: Map<string, Map<Mode, ModState>>;
 
   constructor() {
     super();
 
     this.attacks = new Map();
+    this.mods = new Map();
   }
 
   clone(): Weapon {

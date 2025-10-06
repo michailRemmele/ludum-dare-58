@@ -39,8 +39,14 @@ export default class Stealer extends Behavior {
 
   private handleKill = (event: KillEvent): void => {
     const { target, actor } = event;
+
+    if (this.actor !== target) {
+      return;
+    }
+
     const { amount } = target.getComponent(Pocket);
-    const { amount: enemyMoneyAmount, canLiftMoney } = target.getComponent(Money);
+    const { amount: enemyMoneyAmount, canLiftMoney } =
+      target.getComponent(Money);
 
     if (!actor || actor?.name !== PLAYER_ACTOR_NAME) {
       return;
@@ -63,13 +69,11 @@ export default class Stealer extends Behavior {
       this.scene.appendChild(lostPiece);
     }
 
-
     if (canLiftMoney) {
       const playerMoney = actor.getComponent(Money);
       playerMoney.amount += enemyMoneyAmount;
       this.scene.dispatchEvent(UpdateReward, { amount: playerMoney.amount });
     }
-
   };
 
   private handleCollisionEnter = (event: CollisionEnterEvent): void => {

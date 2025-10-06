@@ -357,6 +357,63 @@ export const ATTACK_STATS_MAP: Record<string, AttackStats[]> = {
   ],
 };
 
+export const MODS_MAP = {
+  frost: [
+    {
+      duration: 2000,
+      slowFactor: 0.75,
+      cost: 250,
+    },
+    {
+      duration: 3000,
+      slowFactor: 0.5,
+      cost: 500,
+    },
+    {
+      duration: 4000,
+      slowFactor: 0.25,
+      cost: 1000,
+    },
+  ],
+  poison: [
+    {
+      duration: 2000,
+      frequency: 500,
+      damageFactor: 0.1,
+      cost: 250,
+    },
+    {
+      duration: 3000,
+      frequency: 500,
+      damageFactor: 0.2,
+      cost: 500,
+    },
+    {
+      duration: 4000,
+      frequency: 500,
+      damageFactor: 0.3,
+      cost: 1000,
+    },
+  ],
+  explosion: [
+    {
+      radiusFactor: 2,
+      damageFactor: 0.25,
+      cost: 250,
+    },
+    {
+      radiusFactor: 3,
+      damageFactor: 0.5,
+      cost: 500,
+    },
+    {
+      radiusFactor: 4,
+      damageFactor: 0.75,
+      cost: 1000,
+    },
+  ],
+};
+
 export const SPAWN_INCREASE_MULTIPLIER = 2;
 export const SPAWN_INCREASE_FREQUENCY_COOLDOWN = 1 * 60 * 1000;
 
