@@ -4022,7 +4022,7 @@
           "name": "ScorePoints",
           "config": {
             "exampleField": "",
-            "amount": 800
+            "amount": 400
           }
         },
         {
@@ -4898,7 +4898,7 @@
           "name": "ScorePoints",
           "config": {
             "exampleField": "",
-            "amount": 1200
+            "amount": 600
           }
         },
         {
@@ -5998,7 +5998,7 @@
           "name": "ScorePoints",
           "config": {
             "exampleField": "",
-            "amount": 1500
+            "amount": 800
           }
         },
         {

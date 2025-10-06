@@ -429,7 +429,7 @@ export const ENEMIES = [
   {
     id: EASY_ENEMY,
     ms: 10 * 60 * 1000,
-    frequency: 6000,
+    frequency: 5000,
   },
   {
     id: MIDDLE_ENEMY,
@@ -439,7 +439,7 @@ export const ENEMIES = [
   {
     id: HEAVY_ENEMY,
     ms: 5 * 60 * 1000,
-    frequency: 3000,
+    frequency: 2500,
   },
   {
     id: ELITE_ENEMY,
