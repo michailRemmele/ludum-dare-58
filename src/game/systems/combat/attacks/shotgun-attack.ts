@@ -1,4 +1,4 @@
-import { Actor, MathOps, VectorOps, Transform, Collider } from 'dacha';
+import { Actor, MathOps, VectorOps, Transform, Collider, Sprite } from 'dacha';
 import type { ActorSpawner, Scene } from 'dacha';
 import { CollisionEnter, AddImpulse } from 'dacha/events';
 import type { CollisionEnterEvent } from 'dacha/events';
@@ -144,6 +144,11 @@ export class ShotgunAttack implements Attack {
     const shotCollider = shot.getComponent(Collider);
 
     shotCollider.radius = this.stats.projectileRadius;
+
+    const shotSprite = shot.getComponent(Sprite);
+
+    shotSprite.width = 6 * this.stats.projectileRadius;
+    shotSprite.height = 6 * this.stats.projectileRadius;
 
     shotTransform.offsetX = x;
     shotTransform.offsetY = y;

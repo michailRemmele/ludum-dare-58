@@ -1,4 +1,4 @@
-import { Actor, MathOps, VectorOps, Transform, Collider } from 'dacha';
+import { Actor, MathOps, VectorOps, Transform, Collider, Sprite } from 'dacha';
 import type { ActorSpawner, Scene } from 'dacha';
 import { CollisionEnter, AddImpulse } from 'dacha/events';
 import type { CollisionEnterEvent } from 'dacha/events';
@@ -73,7 +73,10 @@ export class BlasterAttack implements Attack {
     const shot = this.spawner.spawn(stats.projectileModel);
     const shotTransform = shot.getComponent(Transform);
     const shotCollider = shot.getComponent(Collider);
+    const shotSprite = shot.getComponent(Sprite);
 
+    shotSprite.width = 6 * stats.projectileRadius;
+    shotSprite.height = 6 * stats.projectileRadius;
     shotCollider.radius = stats.projectileRadius;
 
     const target = enemies[MathOps.random(0, enemies.length - 1)];

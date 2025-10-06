@@ -4,7 +4,7 @@ import {
   VectorOps,
   Transform,
   Collider,
-  Shape,
+  Sprite,
   RigidBody,
 } from 'dacha';
 import type { ActorSpawner, Scene, Vector2 } from 'dacha';
@@ -97,10 +97,11 @@ export class RicochetAttack implements Attack {
     const shot = this.spawner.spawn(stats.projectileModel);
     const shotTransform = shot.getComponent(Transform);
     const shotCollider = shot.getComponent(Collider);
-    const shotShape = shot.getComponent(Shape);
+    const shotSprite = shot.getComponent(Sprite);
 
     shotCollider.radius = stats.projectileRadius;
-    shotShape.radius = stats.projectileRadius;
+    shotSprite.width = 4 * stats.projectileRadius;
+    shotSprite.height = 4 * stats.projectileRadius;
 
     shotTransform.offsetX = offsetX;
     shotTransform.offsetY = offsetY;
@@ -111,7 +112,10 @@ export class RicochetAttack implements Attack {
     this.bouncesLeft = stats.bounces;
     this.isFinished = false;
 
-    const angle = MathOps.degToRad(MathOps.random(0, 360));
+    const degAngle = MathOps.random(0, 360);
+    const angle = MathOps.degToRad(degAngle);
+
+    shotTransform.rotation = degAngle;
 
     const directionVector = VectorOps.getVectorByAngle(angle);
     directionVector.multiplyNumber(stats.projectileSpeed);
@@ -153,6 +157,9 @@ export class RicochetAttack implements Attack {
       });
 
       const reflectedAngle = getReflectedAngle(this.prevDirectionVector, mtv);
+
+      const shotTransform = this.shot.getComponent(Transform);
+      shotTransform.rotation = MathOps.radToDeg(reflectedAngle);
 
       const directionVector = VectorOps.getVectorByAngle(reflectedAngle);
       directionVector.multiplyNumber(

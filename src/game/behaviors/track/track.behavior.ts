@@ -4,7 +4,7 @@ import type {
   BehaviorOptions,
   UpdateOptions,
 } from 'dacha';
-import { Actor, Behavior, Transform, MathOps, Shape } from 'dacha';
+import { Actor, Behavior, Transform, MathOps, Sprite } from 'dacha';
 import { DefineBehavior } from 'dacha-workbench/decorators';
 
 import TrackSegment from '../../components/track-segment/track-segment.component';
@@ -96,9 +96,9 @@ export default class TrackBehavior extends Behavior {
       mobMoney.canLiftMoney = true;
 
       const moneyChild = mob.findChildByName(CAN_LIFT_MONEY_NAME);
-      const shape = moneyChild?.getComponent(Shape);
-      if (shape) {
-        shape.disabled = false;
+      const sprite = moneyChild?.getComponent(Sprite);
+      if (sprite) {
+        sprite.disabled = false;
       }
     }
 

@@ -5,6 +5,7 @@ import {
   Transform,
   Collider,
   ActorQuery,
+  Sprite,
 } from 'dacha';
 import type { ActorSpawner, Scene } from 'dacha';
 import { CollisionEnter, AddImpulse, AddForce } from 'dacha/events';
@@ -92,8 +93,11 @@ export class RocketAttack implements Attack {
     const shot = this.spawner.spawn(stats.projectileModel);
     const shotTransform = shot.getComponent(Transform);
     const shotCollider = shot.getComponent(Collider);
+    const shotSprite = shot.getComponent(Sprite);
 
     shotCollider.radius = stats.projectileRadius;
+    shotSprite.width = 10 * stats.projectileRadius;
+    shotSprite.height = (10 * stats.projectileRadius) / 2;
 
     const angle = MathOps.degToRad(MathOps.random(0, 360));
 

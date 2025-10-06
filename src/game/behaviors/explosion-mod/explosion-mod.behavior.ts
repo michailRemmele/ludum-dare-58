@@ -1,5 +1,5 @@
 import type { BehaviorOptions, UpdateOptions } from 'dacha';
-import { Actor, Behavior, Shape, Collider } from 'dacha';
+import { Actor, Behavior, Sprite, Collider } from 'dacha';
 import { CollisionEnter, type CollisionEnterEvent } from 'dacha/events';
 import { DefineBehavior } from 'dacha-workbench/decorators';
 
@@ -32,10 +32,12 @@ export default class ExplosionMod extends Behavior {
 
     const explosion = this.actor.getComponent(Explosion);
     const collider = this.actor.getComponent(Collider);
-    const shape = this.actor.getComponent(Shape);
+    const sprite = this.actor.getComponent(Sprite);
 
     collider.radius = explosion.radius;
-    shape.radius = explosion.radius;
+
+    sprite.width = explosion.radius * 2;
+    sprite.height = explosion.radius * 2;
 
     this.damage = explosion.damage;
     this.lifetime = EXPLOSION_LIFETIME;

@@ -1,4 +1,4 @@
-import { Actor, Collider, Shape } from 'dacha';
+import { Actor, Collider, Sprite } from 'dacha';
 import type { ActorSpawner, Scene } from 'dacha';
 
 import { type AttackStats, ATTACK_STATS_MAP } from '../../../../consts/game';
@@ -36,10 +36,11 @@ export class CollectorAuraAttack implements Attack {
 
     const shot = this.spawner.spawn(stats.projectileModel);
     const shotCollider = shot.getComponent(Collider);
-    const shape = shot.getComponent(Shape);
+    const sprite = shot.getComponent(Sprite);
 
     shotCollider.radius = stats.radius;
-    shape.radius = stats.radius;
+    sprite.width = stats.radius * 2;
+    sprite.height = stats.radius * 2;
 
     this.actor.appendChild(shot);
 
@@ -64,7 +65,8 @@ export class CollectorAuraAttack implements Attack {
 
     if (bonus.bonus === 'collectorAura') {
       const newStats = ATTACK_STATS_MAP['collectorAura'][bonus.level];
-      this.shot.getComponent(Shape).radius = newStats.radius;
+      this.shot.getComponent(Sprite).width = (newStats.radius ?? 0) * 2;
+      this.shot.getComponent(Sprite).height = (newStats.radius ?? 0) * 2;
       this.shot.getComponent(Collider).radius = newStats.radius;
     }
   };

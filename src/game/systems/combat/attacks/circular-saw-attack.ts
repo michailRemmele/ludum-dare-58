@@ -1,4 +1,4 @@
-import { Actor, MathOps, VectorOps, Transform, Collider, Shape } from 'dacha';
+import { Actor, MathOps, VectorOps, Transform, Collider, Sprite } from 'dacha';
 import type { ActorSpawner, Scene, Vector2 } from 'dacha';
 import { CollisionEnter, CollisionStay, AddImpulse } from 'dacha/events';
 import type { CollisionEnterEvent } from 'dacha/events';
@@ -80,10 +80,11 @@ export class CircularSawAttack implements Attack {
     const shot = this.spawner.spawn(stats.projectileModel);
     const shotTransform = shot.getComponent(Transform);
     const shotCollider = shot.getComponent(Collider);
-    const shotShape = shot.getComponent(Shape);
+    const shotSprite = shot.getComponent(Sprite);
 
     shotCollider.radius = stats.projectileRadius;
-    shotShape.radius = stats.projectileRadius;
+    shotSprite.width = stats.projectileRadius * 2;
+    shotSprite.height = stats.projectileRadius * 2;
 
     shotTransform.offsetX = offsetX;
     shotTransform.offsetY = offsetY;
