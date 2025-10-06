@@ -1733,6 +1733,82 @@
               "children": []
             }
           ]
+        },
+        {
+          "id": "611ec01c-cc61-479b-91fd-996095fc6e26",
+          "templateId": "c4e7c097-ed9f-4ab2-995c-914071bd585a",
+          "name": "Blocker H",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": 16,
+                "offsetY": -176,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "ee1131ce-eb40-473c-8d84-dde74e22f34e",
+          "templateId": "c4e7c097-ed9f-4ab2-995c-914071bd585a",
+          "name": "Blocker H 2",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": 16,
+                "offsetY": 384,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "2bc4519b-684c-42cd-a23f-5167acc40613",
+          "templateId": "04d7f77d-62d5-4da8-9234-6c034ca7e4e8",
+          "name": "Blocker V",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": 288,
+                "offsetY": 96,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "6e004d6e-41db-4965-a375-85f6866f4921",
+          "templateId": "04d7f77d-62d5-4da8-9234-6c034ca7e4e8",
+          "name": "Blocker V 2",
+          "components": [
+            {
+              "name": "Transform",
+              "config": {
+                "offsetX": -288,
+                "offsetY": 176,
+                "offsetZ": 0,
+                "rotation": 0,
+                "scaleX": 1,
+                "scaleY": 1
+              }
+            }
+          ],
+          "children": []
         }
       ]
     }
@@ -3313,8 +3389,8 @@
             ],
             "sortingLayer": "default",
             "blending": "normal",
-            "opacity": 0.5,
-            "disabled": false
+            "opacity": 0,
+            "disabled": true
           }
         },
         {
@@ -7389,6 +7465,126 @@
               0
             ],
             "disabled": false
+          }
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "c4e7c097-ed9f-4ab2-995c-914071bd585a",
+      "name": "Blocker H",
+      "components": [
+        {
+          "name": "Transform",
+          "config": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "offsetZ": 0,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1
+          }
+        },
+        {
+          "name": "Collider",
+          "config": {
+            "type": "box",
+            "sizeX": 1280,
+            "sizeY": 64,
+            "centerX": 0,
+            "centerY": 0
+          }
+        },
+        {
+          "name": "Shape",
+          "config": {
+            "type": "rectangle",
+            "width": 1280,
+            "height": 64,
+            "strokeWidth": 0,
+            "strokeColor": "#fff",
+            "strokeAlignment": 0.5,
+            "fill": "rgb(49,9,9)",
+            "pixelLine": false,
+            "sortCenter": [
+              0,
+              0
+            ],
+            "sortingLayer": "default",
+            "blending": "normal",
+            "opacity": 1,
+            "disabled": true
+          }
+        },
+        {
+          "name": "RigidBody",
+          "config": {
+            "type": "static",
+            "mass": 1,
+            "useGravity": false,
+            "isPermeable": false,
+            "ghost": false,
+            "drag": 0
+          }
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "04d7f77d-62d5-4da8-9234-6c034ca7e4e8",
+      "name": "Blocker V",
+      "components": [
+        {
+          "name": "Transform",
+          "config": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "offsetZ": 0,
+            "rotation": 0,
+            "scaleX": 1,
+            "scaleY": 1
+          }
+        },
+        {
+          "name": "Collider",
+          "config": {
+            "type": "box",
+            "sizeX": 64,
+            "sizeY": 1280,
+            "centerX": 0,
+            "centerY": 0
+          }
+        },
+        {
+          "name": "Shape",
+          "config": {
+            "type": "rectangle",
+            "width": 64,
+            "height": 1280,
+            "strokeWidth": 0,
+            "strokeColor": "#fff",
+            "strokeAlignment": 0.5,
+            "fill": "rgb(49,9,9)",
+            "pixelLine": false,
+            "sortCenter": [
+              0,
+              0
+            ],
+            "sortingLayer": "default",
+            "blending": "normal",
+            "opacity": 1,
+            "disabled": true
+          }
+        },
+        {
+          "name": "RigidBody",
+          "config": {
+            "type": "static",
+            "mass": 1,
+            "useGravity": false,
+            "isPermeable": false,
+            "ghost": false,
+            "drag": 0
           }
         }
       ],
