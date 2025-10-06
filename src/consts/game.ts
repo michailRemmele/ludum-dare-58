@@ -13,7 +13,7 @@ import {
 } from './templates';
 
 export const LEVEL_UP_BASE_STEP = 500;
-export const MAX_LEVEL = 30;
+export const MAX_LEVEL = 35;
 
 export const LEVELS = [
   {
@@ -299,6 +299,14 @@ export const ATTACK_STATS_MAP: Record<string, AttackStats[]> = {
     {
       damage: 60,
       cooldown: 1250,
+      range: 1000,
+      projectileRadius: 4,
+      projectileModel: ROCKET_PROJECTILE_ID,
+      projectileSpeed: 150,
+    },
+    {
+      damage: 70,
+      cooldown: 1200,
       range: 1000,
       projectileRadius: 4,
       projectileModel: ROCKET_PROJECTILE_ID,
