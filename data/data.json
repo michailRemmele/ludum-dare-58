@@ -3498,7 +3498,7 @@
           "name": "Pocket",
           "config": {
             "exampleField": "",
-            "size": 1000
+            "size": 100
           }
         },
         {

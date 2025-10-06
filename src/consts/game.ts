@@ -431,11 +431,11 @@ export const ENEMIES = [
   {
     id: HEAVY_ENEMY,
     ms: 5 * 60 * 1000,
-    frequency: 4000,
+    frequency: 3000,
   },
   {
     id: ELITE_ENEMY,
     ms: 2.5 * 60 * 1000,
-    frequency: 4000,
+    frequency: 2500,
   },
 ];
